@@ -1,24 +1,52 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Development environment config
+##### Postgres  
+Setup DB username (and password)
 
-Things you may want to cover:
+> config>database.yml
 
-* Ruby version
+    default: &default  
+        username: postgres
 
-* System dependencies
+### Development environment variables
 
-* Configuration
+##### Devise Secret Keys  
+These secret keys are used for verifying the integrity of signed cookies used by Devise.  
+Use `rails secret` to generate your own secure secret key.
 
-* Database creation
+> config>secrets.yml
 
-* Database initialization
+    development:
+      secret_key_base: <insert_secure_key_here>
 
-* How to run the test suite
+    test:
+      secret_key_base: <insert_secure_key_here>
 
-* Services (job queues, cache servers, search engines, etc.)
+    production:
+      secret_key_base: <%= ENV["SECRET_KEY_BASE"] %>
 
-* Deployment instructions
+##### Twillio
+`TWILIO_SID:` Twilio Account SID  
+`TWILIO_AUTH_TOKEN:` Twilio Auth Token  
+`TWILIO_NUMBER:` Assigned Twilio Number  
+Note: All phone numbers need to have country codes!
 
-* ...
+> config>local_env.yml
+
+    TWILIO_SID: <insert_SID>
+    TWILIO_AUTH_TOKEN: <insert_tuth_token>
+    TWILIO_NUMBER: <insert_twilio_number>
+
+> config>application.rb
+
+Load local_env.yml into the ENV array.
+
+    class Application < Rails::Application
+      config.before_configuration do
+        env_file = File.join(Rails.root, 'config', 'local_env.yml')
+        YAML.load(File.open(env_file)).each do |key, value|
+          ENV[key.to_s] = value
+        end if File.exist?(env_file)
+      end
+    end
