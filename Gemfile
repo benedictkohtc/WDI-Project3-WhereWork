@@ -39,6 +39,10 @@ gem 'bcrypt', '3.1.11', require: 'bcrypt'
 # https://github.com/plataformatec/devise
 gem 'devise'
 
+# Use Twilio-ruby for SMS notification
+# https://github.com/twilio/twilio-ruby
+gem 'twilio-ruby'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
