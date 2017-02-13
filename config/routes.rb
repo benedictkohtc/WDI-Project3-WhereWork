@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   # add routes that need to be protected in this block
   authenticate :user do
     get 'locations/secret'
+    get 'locations/twilio_test'
   end
 
+  resources :locations
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
