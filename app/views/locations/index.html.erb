@@ -2,11 +2,6 @@
 <p>Find me in app/views/locations/index.html.erb</p>
 <div id="map"></div><br>
 <script>
-// var locations = [
-//   ['Starbucks Wheelock', 1.3047668, 103.8308477],
-//   ['PS Cafe', 1.3068542, 103.8296941],
-//   ['Killiney Kopitiam', 1.304565, 103.833758]
-// ];
 function initMap() {
     var infoWindow = new google.maps.InfoWindow();
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -21,7 +16,7 @@ function initMap() {
       });
       google.maps.event.addListener(marker, 'click', function(){
         infoWindow.close();
-        infoWindow.setContent("<div id= 'infoWindow'>" + location['name'] + "</div>")
+        infoWindow.setContent("<div id= 'infoWindow'>" + "<a href='/locations/" + location['id'] + "'>" + location['name'] + "</a>" + "</div>")
         infoWindow.open(map, marker);
       });
     };
@@ -34,7 +29,7 @@ function initMap() {
           lng: position.coords.longitude
         };
         userLocationInfoWindow.setPosition(pos);
-        userLocationInfoWindow.setContent('Your location.');
+        userLocationInfoWindow.setContent('Your location');
         map.setCenter(pos);
         $.ajax({
           type: 'GET',
