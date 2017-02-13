@@ -2,184 +2,29 @@
 <p>Find me in app/views/locations/index.html.erb</p>
 <div id="map"></div><br>
 <script>
-var locations = [
-  ['Starbucks Wheelock', 1.3047668, 103.8308477],
-  ['PS Cafe', 1.3068542, 103.8296941],
-  ['Killiney Kopitiam', 1.304565, 103.833758]
-];
+// var locations = [
+//   ['Starbucks Wheelock', 1.3047668, 103.8308477],
+//   ['PS Cafe', 1.3068542, 103.8296941],
+//   ['Killiney Kopitiam', 1.304565, 103.833758]
+// ];
+function placeMarker (location) {
+  var latLng = new google.maps.LatLng(location[1], location[2]);
+  var marker = new google.maps.Marker({
+    position: latLng,
+    map: map
+  });
+  google.maps.event.addListener(marker, 'click', function(){
+    infoWindow.close();
+    infoWindow.setContent("<div id= 'infoWindow'>" + location[0] + "</div>")
+    infoWindow.open(map, marker);
+  });
+}
 function initMap() {
-  // var styledMapType = new google.maps.StyledMapType(
-  //   [
-  //     {
-  //       "elementType": "geometry",
-  //       "stylers": [
-  //         {
-  //           "color": "#242f3e"
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       "elementType": "labels.text.fill",
-  //       "stylers": [
-  //         {
-  //           "color": "#746855"
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       "elementType": "labels.text.stroke",
-  //       "stylers": [
-  //         {
-  //           "color": "#242f3e"
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       "featureType": "administrative.locality",
-  //       "elementType": "labels.text.fill",
-  //       "stylers": [
-  //         {
-  //           "color": "#d59563"
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       "featureType": "poi",
-  //       "elementType": "labels.text.fill",
-  //       "stylers": [
-  //         {
-  //           "color": "#d59563"
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       "featureType": "poi.park",
-  //       "elementType": "geometry",
-  //       "stylers": [
-  //         {
-  //           "color": "#263c3f"
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       "featureType": "poi.park",
-  //       "elementType": "labels.text.fill",
-  //       "stylers": [
-  //         {
-  //           "color": "#6b9a76"
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       "featureType": "road",
-  //       "elementType": "geometry",
-  //       "stylers": [
-  //         {
-  //           "color": "#38414e"
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       "featureType": "road",
-  //       "elementType": "geometry.stroke",
-  //       "stylers": [
-  //         {
-  //           "color": "#212a37"
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       "featureType": "road",
-  //       "elementType": "labels.text.fill",
-  //       "stylers": [
-  //         {
-  //           "color": "#9ca5b3"
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       "featureType": "road.highway",
-  //       "elementType": "geometry",
-  //       "stylers": [
-  //         {
-  //           "color": "#746855"
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       "featureType": "road.highway",
-  //       "elementType": "geometry.stroke",
-  //       "stylers": [
-  //         {
-  //           "color": "#1f2835"
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       "featureType": "road.highway",
-  //       "elementType": "labels.text.fill",
-  //       "stylers": [
-  //         {
-  //           "color": "#f3d19c"
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       "featureType": "transit",
-  //       "elementType": "geometry",
-  //       "stylers": [
-  //         {
-  //           "color": "#2f3948"
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       "featureType": "transit.station",
-  //       "elementType": "labels.text.fill",
-  //       "stylers": [
-  //         {
-  //           "color": "#d59563"
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       "featureType": "water",
-  //       "elementType": "geometry",
-  //       "stylers": [
-  //         {
-  //           "color": "#17263c"
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       "featureType": "water",
-  //       "elementType": "labels.text.fill",
-  //       "stylers": [
-  //         {
-  //           "color": "#515c6d"
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       "featureType": "water",
-  //       "elementType": "labels.text.stroke",
-  //       "stylers": [
-  //         {
-  //           "color": "#17263c"
-  //         }
-  //       ]
-  //     }
-  //   ], {name: 'Styled Map'});
     var infoWindow = new google.maps.InfoWindow();
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 16,
       center: {lat: 1.3072052, lng: 103.831843},
-      // mapTypeControlOptions: {
-      //   mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain', 'styled_map']
-      // }
     });
-    // map.mapTypes.set('styled_map', styledMapType);
-    // map.setMapTypeId('styled_map');
     var userLocationInfoWindow = new google.maps.InfoWindow({map: map});
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
@@ -198,7 +43,9 @@ function initMap() {
           contentType: 'application/json',
           dataType: 'json'
         }).done(function(response){
-          console.log('Hello')
+          for (var i = 0; i < locations.length; i++) {
+            placeMarker(locations[i])
+          }
         })
       }, function() {
         handleLocationError(true, userLocationInfoWindow, map.getCenter());
@@ -207,21 +54,6 @@ function initMap() {
       // Browser doesn't support Geolocation
       handleLocationError(false, userLocationInfoWindow, map.getCenter());
     };
-    function placeMarker (location) {
-      var latLng = new google.maps.LatLng(location[1], location[2]);
-      var marker = new google.maps.Marker({
-        position: latLng,
-        map: map
-      });
-      google.maps.event.addListener(marker, 'click', function(){
-        infoWindow.close();
-        infoWindow.setContent("<div id= 'infoWindow'>" + location[0] + "</div>")
-        infoWindow.open(map, marker);
-      });
-    }
-    for (var i = 0; i < locations.length; i++) {
-      placeMarker(locations[i])
-    }
   }
   function handleLocationError(browserHasGeolocation, userLocationInfoWindow, pos) {
     userLocationInfoWindow.setPosition(pos);
