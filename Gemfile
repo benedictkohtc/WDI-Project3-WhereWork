@@ -48,6 +48,8 @@ gem 'devise'
 # https://github.com/twilio/twilio-ruby
 gem 'twilio-ruby'
 
+gem 'json'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -70,4 +72,3 @@ gem 'httparty', '0.14.0'
 
 # copies database to seed file. just run rails db:seed:dump after installing
 gem 'seed_dump', '3.2.4'
-
