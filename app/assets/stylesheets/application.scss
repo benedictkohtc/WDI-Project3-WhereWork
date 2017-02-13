@@ -21,6 +21,7 @@
 
 .container {
   width: 60%;
+  margin-top: 20px;
 }
 
 #map {
@@ -30,4 +31,9 @@
 
 .alert {
   margin-top: -20px;
+}
+
+.navbar {
+  margin-bottom: 0;
+  border-radius: 0;
 }
