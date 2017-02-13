@@ -1,8 +1,18 @@
 class LocationsController < ApplicationController
+  before_action :find_location, only: [:show, :update]
   def index
   end
 
   def secret
+  end
+
+  def show
+  end
+
+  def update
+    @location.update(location_params)
+    flash[:info] = 'Location info updated.'
+    redirect_back fallback_location: root_path
   end
 
   def twilio_test
@@ -24,5 +34,15 @@ class LocationsController < ApplicationController
     )
     flash[:success] = 'Test SMS sent!'
     redirect_to action: 'secret'
+  end
+
+  private
+
+  def find_location
+    @location = Location.find(params[:id])
+  end
+
+  def location_params
+    params.require(:location).permit(:seats, :sockets)
   end
 end
