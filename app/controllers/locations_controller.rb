@@ -18,7 +18,7 @@ class LocationsController < ApplicationController
     @location.last_updated_user = current_user.id
     @location.save
     flash[:info] = 'Location info updated.'
-    redirect_back fallback_location: root_path
+    redirect_to @location
   end
 
   def twilio_test

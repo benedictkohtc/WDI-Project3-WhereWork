@@ -10,9 +10,5 @@
     <p><%= "Last updated by #{@last_updated_user.email} #{time_ago_in_words(@location.updated_at)} ago" %></p>
   </div>
 </div>
-<%= form_for @location do |f| %>
-  <%= f.text_field :seats %>
-  <%= f.text_field :sockets %>
-  <%= f.submit 'update' %>
-<% end %>
+<%= link_to("Update Location", edit_location_path(@location), class: 'btn btn-default') %>
 
