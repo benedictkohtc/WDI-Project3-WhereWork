@@ -2841,3 +2841,1369 @@ Completed 200 OK in 363ms (Views: 345.7ms | ActiveRecord: 0.0ms)
   [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
   [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["lat", "1.304718"], ["lng", "103.8307298"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Netwave Cybercafe Pte Ltd"], ["google_place_id", "ChIJ1bVEsY0Z2jER4LZAb-7WjKM"], ["vicinity", "501 Orchard Rd"], ["created_at", 2017-02-13 03:51:29 UTC], ["updated_at", 2017-02-13 03:51:29 UTC]]
   [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.9ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" ORDER BY "locations"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.4ms)[0m  [1m[33mUPDATE "locations" SET "updated_at" = $1, "seats" = $2 WHERE "locations"."id" = $3[0m  [["updated_at", 2017-02-13 03:58:26 UTC], ["seats", 10], ["id", 61]]
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/locations" for 127.0.0.1 at 2017-02-13 11:59:42 +0800
+  [1m[36mActiveRecord::SchemaMigration Load (1.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  Rendered locations/index.html.erb within layouts/application (2.6ms)
+  Rendered partials/_navbar.html.erb (2.0ms)
+  Rendered partials/_flash.html.erb (1.1ms)
+Completed 200 OK in 321ms (Views: 305.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/locations/1" for 127.0.0.1 at 2017-02-13 11:59:47 +0800
+  
+AbstractController::ActionNotFound (The action 'show' could not be found for LocationsController):
+  
+actionpack (5.0.1) lib/abstract_controller/base.rb:121:in `process'
+actionview (5.0.1) lib/action_view/rendering.rb:30:in `process'
+actionpack (5.0.1) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (5.0.1) lib/action_controller/metal.rb:262:in `dispatch'
+actionpack (5.0.1) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (5.0.1) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (5.0.1) lib/action_dispatch/journey/router.rb:39:in `block in serve'
+actionpack (5.0.1) lib/action_dispatch/journey/router.rb:26:in `each'
+actionpack (5.0.1) lib/action_dispatch/journey/router.rb:26:in `serve'
+actionpack (5.0.1) lib/action_dispatch/routing/route_set.rb:725:in `call'
+warden (1.2.7) lib/warden/manager.rb:36:in `block in call'
+warden (1.2.7) lib/warden/manager.rb:35:in `catch'
+warden (1.2.7) lib/warden/manager.rb:35:in `call'
+rack (2.0.1) lib/rack/etag.rb:25:in `call'
+rack (2.0.1) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.1) lib/rack/head.rb:12:in `call'
+rack (2.0.1) lib/rack/session/abstract/id.rb:222:in `context'
+rack (2.0.1) lib/rack/session/abstract/id.rb:216:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+activerecord (5.0.1) lib/active_record/migration.rb:553:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/callbacks.rb:38:in `block in call'
+activesupport (5.0.1) lib/active_support/callbacks.rb:97:in `__run_callbacks__'
+activesupport (5.0.1) lib/active_support/callbacks.rb:750:in `_run_call_callbacks'
+activesupport (5.0.1) lib/active_support/callbacks.rb:90:in `run_callbacks'
+actionpack (5.0.1) lib/action_dispatch/middleware/callbacks.rb:36:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:49:in `call'
+web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.1) lib/rails/engine.rb:522:in `call'
+puma (3.7.0) lib/puma/configuration.rb:226:in `call'
+puma (3.7.0) lib/puma/server.rb:578:in `handle_request'
+puma (3.7.0) lib/puma/server.rb:415:in `process_client'
+puma (3.7.0) lib/puma/server.rb:275:in `block in run'
+puma (3.7.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/unknown_action.html.erb within rescues/layout
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/unknown_action.html.erb within rescues/layout (0.9ms)
+Started GET "/locations/1" for 127.0.0.1 at 2017-02-13 12:03:55 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"1"}
+Completed 406 Not Acceptable in 124ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::UnknownFormat (LocationsController#show is missing a template for this request format and variant.
+
+request.formats: ["text/html"]
+request.variant: []
+
+NOTE! For XHR/Ajax or API requests, this action would normally respond with 204 No Content: an empty white screen. Since you're loading it in a web browser, we assume that you expected to actually render a template, not nothing, so we're showing an error to be extra-clear. If you expect 204 No Content, carry on. That's what you'll get from an XHR or API request. Give it a shot.):
+  
+actionpack (5.0.1) lib/action_controller/metal/implicit_render.rb:56:in `default_render'
+actionpack (5.0.1) lib/action_controller/metal/basic_implicit_render.rb:4:in `block in send_action'
+actionpack (5.0.1) lib/action_controller/metal/basic_implicit_render.rb:4:in `tap'
+actionpack (5.0.1) lib/action_controller/metal/basic_implicit_render.rb:4:in `send_action'
+actionpack (5.0.1) lib/abstract_controller/base.rb:188:in `process_action'
+actionpack (5.0.1) lib/action_controller/metal/rendering.rb:30:in `process_action'
+actionpack (5.0.1) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+activesupport (5.0.1) lib/active_support/callbacks.rb:126:in `call'
+activesupport (5.0.1) lib/active_support/callbacks.rb:506:in `block (2 levels) in compile'
+activesupport (5.0.1) lib/active_support/callbacks.rb:455:in `call'
+activesupport (5.0.1) lib/active_support/callbacks.rb:101:in `__run_callbacks__'
+activesupport (5.0.1) lib/active_support/callbacks.rb:750:in `_run_process_action_callbacks'
+activesupport (5.0.1) lib/active_support/callbacks.rb:90:in `run_callbacks'
+actionpack (5.0.1) lib/abstract_controller/callbacks.rb:19:in `process_action'
+actionpack (5.0.1) lib/action_controller/metal/rescue.rb:20:in `process_action'
+actionpack (5.0.1) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+activesupport (5.0.1) lib/active_support/notifications.rb:164:in `block in instrument'
+activesupport (5.0.1) lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+activesupport (5.0.1) lib/active_support/notifications.rb:164:in `instrument'
+actionpack (5.0.1) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+actionpack (5.0.1) lib/action_controller/metal/params_wrapper.rb:248:in `process_action'
+activerecord (5.0.1) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+actionpack (5.0.1) lib/abstract_controller/base.rb:126:in `process'
+actionview (5.0.1) lib/action_view/rendering.rb:30:in `process'
+actionpack (5.0.1) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (5.0.1) lib/action_controller/metal.rb:262:in `dispatch'
+actionpack (5.0.1) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (5.0.1) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (5.0.1) lib/action_dispatch/journey/router.rb:39:in `block in serve'
+actionpack (5.0.1) lib/action_dispatch/journey/router.rb:26:in `each'
+actionpack (5.0.1) lib/action_dispatch/journey/router.rb:26:in `serve'
+actionpack (5.0.1) lib/action_dispatch/routing/route_set.rb:725:in `call'
+warden (1.2.7) lib/warden/manager.rb:36:in `block in call'
+warden (1.2.7) lib/warden/manager.rb:35:in `catch'
+warden (1.2.7) lib/warden/manager.rb:35:in `call'
+rack (2.0.1) lib/rack/etag.rb:25:in `call'
+rack (2.0.1) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.1) lib/rack/head.rb:12:in `call'
+rack (2.0.1) lib/rack/session/abstract/id.rb:222:in `context'
+rack (2.0.1) lib/rack/session/abstract/id.rb:216:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+activerecord (5.0.1) lib/active_record/migration.rb:553:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/callbacks.rb:38:in `block in call'
+activesupport (5.0.1) lib/active_support/callbacks.rb:97:in `__run_callbacks__'
+activesupport (5.0.1) lib/active_support/callbacks.rb:750:in `_run_call_callbacks'
+activesupport (5.0.1) lib/active_support/callbacks.rb:90:in `run_callbacks'
+actionpack (5.0.1) lib/action_dispatch/middleware/callbacks.rb:36:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:49:in `call'
+web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.1) lib/rails/engine.rb:522:in `call'
+puma (3.7.0) lib/puma/configuration.rb:226:in `call'
+puma (3.7.0) lib/puma/server.rb:578:in `handle_request'
+puma (3.7.0) lib/puma/server.rb:415:in `process_client'
+puma (3.7.0) lib/puma/server.rb:275:in `block in run'
+puma (3.7.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (6.0ms)
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.4ms)
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (98.9ms)
+Started GET "/locations/1" for 127.0.0.1 at 2017-02-13 12:04:25 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (0.5ms)
+  Rendered partials/_navbar.html.erb (1.3ms)
+  Rendered partials/_flash.html.erb (0.6ms)
+Completed 200 OK in 45ms (Views: 42.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/locations/1" for 127.0.0.1 at 2017-02-13 12:05:23 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (0.6ms)
+  Rendered partials/_navbar.html.erb (8.6ms)
+  Rendered partials/_flash.html.erb (0.6ms)
+Completed 200 OK in 58ms (Views: 54.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/locations/1" for 127.0.0.1 at 2017-02-13 12:05:38 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (2.9ms)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    1: <p><%= @location.name %></p>
+  
+app/views/locations/show.html.erb:1:in `_app_views_locations_show_html_erb__3921469461464319646_70208288690660'
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (5.5ms)
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.3ms)
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (82.5ms)
+Started GET "/locations/1" for 127.0.0.1 at 2017-02-13 12:06:46 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mLocation Load (0.9ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 404 Not Found in 49ms (ActiveRecord: 14.8ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Location with 'id'=1):
+  
+app/controllers/locations_controller.rb:9:in `show'
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (5.4ms)
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.7ms)
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.7ms)
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (108.6ms)
+Started GET "/locations/61" for 127.0.0.1 at 2017-02-13 12:07:09 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"61"}
+  [1m[36mLocation Load (0.9ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (0.6ms)
+  Rendered partials/_navbar.html.erb (1.1ms)
+  Rendered partials/_flash.html.erb (1.2ms)
+Completed 200 OK in 64ms (Views: 39.5ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/locations/61" for 127.0.0.1 at 2017-02-13 12:37:34 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"61"}
+  [1m[36mLocation Load (1.0ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (1.0ms)
+  Rendered partials/_navbar.html.erb (1.3ms)
+  Rendered partials/_flash.html.erb (0.8ms)
+Completed 200 OK in 49ms (Views: 42.9ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/locations/61" for 127.0.0.1 at 2017-02-13 12:40:31 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"61"}
+  [1m[36mLocation Load (0.7ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (0.7ms)
+  Rendered partials/_navbar.html.erb (1.4ms)
+  Rendered partials/_flash.html.erb (0.5ms)
+Completed 200 OK in 48ms (Views: 43.1ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/locations/61" for 127.0.0.1 at 2017-02-13 12:42:36 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"61"}
+  [1m[36mLocation Load (0.4ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (209.2ms)
+Completed 500 Internal Server Error in 220ms (ActiveRecord: 0.4ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `location' for #<#<Class:0x007fb549516048>:0x007fb54925bab0>
+Did you mean?  @location):
+     8:   </div>
+     9: </div>
+    10: 
+    11: <%= form_for location do |f| %>
+    12:   <%= f.text_field :seats %>
+    13:   <%= f.text_field :sockets %>
+    14: <% end %>
+  
+app/views/locations/show.html.erb:11:in `_app_views_locations_show_html_erb__3921469461464319646_70208296518240'
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (9.6ms)
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.9ms)
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.1ms)
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (95.2ms)
+Started GET "/locations/61" for 127.0.0.1 at 2017-02-13 12:42:55 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"61"}
+  [1m[36mLocation Load (0.7ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (31.5ms)
+  Rendered partials/_navbar.html.erb (0.9ms)
+  Rendered partials/_flash.html.erb (0.8ms)
+Completed 200 OK in 93ms (Views: 86.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/locations/61" for 127.0.0.1 at 2017-02-13 12:43:11 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"61"}
+  [1m[36mLocation Load (0.4ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (2.8ms)
+  Rendered partials/_navbar.html.erb (2.0ms)
+  Rendered partials/_flash.html.erb (1.6ms)
+Completed 200 OK in 74ms (Views: 67.7ms | ActiveRecord: 0.4ms)
+
+
+Started PATCH "/locations/61" for 127.0.0.1 at 2017-02-13 12:43:14 +0800
+  
+AbstractController::ActionNotFound (The action 'update' could not be found for LocationsController):
+  
+actionpack (5.0.1) lib/abstract_controller/base.rb:121:in `process'
+actionview (5.0.1) lib/action_view/rendering.rb:30:in `process'
+actionpack (5.0.1) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (5.0.1) lib/action_controller/metal.rb:262:in `dispatch'
+actionpack (5.0.1) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (5.0.1) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (5.0.1) lib/action_dispatch/journey/router.rb:39:in `block in serve'
+actionpack (5.0.1) lib/action_dispatch/journey/router.rb:26:in `each'
+actionpack (5.0.1) lib/action_dispatch/journey/router.rb:26:in `serve'
+actionpack (5.0.1) lib/action_dispatch/routing/route_set.rb:725:in `call'
+warden (1.2.7) lib/warden/manager.rb:36:in `block in call'
+warden (1.2.7) lib/warden/manager.rb:35:in `catch'
+warden (1.2.7) lib/warden/manager.rb:35:in `call'
+rack (2.0.1) lib/rack/etag.rb:25:in `call'
+rack (2.0.1) lib/rack/conditional_get.rb:38:in `call'
+rack (2.0.1) lib/rack/head.rb:12:in `call'
+rack (2.0.1) lib/rack/session/abstract/id.rb:222:in `context'
+rack (2.0.1) lib/rack/session/abstract/id.rb:216:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+activerecord (5.0.1) lib/active_record/migration.rb:553:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/callbacks.rb:38:in `block in call'
+activesupport (5.0.1) lib/active_support/callbacks.rb:97:in `__run_callbacks__'
+activesupport (5.0.1) lib/active_support/callbacks.rb:750:in `_run_call_callbacks'
+activesupport (5.0.1) lib/active_support/callbacks.rb:90:in `run_callbacks'
+actionpack (5.0.1) lib/action_dispatch/middleware/callbacks.rb:36:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:49:in `call'
+web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.1) lib/rails/engine.rb:522:in `call'
+puma (3.7.0) lib/puma/configuration.rb:226:in `call'
+puma (3.7.0) lib/puma/server.rb:578:in `handle_request'
+puma (3.7.0) lib/puma/server.rb:415:in `process_client'
+puma (3.7.0) lib/puma/server.rb:275:in `block in run'
+puma (3.7.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/unknown_action.html.erb within rescues/layout
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/unknown_action.html.erb within rescues/layout (1.0ms)
+Started PATCH "/locations/61" for 127.0.0.1 at 2017-02-13 12:45:06 +0800
+Processing by LocationsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ucquCN62pi+hfOOdL6p4n7Mmg2Q4/Y4rMfNa2PRkdfTbOnjtfXgna5+/a2BLlj5OvoPK8CEFdVqAqCos5tZEUA==", "location"=>{"seats"=>"10", "sockets"=>"10"}, "commit"=>"update", "id"=>"61"}
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+No template found for LocationsController#update, rendering head :no_content
+Completed 204 No Content in 176ms (ActiveRecord: 6.5ms)
+
+
+Started PATCH "/locations/61" for 127.0.0.1 at 2017-02-13 12:47:09 +0800
+Processing by LocationsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ucquCN62pi+hfOOdL6p4n7Mmg2Q4/Y4rMfNa2PRkdfTbOnjtfXgna5+/a2BLlj5OvoPK8CEFdVqAqCos5tZEUA==", "location"=>{"seats"=>"10", "sockets"=>"10"}, "commit"=>"update", "id"=>"61"}
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.5ms)[0m  [1m[33mUPDATE "locations" SET "sockets" = $1, "updated_at" = $2 WHERE "locations"."id" = $3[0m  [["sockets", 10], ["updated_at", 2017-02-13 04:47:09 UTC], ["id", 61]]
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/locations/61
+Completed 302 Found in 32ms (ActiveRecord: 9.2ms)
+
+
+Started GET "/locations/61" for 127.0.0.1 at 2017-02-13 12:47:09 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"61"}
+  [1m[36mLocation Load (1.0ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (2.1ms)
+  Rendered partials/_navbar.html.erb (1.0ms)
+  Rendered partials/_flash.html.erb (0.6ms)
+Completed 200 OK in 47ms (Views: 41.2ms | ActiveRecord: 1.0ms)
+
+
+Started PATCH "/locations/61" for 127.0.0.1 at 2017-02-13 12:47:13 +0800
+Processing by LocationsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"oCv36GErdSNImQxKXW0Mw728JIe1TA3jwdr2a9+n0YzC2yENwuX0Z3ZahLc5UUoSsBltE6y09pJwgYafzRXgKA==", "location"=>{"seats"=>"100", "sockets"=>"10"}, "commit"=>"update", "id"=>"61"}
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "locations" SET "seats" = $1, "updated_at" = $2 WHERE "locations"."id" = $3[0m  [["seats", 100], ["updated_at", 2017-02-13 04:47:13 UTC], ["id", 61]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/locations/61
+Completed 302 Found in 6ms (ActiveRecord: 1.4ms)
+
+
+Started GET "/locations/61" for 127.0.0.1 at 2017-02-13 12:47:13 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"61"}
+  [1m[36mLocation Load (0.6ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (2.7ms)
+  Rendered partials/_navbar.html.erb (0.9ms)
+  Rendered partials/_flash.html.erb (0.5ms)
+Completed 200 OK in 40ms (Views: 34.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/locations/61" for 127.0.0.1 at 2017-02-13 12:47:16 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"61"}
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (1.6ms)
+  Rendered partials/_navbar.html.erb (0.8ms)
+  Rendered partials/_flash.html.erb (0.4ms)
+Completed 200 OK in 32ms (Views: 28.7ms | ActiveRecord: 0.3ms)
+
+
+Started PATCH "/locations/61" for 127.0.0.1 at 2017-02-13 12:49:23 +0800
+Processing by LocationsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"phaCkcrj8xWAxBeX1945EIqZC/6y5mcHHakpAwbO/DbE5lR0aS1yUb4Hn2qz4n/BhzxCaqsenHas8ln3FHzNkg==", "location"=>{"seats"=>"100", "sockets"=>"100"}, "commit"=>"update", "id"=>"61"}
+  [1m[36mLocation Load (0.5ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  [1m[35m (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[33mUPDATE "locations" SET "sockets" = $1, "updated_at" = $2 WHERE "locations"."id" = $3[0m  [["sockets", 100], ["updated_at", 2017-02-13 04:49:23 UTC], ["id", 61]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/locations/61
+Completed 302 Found in 11ms (ActiveRecord: 2.6ms)
+
+
+Started GET "/locations/61" for 127.0.0.1 at 2017-02-13 12:49:23 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"61"}
+  [1m[36mLocation Load (0.4ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (1.5ms)
+  Rendered partials/_navbar.html.erb (0.9ms)
+  Rendered partials/_flash.html.erb (0.5ms)
+Completed 200 OK in 42ms (Views: 38.0ms | ActiveRecord: 0.4ms)
+
+
+Started PATCH "/locations/61" for 127.0.0.1 at 2017-02-13 12:49:26 +0800
+Processing by LocationsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"0y3aTUpsGrXa38ob8kxH8b+hpnvVX1dmzDzcWj7Dqbyx3Qyo6aKb8eQcQuaWcAEgsgTv78ynrBd9Z6yuLHGYGA==", "location"=>{"seats"=>"0", "sockets"=>"0"}, "commit"=>"update", "id"=>"61"}
+  [1m[36mLocation Load (0.7ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "locations" SET "seats" = $1, "sockets" = $2, "updated_at" = $3 WHERE "locations"."id" = $4[0m  [["seats", 0], ["sockets", 0], ["updated_at", 2017-02-13 04:49:26 UTC], ["id", 61]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/locations/61
+Completed 302 Found in 9ms (ActiveRecord: 2.1ms)
+
+
+Started GET "/locations/61" for 127.0.0.1 at 2017-02-13 12:49:26 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"61"}
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (1.5ms)
+  Rendered partials/_navbar.html.erb (1.1ms)
+  Rendered partials/_flash.html.erb (0.7ms)
+Completed 200 OK in 36ms (Views: 32.2ms | ActiveRecord: 0.3ms)
+
+
+Started PATCH "/locations/61" for 127.0.0.1 at 2017-02-13 12:49:32 +0800
+Processing by LocationsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9nuXk6+/3W/QNRvlIV5dBWNGtn1PUJt96EnjOg3oNTiUi0F2DHFcK+72kxhFYhvUbuP/6VaoYAxZEpPOH1oEnA==", "location"=>{"seats"=>"0", "sockets"=>"10"}, "commit"=>"update", "id"=>"61"}
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[33mUPDATE "locations" SET "sockets" = $1, "updated_at" = $2 WHERE "locations"."id" = $3[0m  [["sockets", 10], ["updated_at", 2017-02-13 04:49:32 UTC], ["id", 61]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/locations/61
+Completed 302 Found in 9ms (ActiveRecord: 2.1ms)
+
+
+Started GET "/locations/61" for 127.0.0.1 at 2017-02-13 12:49:32 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"61"}
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (1.9ms)
+  Rendered partials/_navbar.html.erb (1.0ms)
+  Rendered partials/_flash.html.erb (0.7ms)
+Completed 200 OK in 32ms (Views: 29.5ms | ActiveRecord: 0.3ms)
+
+
+Started PATCH "/locations/61" for 127.0.0.1 at 2017-02-13 12:50:47 +0800
+Processing by LocationsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"VTdVpu/f0JeuQJfdkBEsr0/p0boIECa2+BBFFq17kmw3x4NDTBFR05CDHyD0LWp+QkyYLhHo3cdJSzXiv8mjyA==", "location"=>{"seats"=>"5", "sockets"=>"10"}, "commit"=>"update", "id"=>"61"}
+  [1m[36mLocation Load (0.5ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[33mUPDATE "locations" SET "seats" = $1, "updated_at" = $2 WHERE "locations"."id" = $3[0m  [["seats", 5], ["updated_at", 2017-02-13 04:50:47 UTC], ["id", 61]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/locations/61
+Completed 302 Found in 11ms (ActiveRecord: 2.4ms)
+
+
+Started GET "/locations/61" for 127.0.0.1 at 2017-02-13 12:50:47 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"61"}
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (1.6ms)
+  Rendered partials/_navbar.html.erb (2.1ms)
+  Rendered partials/_flash.html.erb (0.9ms)
+Completed 200 OK in 47ms (Views: 42.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/locations/67" for 127.0.0.1 at 2017-02-13 12:51:01 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"67"}
+  [1m[36mLocation Load (0.4ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 67], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (1.8ms)
+  Rendered partials/_navbar.html.erb (3.0ms)
+  Rendered partials/_flash.html.erb (0.6ms)
+Completed 200 OK in 37ms (Views: 32.2ms | ActiveRecord: 0.4ms)
+
+
+Started PATCH "/locations/67" for 127.0.0.1 at 2017-02-13 12:51:04 +0800
+Processing by LocationsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"BuOssTSchD+g1NPM5AVwpt+MGQFVu1LpuaVGLVmU9vxkE3pUl1IFe54XWzGAOTZ30ilQlUxDqZgI/jbZSybHWA==", "location"=>{"seats"=>"10", "sockets"=>"10"}, "commit"=>"update", "id"=>"67"}
+  [1m[36mLocation Load (0.5ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 67], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "locations" SET "seats" = $1, "sockets" = $2, "updated_at" = $3 WHERE "locations"."id" = $4[0m  [["seats", 10], ["sockets", 10], ["updated_at", 2017-02-13 04:51:04 UTC], ["id", 67]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/locations/67
+Completed 302 Found in 7ms (ActiveRecord: 1.9ms)
+
+
+Started GET "/locations/67" for 127.0.0.1 at 2017-02-13 12:51:04 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"67"}
+  [1m[36mLocation Load (0.4ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 67], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (1.8ms)
+  Rendered partials/_navbar.html.erb (0.9ms)
+  Rendered partials/_flash.html.erb (0.6ms)
+Completed 200 OK in 45ms (Views: 41.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/locations/67" for 127.0.0.1 at 2017-02-13 12:52:01 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"67"}
+  [1m[36mLocation Load (0.6ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 67], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (1.5ms)
+  Rendered partials/_navbar.html.erb (1.2ms)
+  Rendered partials/_flash.html.erb (0.5ms)
+Completed 200 OK in 33ms (Views: 28.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/locations/67" for 127.0.0.1 at 2017-02-13 12:54:38 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"67"}
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 67], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (1.8ms)
+  Rendered partials/_navbar.html.erb (1.0ms)
+  Rendered partials/_flash.html.erb (0.5ms)
+Completed 200 OK in 45ms (Views: 41.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/locations/67" for 127.0.0.1 at 2017-02-13 12:55:30 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"67"}
+  [1m[36mLocation Load (0.5ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 67], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (1.7ms)
+  Rendered partials/_navbar.html.erb (1.2ms)
+  Rendered partials/_flash.html.erb (0.5ms)
+Completed 200 OK in 43ms (Views: 38.7ms | ActiveRecord: 0.5ms)
+
+
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7495132482561377955);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddLastUpdatedUserToLocations (20170213045739)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.1ms)[0m  [1m[35mALTER TABLE "locations" ADD "last_updated_user_id" integer[0m
+  [1m[35m (11.8ms)[0m  [1m[35mCREATE  INDEX  "index_locations_on_last_updated_user_id" ON "locations"  ("last_updated_user_id")[0m
+  [1m[35m (3.9ms)[0m  [1m[35mALTER TABLE "locations" ADD CONSTRAINT "fk_rails_0a6cfc3e52"
+FOREIGN KEY ("last_updated_user_id")
+  REFERENCES "last_updated_users" ("id")
+[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(7495132482561377955)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7495132482561377955);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddLastUpdatedUserToLocations (20170213045739)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(7495132482561377955)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7495132482561377955);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddLastUpdatedUserToLocations (20170213045739)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(7495132482561377955)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7495132482561377955);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddLastUpdatedUserToLocations (20170213045739)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.0ms)[0m  [1m[35mALTER TABLE "location" ADD "last_updated_user" integer[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(7495132482561377955)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7495132482561377955);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddLastUpdatedUserToLocations (20170213045739)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.4ms)[0m  [1m[35mALTER TABLE "locations" ADD "last_updated_user" integer[0m
+  [1m[35m (13.6ms)[0m  [1m[35mALTER TABLE "locations" ADD CONSTRAINT "fk_rails_967260838a"
+FOREIGN KEY ("last_updated_user")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170213045739"]]
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(7495132482561377955)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started GET "/locations/67" for 127.0.0.1 at 2017-02-13 13:08:56 +0800
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"67"}
+  [1m[36mLocation Load (1.4ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 67], ["LIMIT", 1]]
+  [1m[36mLocation Load (0.5ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 67], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (2.6ms)
+  Rendered partials/_navbar.html.erb (1.4ms)
+  Rendered partials/_flash.html.erb (0.7ms)
+Completed 200 OK in 77ms (Views: 44.0ms | ActiveRecord: 9.8ms)
+
+
+Started PATCH "/locations/67" for 127.0.0.1 at 2017-02-13 13:09:00 +0800
+Processing by LocationsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"gGvnoR7KOmpPVBXZMB2KkMezqc6WJI+kERNe0ElYRU/imzFEvQS7LnGXnSRUIcxByhbgWo/cdNWgSC4kW+p06w==", "location"=>{"seats"=>"10", "sockets"=>"10"}, "commit"=>"update", "id"=>"67"}
+  [1m[36mLocation Load (0.5ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 67], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (2.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 401 Unauthorized in 41ms (ActiveRecord: 14.0ms)
+
+
+Started GET "/locations/67" for 127.0.0.1 at 2017-02-13 13:09:00 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"67"}
+  [1m[36mLocation Load (0.4ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 67], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (1.7ms)
+  Rendered partials/_navbar.html.erb (0.9ms)
+  Rendered partials/_flash.html.erb (0.4ms)
+Completed 200 OK in 34ms (Views: 30.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-02-13 13:09:04 +0800
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.3ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (14.5ms)
+  Rendered partials/_navbar.html.erb (1.0ms)
+  Rendered partials/_flash.html.erb (0.4ms)
+Completed 200 OK in 49ms (Views: 44.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2017-02-13 13:09:07 +0800
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"TJkewX2SM6R7OWWSAn9jTuKD1cC2k99qh1W9drI+nbLmqCu890oWn444MMvq3EI3qJxlDbvlKmHVz+3mUMIEJg==", "user"=>{"email"=>"a@b.com", "password"=>"[FILTERED]"}, "commit"=>"Log in"}
+  [1m[36mUser Load (2.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "a@b.com"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 221ms (ActiveRecord: 2.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-02-13 13:09:07 +0800
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  Rendered locations/index.html.erb within layouts/application (0.4ms)
+  Rendered partials/_navbar.html.erb (1.3ms)
+  Rendered partials/_flash.html.erb (0.9ms)
+Completed 200 OK in 35ms (Views: 32.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/locations/61" for 127.0.0.1 at 2017-02-13 13:09:12 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"61"}
+  [1m[36mLocation Load (0.9ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (2.5ms)
+  Rendered partials/_navbar.html.erb (1.1ms)
+  Rendered partials/_flash.html.erb (1.7ms)
+Completed 200 OK in 68ms (Views: 61.8ms | ActiveRecord: 0.9ms)
+
+
+Started PATCH "/locations/61" for 127.0.0.1 at 2017-02-13 13:09:15 +0800
+Processing by LocationsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"H2/w+sQ+w4Uu3HdTr2WGOWZfeOuvfTUSWBh/Y3L91Aye1NSFSkbSX2dBfw7Y4Ni01AnVwpbEUwBRV4mtyuUH5w==", "location"=>{"seats"=>"10", "sockets"=>"10"}, "commit"=>"update", "id"=>"61"}
+  [1m[36mLocation Load (0.5ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[33mUPDATE "locations" SET "seats" = $1, "updated_at" = $2 WHERE "locations"."id" = $3[0m  [["seats", 10], ["updated_at", 2017-02-13 05:09:15 UTC], ["id", 61]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://localhost:3000/locations/61
+Completed 302 Found in 14ms (ActiveRecord: 3.7ms)
+
+
+Started GET "/locations/61" for 127.0.0.1 at 2017-02-13 13:09:15 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"61"}
+  [1m[36mLocation Load (0.5ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (1.9ms)
+  Rendered partials/_navbar.html.erb (1.8ms)
+  Rendered partials/_flash.html.erb (0.5ms)
+Completed 200 OK in 35ms (Views: 31.0ms | ActiveRecord: 0.5ms)
+
+
+Started PATCH "/locations/61" for 127.0.0.1 at 2017-02-13 13:12:10 +0800
+Processing by LocationsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Qed/4YYHZTtJH30fSbmwxedeQvNf+YjiG6Gvrhi9AYPAXFueCH904QCCdUI+PO5IVQjv2mZA7vAS7llgoKXSaA==", "location"=>{"seats"=>"10", "sockets"=>"100"}, "commit"=>"update", "id"=>"61"}
+  [1m[36mLocation Load (0.4ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[33mUPDATE "locations" SET "sockets" = $1, "updated_at" = $2 WHERE "locations"."id" = $3[0m  [["sockets", 100], ["updated_at", 2017-02-13 05:12:11 UTC], ["id", 61]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/locations/61
+Completed 302 Found in 51ms (ActiveRecord: 8.7ms)
+
+
+Started GET "/locations/61" for 127.0.0.1 at 2017-02-13 13:12:11 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"61"}
+  [1m[36mLocation Load (0.5ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (5.4ms)
+  Rendered partials/_navbar.html.erb (1.7ms)
+  Rendered partials/_flash.html.erb (0.6ms)
+Completed 200 OK in 67ms (Views: 60.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/locations/61" for 127.0.0.1 at 2017-02-13 13:12:29 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"61"}
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (3.7ms)
+  Rendered partials/_navbar.html.erb (1.2ms)
+  Rendered partials/_flash.html.erb (0.8ms)
+Completed 200 OK in 74ms (Views: 43.0ms | ActiveRecord: 6.0ms)
+
+
+Started PATCH "/locations/61" for 127.0.0.1 at 2017-02-13 13:12:31 +0800
+Processing by LocationsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"TlbEhklRUn5XXZ0L5JHPb1lbnKC32Bai/WYwrnnIIYTP7eD5xylDpB7AlVaTFJHi6w0xiY5hcLD0KcZgwdDybw==", "location"=>{"seats"=>"10", "sockets"=>"10"}, "commit"=>"update", "id"=>"61"}
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[33mUPDATE "locations" SET "sockets" = $1, "updated_at" = $2 WHERE "locations"."id" = $3[0m  [["sockets", 10], ["updated_at", 2017-02-13 05:12:31 UTC], ["id", 61]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (3.2ms)[0m  [1m[33mUPDATE "locations" SET "updated_at" = $1, "last_updated_user" = $2 WHERE "locations"."id" = $3[0m  [["updated_at", 2017-02-13 05:12:31 UTC], ["last_updated_user", 0], ["id", 61]]
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 6.0ms)
+
+
+  
+ActiveRecord::InvalidForeignKey (PG::ForeignKeyViolation: ERROR:  insert or update on table "locations" violates foreign key constraint "fk_rails_967260838a"
+DETAIL:  Key (last_updated_user)=(0) is not present in table "users".
+: UPDATE "locations" SET "updated_at" = $1, "last_updated_user" = $2 WHERE "locations"."id" = $3):
+  
+app/controllers/locations_controller.rb:15:in `update'
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (6.8ms)
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (99.4ms)
+Started PATCH "/locations/61" for 127.0.0.1 at 2017-02-13 13:12:50 +0800
+Processing by LocationsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"TlbEhklRUn5XXZ0L5JHPb1lbnKC32Bai/WYwrnnIIYTP7eD5xylDpB7AlVaTFJHi6w0xiY5hcLD0KcZgwdDybw==", "location"=>{"seats"=>"10", "sockets"=>"10"}, "commit"=>"update", "id"=>"61"}
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.4ms)[0m  [1m[33mUPDATE "locations" SET "updated_at" = $1, "last_updated_user" = $2 WHERE "locations"."id" = $3[0m  [["updated_at", 2017-02-13 05:12:50 UTC], ["last_updated_user", 0], ["id", 61]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+Completed 500 Internal Server Error in 27ms (ActiveRecord: 7.7ms)
+
+
+  
+ActiveRecord::InvalidForeignKey (PG::ForeignKeyViolation: ERROR:  insert or update on table "locations" violates foreign key constraint "fk_rails_967260838a"
+DETAIL:  Key (last_updated_user)=(0) is not present in table "users".
+: UPDATE "locations" SET "updated_at" = $1, "last_updated_user" = $2 WHERE "locations"."id" = $3):
+  
+app/controllers/locations_controller.rb:15:in `update'
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (18.4ms)
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.6ms)
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (96.7ms)
+Started PATCH "/locations/61" for 127.0.0.1 at 2017-02-13 13:13:19 +0800
+Processing by LocationsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"TlbEhklRUn5XXZ0L5JHPb1lbnKC32Bai/WYwrnnIIYTP7eD5xylDpB7AlVaTFJHi6w0xiY5hcLD0KcZgwdDybw==", "location"=>{"seats"=>"10", "sockets"=>"10"}, "commit"=>"update", "id"=>"61"}
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[33mUPDATE "locations" SET "updated_at" = $1, "last_updated_user" = $2 WHERE "locations"."id" = $3[0m  [["updated_at", 2017-02-13 05:13:19 UTC], ["last_updated_user", 1], ["id", 61]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/locations/61
+Completed 302 Found in 56ms (ActiveRecord: 12.9ms)
+
+
+Started GET "/locations/61" for 127.0.0.1 at 2017-02-13 13:13:19 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"61"}
+  [1m[36mLocation Load (0.4ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (2.7ms)
+  Rendered partials/_navbar.html.erb (1.2ms)
+  Rendered partials/_flash.html.erb (0.5ms)
+Completed 200 OK in 52ms (Views: 47.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/locations/61" for 127.0.0.1 at 2017-02-13 13:13:32 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"61"}
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (2.4ms)
+  Rendered partials/_navbar.html.erb (1.7ms)
+  Rendered partials/_flash.html.erb (1.0ms)
+Completed 200 OK in 74ms (Views: 45.1ms | ActiveRecord: 5.8ms)
+
+
+Started GET "/locations/61" for 127.0.0.1 at 2017-02-13 13:13:34 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"61"}
+  [1m[36mLocation Load (0.6ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (2.1ms)
+  Rendered partials/_navbar.html.erb (1.1ms)
+  Rendered partials/_flash.html.erb (0.5ms)
+Completed 200 OK in 33ms (Views: 28.8ms | ActiveRecord: 0.6ms)
+
+
+Started PATCH "/locations/61" for 127.0.0.1 at 2017-02-13 13:13:37 +0800
+Processing by LocationsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"SQEGdxn6Pvn+/OfT5FggqthE7OasBSqxKGbPrK6wfjnIuiIIl4IvI7dh746T3X4nahJBz5W8TKMhKTliFqit0g==", "location"=>{"seats"=>"10", "sockets"=>"10"}, "commit"=>"update", "id"=>"61"}
+  [1m[36mLocation Load (0.6ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.8ms)[0m  [1m[33mUPDATE "locations" SET "updated_at" = $1, "last_updated_user" = $2 WHERE "locations"."id" = $3[0m  [["updated_at", 2017-02-13 05:13:37 UTC], ["last_updated_user", 0], ["id", 61]]
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+Completed 500 Internal Server Error in 34ms (ActiveRecord: 10.0ms)
+
+
+  
+ActiveRecord::InvalidForeignKey (PG::ForeignKeyViolation: ERROR:  insert or update on table "locations" violates foreign key constraint "fk_rails_967260838a"
+DETAIL:  Key (last_updated_user)=(0) is not present in table "users".
+: UPDATE "locations" SET "updated_at" = $1, "last_updated_user" = $2 WHERE "locations"."id" = $3):
+  
+app/controllers/locations_controller.rb:15:in `update'
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (7.7ms)
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.5ms)
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.8ms)
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (96.5ms)
+Started PATCH "/locations/61" for 127.0.0.1 at 2017-02-13 13:13:51 +0800
+Processing by LocationsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"SQEGdxn6Pvn+/OfT5FggqthE7OasBSqxKGbPrK6wfjnIuiIIl4IvI7dh746T3X4nahJBz5W8TKMhKTliFqit0g==", "location"=>{"seats"=>"10", "sockets"=>"10"}, "commit"=>"update", "id"=>"61"}
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/locations/61
+Completed 302 Found in 43ms (ActiveRecord: 10.0ms)
+
+
+Started GET "/locations/61" for 127.0.0.1 at 2017-02-13 13:13:51 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"61"}
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (1.9ms)
+  Rendered partials/_navbar.html.erb (1.4ms)
+  Rendered partials/_flash.html.erb (0.5ms)
+Completed 200 OK in 31ms (Views: 28.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/locations/61" for 127.0.0.1 at 2017-02-13 13:14:36 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"61"}
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (6.1ms)
+Completed 500 Internal Server Error in 20ms (ActiveRecord: 0.3ms)
+
+
+  
+ActionView::Template::Error (undefined method `name' for 1:Integer):
+     7:     <p><%= "#{@location.sockets} sockets available" %>
+     8:   </div>
+     9:   <div class="panel-footer">
+    10:     <p><%= "Last updated by #{@location.last_updated_user.name}" %></p>
+    11:   </div>
+    12: </div>
+    13: 
+  
+app/views/locations/show.html.erb:10:in `_app_views_locations_show_html_erb__3921469461464319646_70208280476040'
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (8.3ms)
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.2ms)
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (82.4ms)
+Started GET "/locations/61" for 127.0.0.1 at 2017-02-13 13:14:54 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"61"}
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (2.0ms)
+  Rendered partials/_navbar.html.erb (1.4ms)
+  Rendered partials/_flash.html.erb (0.8ms)
+Completed 200 OK in 46ms (Views: 42.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/locations/61" for 127.0.0.1 at 2017-02-13 13:15:41 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"61"}
+  [1m[36mLocation Load (2.7ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered locations/show.html.erb within layouts/application (5.3ms)
+  Rendered partials/_navbar.html.erb (1.2ms)
+  Rendered partials/_flash.html.erb (0.8ms)
+Completed 200 OK in 42ms (Views: 32.9ms | ActiveRecord: 3.5ms)
+
+
+Started GET "/locations/61" for 127.0.0.1 at 2017-02-13 13:17:17 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"61"}
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered locations/show.html.erb within layouts/application (36.0ms)
+  Rendered partials/_navbar.html.erb (1.1ms)
+  Rendered partials/_flash.html.erb (0.5ms)
+Completed 200 OK in 113ms (Views: 63.6ms | ActiveRecord: 14.3ms)
+
+
+Started GET "/locations/61" for 127.0.0.1 at 2017-02-13 13:17:44 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"61"}
+  [1m[36mLocation Load (0.4ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (5.3ms)
+Completed 500 Internal Server Error in 25ms (ActiveRecord: 0.4ms)
+
+
+  
+ActionView::Template::Error (undefined method `email' for nil:NilClass):
+     7:     <p><%= "#{@location.sockets} sockets available" %>
+     8:   </div>
+     9:   <div class="panel-footer">
+    10:     <p><%= "Last updated by #{@location.last_updated_user.email}" %></p>
+    11:   </div>
+    12: </div>
+    13: <h1><%= current_user.email %></h1>
+  
+app/views/locations/show.html.erb:10:in `_app_views_locations_show_html_erb__3921469461464319646_70208255990060'
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (6.5ms)
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (87.5ms)
+Started GET "/locations/61" for 127.0.0.1 at 2017-02-13 13:18:07 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"61"}
+  [1m[36mLocation Load (0.4ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered locations/show.html.erb within layouts/application (4.1ms)
+  Rendered partials/_navbar.html.erb (1.0ms)
+  Rendered partials/_flash.html.erb (0.8ms)
+Completed 200 OK in 48ms (Views: 43.8ms | ActiveRecord: 1.0ms)
+
+
+Started PATCH "/locations/61" for 127.0.0.1 at 2017-02-13 13:18:10 +0800
+Processing by LocationsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"BvRi6CDAZ1Ji0/7s8ZiExODIdvajov1oTiiD9iQPO+GHT0aXrrh2iCtO9rGGHdpJUp7b35obm3pHZ3U4nBfoCg==", "location"=>{"seats"=>"10", "sockets"=>"10"}, "commit"=>"update", "id"=>"61"}
+  [1m[36mLocation Load (0.5ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 2.1ms)
+
+
+  
+ActiveRecord::AssociationTypeMismatch (User(#70208251428140) expected, got Integer(#70208245333880)):
+  
+app/controllers/locations_controller.rb:14:in `update'
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (6.6ms)
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.3ms)
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (96.3ms)
+Started PATCH "/locations/61" for 127.0.0.1 at 2017-02-13 13:18:33 +0800
+Processing by LocationsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"BvRi6CDAZ1Ji0/7s8ZiExODIdvajov1oTiiD9iQPO+GHT0aXrrh2iCtO9rGGHdpJUp7b35obm3pHZ3U4nBfoCg==", "location"=>{"seats"=>"10", "sockets"=>"10"}, "commit"=>"update", "id"=>"61"}
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/locations/61
+Completed 302 Found in 51ms (ActiveRecord: 12.6ms)
+
+
+Started GET "/locations/61" for 127.0.0.1 at 2017-02-13 13:18:33 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"61"}
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered locations/show.html.erb within layouts/application (5.1ms)
+  Rendered partials/_navbar.html.erb (1.3ms)
+  Rendered partials/_flash.html.erb (0.6ms)
+Completed 200 OK in 44ms (Views: 40.4ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/locations/61" for 127.0.0.1 at 2017-02-13 13:19:43 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"61"}
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered locations/show.html.erb within layouts/application (5.1ms)
+  Rendered partials/_navbar.html.erb (1.5ms)
+  Rendered partials/_flash.html.erb (0.7ms)
+Completed 200 OK in 44ms (Views: 38.5ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/locations/61" for 127.0.0.1 at 2017-02-13 13:19:53 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"61"}
+  [1m[36mLocation Load (0.5ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (10.3ms)
+Completed 500 Internal Server Error in 36ms (ActiveRecord: 0.5ms)
+
+
+  
+ActionView::Template::Error (undefined method `email' for 1:Integer):
+     7:     <p><%= "#{@location.sockets} sockets available" %>
+     8:   </div>
+     9:   <div class="panel-footer">
+    10:     <p><%= "Last updated by #{@location.last_updated_user.email}" %></p>
+    11:   </div>
+    12: </div>
+    13: <h1><%= current_user.email %></h1>
+  
+app/views/locations/show.html.erb:10:in `_app_views_locations_show_html_erb__3921469461464319646_70208281552980'
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (10.5ms)
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.8ms)
+  Rendering /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /usr/local/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (92.3ms)
+Started GET "/locations/61" for 127.0.0.1 at 2017-02-13 13:20:53 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"61"}
+  [1m[36mLocation Load (1.2ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered locations/show.html.erb within layouts/application (17.4ms)
+  Rendered partials/_navbar.html.erb (1.8ms)
+  Rendered partials/_flash.html.erb (1.0ms)
+Completed 200 OK in 811ms (Views: 267.7ms | ActiveRecord: 181.4ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2017-02-13 13:21:50 +0800
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"LfB95yuRJUkuf9pOXi5zWLPQbAFmRX2bf0nYF5Z86c6sS1mYpek0k2fi0hMpqy3VAYbBKF/8G4l2Bi7ZLmQ6JQ=="}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 21ms (ActiveRecord: 1.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-02-13 13:21:50 +0800
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  Rendered locations/index.html.erb within layouts/application (2.7ms)
+  Rendered partials/_navbar.html.erb (3.5ms)
+  Rendered partials/_flash.html.erb (1.7ms)
+Completed 200 OK in 75ms (Views: 70.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2017-02-13 13:21:51 +0800
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (2.7ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (18.4ms)
+  Rendered partials/_navbar.html.erb (2.2ms)
+  Rendered partials/_flash.html.erb (0.9ms)
+Completed 200 OK in 97ms (Views: 91.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2017-02-13 13:21:55 +0800
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Fth7lZsLMuXLXUQlCS8Gah7vKa5gJ3NrkN6HVE0G3vgJNGeiwRbS+eSBRXVoPPUIcozjenCEkZkpl2Uickg1Kw==", "user"=>{"email"=>"b@c.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "b@c.com"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.1ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (22.2ms)
+  Rendered partials/_navbar.html.erb (1.0ms)
+  Rendered partials/_flash.html.erb (0.8ms)
+Completed 200 OK in 297ms (Views: 52.8ms | ActiveRecord: 1.1ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2017-02-13 13:21:59 +0800
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"tETDQk5ue6U1QLr85x3TL9ADwsWKCH9GIzTEcm5vnNSOZviQrZUjDaeuQzAtd2F16jvC+ModQEOQPrtYYmg87w==", "user"=>{"email"=>"b@c.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "b@c.com"], ["LIMIT", 1]]
+  [1m[35mSQL (2.0ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["email", "b@c.com"], ["encrypted_password", "$2a$11$wbOilC04gFVCuIY3HP/r.uEEvEp4Hn4n0aaV59GetbEufVUTpysLi"], ["created_at", 2017-02-13 05:21:59 UTC], ["updated_at", 2017-02-13 05:21:59 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 225ms (ActiveRecord: 3.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-02-13 13:21:59 +0800
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  Rendered locations/index.html.erb within layouts/application (0.4ms)
+  Rendered partials/_navbar.html.erb (1.0ms)
+  Rendered partials/_flash.html.erb (0.5ms)
+Completed 200 OK in 29ms (Views: 26.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/locations/61" for 127.0.0.1 at 2017-02-13 13:22:07 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"61"}
+  [1m[36mLocation Load (0.8ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered locations/show.html.erb within layouts/application (6.1ms)
+  Rendered partials/_navbar.html.erb (0.9ms)
+  Rendered partials/_flash.html.erb (0.6ms)
+Completed 200 OK in 51ms (Views: 41.4ms | ActiveRecord: 2.7ms)
+
+
+Started PATCH "/locations/61" for 127.0.0.1 at 2017-02-13 13:22:10 +0800
+Processing by LocationsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"gFrU9cfiuCAViJNyT/XI3pZTlgtn25md1LXIlk08pOG6eO8nJBngiIdmar6Fn3qErGuWNifOpphnv7e8QTsE2g==", "location"=>{"seats"=>"100", "sockets"=>"10"}, "commit"=>"update", "id"=>"61"}
+  [1m[36mLocation Load (0.4ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.7ms)[0m  [1m[33mUPDATE "locations" SET "seats" = $1, "updated_at" = $2 WHERE "locations"."id" = $3[0m  [["seats", 100], ["updated_at", 2017-02-13 05:22:10 UTC], ["id", 61]]
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[33mUPDATE "locations" SET "updated_at" = $1, "last_updated_user" = $2 WHERE "locations"."id" = $3[0m  [["updated_at", 2017-02-13 05:22:10 UTC], ["last_updated_user", 2], ["id", 61]]
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/locations/61
+Completed 302 Found in 24ms (ActiveRecord: 6.0ms)
+
+
+Started GET "/locations/61" for 127.0.0.1 at 2017-02-13 13:22:10 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"61"}
+  [1m[36mLocation Load (1.1ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered locations/show.html.erb within layouts/application (5.3ms)
+  Rendered partials/_navbar.html.erb (1.2ms)
+  Rendered partials/_flash.html.erb (0.7ms)
+Completed 200 OK in 45ms (Views: 36.8ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-02-13 13:22:12 +0800
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  Rendered locations/index.html.erb within layouts/application (0.6ms)
+  Rendered partials/_navbar.html.erb (1.5ms)
+  Rendered partials/_flash.html.erb (0.5ms)
+Completed 200 OK in 46ms (Views: 41.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-02-13 13:29:02 +0800
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 33ms (ActiveRecord: 1.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-02-13 13:29:02 +0800
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  Rendered locations/index.html.erb within layouts/application (5.6ms)
+  Rendered partials/_navbar.html.erb (5.9ms)
+  Rendered partials/_flash.html.erb (2.1ms)
+Completed 200 OK in 101ms (Views: 94.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/locations/61" for 127.0.0.1 at 2017-02-13 13:29:07 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"61"}
+  [1m[36mLocation Load (0.6ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered locations/show.html.erb within layouts/application (10.3ms)
+  Rendered partials/_navbar.html.erb (1.7ms)
+  Rendered partials/_flash.html.erb (0.7ms)
+Completed 200 OK in 60ms (Views: 51.5ms | ActiveRecord: 2.6ms)
+
+
+Started PATCH "/locations/61" for 127.0.0.1 at 2017-02-13 13:29:13 +0800
+Processing by LocationsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"CVWS37X5yUF4xNZqk0CIZ8t6eZhX9T2Bz3YjyDqE9bQzd6kNVgKR6eoqL6ZZKjo98UJ5pRfgAoR8fFziNoNVjw==", "location"=>{"seats"=>"10", "sockets"=>"100"}, "commit"=>"update", "id"=>"61"}
+  [1m[36mLocation Load (0.4ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[33mUPDATE "locations" SET "seats" = $1, "sockets" = $2, "updated_at" = $3 WHERE "locations"."id" = $4[0m  [["seats", 10], ["sockets", 100], ["updated_at", 2017-02-13 05:29:13 UTC], ["id", 61]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/locations/61
+Completed 302 Found in 15ms (ActiveRecord: 3.1ms)
+
+
+Started GET "/locations/61" for 127.0.0.1 at 2017-02-13 13:29:13 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"61"}
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered locations/show.html.erb within layouts/application (7.0ms)
+  Rendered partials/_navbar.html.erb (1.5ms)
+  Rendered partials/_flash.html.erb (2.1ms)
+Completed 200 OK in 69ms (Views: 62.5ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/locations/61" for 127.0.0.1 at 2017-02-13 14:07:12 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"61"}
+  [1m[36mLocation Load (1.0ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered locations/show.html.erb within layouts/application (30.8ms)
+  Rendered partials/_navbar.html.erb (4.8ms)
+  Rendered partials/_flash.html.erb (2.1ms)
+Completed 200 OK in 145ms (Views: 118.0ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/locations/61" for 127.0.0.1 at 2017-02-13 14:09:24 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"61"}
+  [1m[36mLocation Load (0.4ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered locations/show.html.erb within layouts/application (7.7ms)
+  Rendered partials/_navbar.html.erb (1.4ms)
+  Rendered partials/_flash.html.erb (0.7ms)
+Completed 200 OK in 62ms (Views: 56.1ms | ActiveRecord: 2.2ms)
+
+
+Started PATCH "/locations/61" for 127.0.0.1 at 2017-02-13 14:09:29 +0800
+Processing by LocationsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"O5PnPIN+FsDoIEsY9nSz5AQGgBcE6t5Nh/qYSHvkM5MBsdzuYIVOaHrOstQ8HgG+Pj6AKkT/4Ug08Odid+OTqA==", "location"=>{"seats"=>"10", "sockets"=>"1"}, "commit"=>"update", "id"=>"61"}
+  [1m[36mLocation Load (3.2ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.4ms)[0m  [1m[33mUPDATE "locations" SET "sockets" = $1, "updated_at" = $2 WHERE "locations"."id" = $3[0m  [["sockets", 1], ["updated_at", 2017-02-13 06:09:29 UTC], ["id", 61]]
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (3.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/locations/61
+Completed 302 Found in 38ms (ActiveRecord: 10.0ms)
+
+
+Started GET "/locations/61" for 127.0.0.1 at 2017-02-13 14:09:29 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"61"}
+  [1m[36mLocation Load (0.4ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered locations/show.html.erb within layouts/application (4.8ms)
+  Rendered partials/_navbar.html.erb (1.4ms)
+  Rendered partials/_flash.html.erb (0.7ms)
+Completed 200 OK in 54ms (Views: 47.5ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/locations/61" for 127.0.0.1 at 2017-02-13 15:07:47 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"61"}
+  [1m[36mLocation Load (0.7ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered locations/show.html.erb within layouts/application (29.7ms)
+  Rendered partials/_navbar.html.erb (3.4ms)
+  Rendered partials/_flash.html.erb (1.3ms)
+Completed 200 OK in 132ms (Views: 109.8ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/locations/61" for 127.0.0.1 at 2017-02-13 15:08:36 +0800
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"61"}
+  [1m[36mLocation Load (0.4ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered locations/show.html.erb within layouts/application (8.7ms)
+  Rendered partials/_navbar.html.erb (2.0ms)
+  Rendered partials/_flash.html.erb (0.9ms)
+Completed 200 OK in 77ms (Views: 68.9ms | ActiveRecord: 2.3ms)
+
+
