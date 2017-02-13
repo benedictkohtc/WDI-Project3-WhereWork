@@ -17,4 +17,4 @@
 //= require_tree .
 
 
-setTimeout(() => ($('.alert').fadeOut(300)), 2000)
+setTimeout(() => ($('.alert').slideUp(300)), 2000)
