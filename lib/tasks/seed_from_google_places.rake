@@ -8,7 +8,7 @@ task seed_from_google_places: :environment do
   nearbysearch_url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/'
   output_type = 'json'
   latitude = 1.3072052
-  longitude = 103.831843 # this latlong is middle of Reservoir park
+  longitude = 103.831843 # this latlong is 8 Claymore Hill
   location = latitude.to_s + ',' + longitude.to_s
   radius = '400' # meters, max 50000
   type = 'cafe' # only matches one type per request,
