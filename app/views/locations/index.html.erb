@@ -1,6 +1,6 @@
 <h1>Locations#index</h1>
 <p>Find me in app/views/locations/index.html.erb</p>
-<div id="map"></div>
+<div id="map"></div><br>
 <script>
 var locations = [
   ['Starbucks Wheelock', 1.3047668, 103.8308477],
@@ -191,6 +191,15 @@ function initMap() {
         userLocationInfoWindow.setPosition(pos);
         userLocationInfoWindow.setContent('Your location.');
         map.setCenter(pos);
+        $.ajax({
+          type: 'GET',
+          url: '/locations/return_nearby_locations',
+          data: JSON.stringify(pos),
+          contentType: 'application/json',
+          dataType: 'json'
+        }).done(function(response){
+          console.log('Hello')
+        })
       }, function() {
         handleLocationError(true, userLocationInfoWindow, map.getCenter());
       });
