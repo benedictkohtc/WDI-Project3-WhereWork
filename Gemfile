@@ -43,6 +43,10 @@ gem 'devise'
 # https://github.com/twilio/twilio-ruby
 gem 'twilio-ruby'
 
+# use Geocoder for geographic queries
+#  https://github.com/alexreisner/geocoder/tree/master
+gem 'geocoder'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
