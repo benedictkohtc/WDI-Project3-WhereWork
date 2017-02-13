@@ -44,16 +44,13 @@ class LocationsController < ApplicationController
     redirect_to action: 'secret'
   end
 
-  def return_nearby_locations(user_location_json)
-    file_buffer = File.read(user_location_json)
-    user_location_hash = JSON.parse(file_buffer)
-
+  def return_nearby_locations
     nearby_locations = {}
 
     l = Location.all
 
     l.each do |location|
-      distance = calc_distance(user_location_hash['lat'], user_location_hash['lng'], location.lat, location.lng)
+      distance = calc_distance(params['lat'], params['lng'], location.lat, location.lng)
       # only create hash if location is nearer than 400 metres
       next unless distance < 400
       location_hash = {}
@@ -62,9 +59,8 @@ class LocationsController < ApplicationController
       location_hash['lat'] = location.lat
       location_hash['lng'] = location.lng
       nearby_locations[location.id] = location_hash
-
-    render json: nearby_locations
     end
+    render json: nearby_locations
   end
 
   private
