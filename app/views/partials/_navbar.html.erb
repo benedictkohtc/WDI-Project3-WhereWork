@@ -1,6 +1,26 @@
-<%= link_to "Home", root_path, class: 'btn btn-default' %>
-<%= link_to "Secret", locations_secret_path, class: 'btn btn-default' %>
-<%= link_to "Signup", new_user_registration_path, class: 'btn btn-default' %>
-<%= link_to "Login", new_user_session_path, class: 'btn btn-default' %>
-<%= link_to "Edit Profile", edit_user_registration_path, class: 'btn btn-default' %>
-<%= link_to "Logout", destroy_user_session_path, method:"delete", class: 'btn btn-default' %>
+<div class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to "WW", root_path, class: 'navbar-brand' %>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <% if current_user %>
+        <ul class="nav navbar-nav">
+          <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
+          <li><%= link_to "Logout", destroy_user_session_path, method:"delete" %></li>
+        </ul>
+      <% else %>
+        <ul class="nav navbar-nav">
+          <li><%= link_to "Signup", new_user_registration_path %></li>
+          <li><%= link_to "Login", new_user_session_path %></li>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+</div>
