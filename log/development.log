@@ -2279,3 +2279,760 @@ puma (3.7.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
   Rendering /var/lib/gems/2.3.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
   Rendered /var/lib/gems/2.3.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
   Rendered /var/lib/gems/2.3.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (191.7ms)
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7495132482561377955);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.0ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateLocations (20170212054549)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (34.7ms)[0m  [1m[35mCREATE TABLE "locations" ("id" serial primary key, "lat" character varying, "lng" character varying, "icon" character varying, "name" character varying, "google_photo_reference" character varying, "google_rating" character varying, "google_place_id" character varying, "vicinity" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (1.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170212054549"]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (3.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(7495132482561377955)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mLocation Load (1.7ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJIUvqro0Z2jERRwAZM4hYDJo"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.3ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_photo_reference", "google_rating", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["lat", "1.3047668"], ["lng", "103.8308477"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Starbucks - Wheelock Place"], ["google_photo_reference", "CoQBdwAAAFeuyIy3ugRgE7uYTLrA43icS0RFFESsS7xxcfgexP_WzKkB-CX8DYV5Xr7RIv7W5ykjFgfJSX1-VhfzVNWwvKJtD3Yn9SS_RxWJcTmqarMx1TRnH27ziErCj-Civo_PGCg9u-dLjmQ_pRpGkrFFSkDkT11hjapwShxXDtCTESsZEhDURCo4k56EbZ2_NgeotfukGhTZ17V7eJAPAg5ec4hbXXHmSb_MVA"], ["google_rating", "4.3"], ["google_place_id", "ChIJIUvqro0Z2jERRwAZM4hYDJo"], ["vicinity", "Wheelock Place, #B1-01"], ["created_at", 2017-02-13 03:53:32 UTC], ["updated_at", 2017-02-13 03:53:32 UTC]]
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.4ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJBcxR3IwZ2jERXEfgu9SV-vs"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_photo_reference", "google_rating", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["lat", "1.3068542"], ["lng", "103.8296941"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "PS.Cafe"], ["google_photo_reference", "CoQBdwAAAG5QMCtadhdfV96qj4RLeq-7OroPKuL_xYwbt4qPZGMRzBqabbPx86WtT4NQwjyqk7CGMT131ZwtaJywiWoY51iN4G1iubBqeY_o7xVVjIDlQJd9mmEXu8zyD5mgecBC1br-dgTa0d5QgQMP5ipNT2lTCGNsWgpYLk0dMkLiTmFEEhCtlds2uaFJxvTfEU4zuELyGhSsvYc8rUvmp5txu1qXEkq8Yy06Sw"], ["google_rating", "4.3"], ["google_place_id", "ChIJBcxR3IwZ2jERXEfgu9SV-vs"], ["vicinity", "390 Orchard Road, Palais Renaissance, Singapore"], ["created_at", 2017-02-13 03:53:32 UTC], ["updated_at", 2017-02-13 03:53:32 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJZW0bfI0Z2jER3iRIeq-nIV0"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_photo_reference", "google_rating", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["lat", "1.3060098"], ["lng", "103.8326726"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png"], ["name", "Maison Kayser Singapore"], ["google_photo_reference", "CoQBdwAAAOlYxG_uCnAGptla766WCb4c59a3d_S3Q6Eb9pD4og_IiFCbbURn9bexMd-sG4cpI9J_BKpXvUa0AYYEQW6kDF0OCkXF4y-mMn0eMfHncy1QTmILbOIduz2FHxdbg2PFptIl2SGUxgRknpJwfu1s3qIl-OLenlgfyfOiZ25duLcSEhAxaZhWLZXxxdflfRLfYFTtGhRUvo9lr7KWLLJvwvs_VFvZmXLDnw"], ["google_rating", "4.1"], ["google_place_id", "ChIJZW0bfI0Z2jER3iRIeq-nIV0"], ["vicinity", "Scotts Square #B1-25, 6 Scotts Road"], ["created_at", 2017-02-13 03:53:32 UTC], ["updated_at", 2017-02-13 03:53:32 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.4ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJEyYoho0Z2jERfGeBZaBqFRI"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_photo_reference", "google_rating", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["lat", "1.3048742"], ["lng", "103.8329475"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png"], ["name", "Island Cafe"], ["google_photo_reference", "CoQBdwAAAN87LDBCaMPYZVc_795wh2g6XZoI2Ed1fE2UeLEEUodDFmlc_WVvjqOTfecMG6pa9zqEDMaxuDEi4fekBzxh8NS-EW1j5mhh0Ih2x0nG5yr4j5vWxEyzmoEgMXFDbpfhlVwnCIuw7P4a6o-B8FRsC415yCAX3EdlcGZ1Wtu1Zwj6EhBvE_rkELuSKZfQU96g1vqHGhSdwVLa9IZvMrsLXN3256gLh3OrNA"], ["google_rating", "4.2"], ["google_place_id", "ChIJEyYoho0Z2jERfGeBZaBqFRI"], ["vicinity", "Island Cafe,, 4/F TANGS AT TANG PLAZA, 310 Orchard Rd."], ["created_at", 2017-02-13 03:53:32 UTC], ["updated_at", 2017-02-13 03:53:32 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.5ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJk85Oa40Z2jERXviasq7mu30"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_photo_reference", "google_rating", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["lat", "1.3060927"], ["lng", "103.8309096"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "TCC – The Connoisseur Concerto"], ["google_photo_reference", "CoQBdwAAALdEZKjK4eHrqoUqnb7nDefriyUklGr4NTO2BtX0Q32q8F3KiUpZlhGJ7xX9fq6GlwzE7Ro25-1aLSoYvnoM2oRE89eu1GpLHfVHSA6SR_RoGGrTX0WVxcHhsEWcktKBd7rQIYlRi3fMgI-eSEBwvEvgMKaDxpImYOjUQ6GZEujuEhBEnGmCJeJYX_b6BInYVLqXGhQ6mX-UI5NgvWYb6f1BWmDTOIT2tQ"], ["google_rating", "3.9"], ["google_place_id", "ChIJk85Oa40Z2jERXviasq7mu30"], ["vicinity", "360 Orchard Road, #01-01, International Building"], ["created_at", 2017-02-13 03:53:32 UTC], ["updated_at", 2017-02-13 03:53:32 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.4ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJQe8Ik4wZ2jERwzbWVsRSKz4"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_photo_reference", "google_rating", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["lat", "1.306415"], ["lng", "103.828437"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png"], ["name", "The Coffee Bean"], ["google_photo_reference", "CoQBdwAAAHeDG5LR-k6a_yW9pC5-uFUnTEEkq6pt8yMz4DxjnSHdkll4-VybX7V1QNpQvRdc4_2pxgo2UjK-RuQlnnqqY27TBqe0SOCSxq79n4DpuBBaHvC4U8Vukoq5ktwav2PMfXoxyO5ZyQXF1jIumJVUr8ujIggGrKXOCp-neEL__4PmEhBjgEqHofl5GbZ0HZMGLfedGhRTyYS3tywXLQjeRXQOid2ANpimhQ"], ["google_rating", "4"], ["google_place_id", "ChIJQe8Ik4wZ2jERwzbWVsRSKz4"], ["vicinity", "583 Orchard Road, #01-45-46 Forum The Shopping Mall"], ["created_at", 2017-02-13 03:53:32 UTC], ["updated_at", 2017-02-13 03:53:32 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJ0Rhc6I0Z2jERE2nLmRUAvdM"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_photo_reference", "google_rating", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["lat", "1.3040662"], ["lng", "103.8320177"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "TWG"], ["google_photo_reference", "CoQBdwAAAMwivIORHkUTpKo4bIcei9WPlLp1x5iZFeOSQ38vBBryUL9xdbG5pX5Om1SWJ7e8CglJaCUOjgDkQjS-Xa5aujVkijIzsUb19mUvY1U2ctnQHhfcVt-ZFiuPGyN4G50VIky1EgNF7cuLxueXKdY4QbZyW4AGu4KdbQf7truy5GbzEhBgj2NqDrrB0lv2Qu1JuKZMGhRk1mNJoHw18tWov_9QodHN3HeFXQ"], ["google_rating", "3.8"], ["google_place_id", "ChIJ0Rhc6I0Z2jERE2nLmRUAvdM"], ["vicinity", "2 Orchard Turn, #02-21 ION Orchard, 02-20/21"], ["created_at", 2017-02-13 03:53:32 UTC], ["updated_at", 2017-02-13 03:53:32 UTC]]
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJjSLAppIZ2jERmU3FmdoB-D4"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_photo_reference", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["lat", "1.307249"], ["lng", "103.833358"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Han's"], ["google_photo_reference", "CoQBdwAAAFRPGvgzS5JvOmcjiCDwxlY_yyMPHLsn3u0P7wesC0FEEhFrYGk7n_iUUfJdMjiBIpyQMQA_vUhp_mG6bgv_Wsj9nzZFg2O-RwM3Sp7pc6IJiVa6uJippNL3ir7959Q5Vx5o0GN8R_Lb49VPwj35bGr9iHLr1IlekFl9GK6xzbhiEhAJ_66Ck-ApsJYmZXBI-_VTGhSS2lfHBQyMG3Sk86njHoOtoC_l9w"], ["google_place_id", "ChIJjSLAppIZ2jERmU3FmdoB-D4"], ["vicinity", "14 Scotts Road, #03-26 Far East Plaza"], ["created_at", 2017-02-13 03:53:32 UTC], ["updated_at", 2017-02-13 03:53:32 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJ7zeih40Z2jERqKuuZ7TxZk8"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_photo_reference", "google_rating", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["lat", "1.3052364"], ["lng", "103.8325395"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Crossroads Cafe"], ["google_photo_reference", "CoQBdwAAAHaSzJgqWNc8mnjKjbILhecG6VcgQAjiSBMtaVwOxke84Bv0TeVsFrkA9myw0rSzyHB9Q__vEsYC2DMC1PS_Do-cakLEHhxjq1OwJYJkuGwHuZ3ncG1IQbjj1Qc9Vhd9aQQA5rabTVqetijHxILa7fxmsr_oXDfDcZ7n-omEMuJBEhD8TDZiVdZ4wMJB1Fw4z8RBGhTAEk9vJbsswQJmKiNt5F5_XVS-5w"], ["google_rating", "3.6"], ["google_place_id", "ChIJ7zeih40Z2jERqKuuZ7TxZk8"], ["vicinity", "320 Orchard Road"], ["created_at", 2017-02-13 03:53:32 UTC], ["updated_at", 2017-02-13 03:53:32 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJk85Oa40Z2jERriKgEOyp-CM"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_photo_reference", "google_rating", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["lat", "1.3064703"], ["lng", "103.8318003"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "TCC - The Connoisseur Concerto"], ["google_photo_reference", "CoQBdwAAADR9YAH4fsDIhr5akkpglQk3SpqOKMdUwK5JT_D1pSw1rk9Fb4NmvKYYNyBpk4FuLRbTV8ScXhbXBIM9apnzd_zhkLoDEIz11brtbS0ewFjOo_f-32aR7t775FAD0mQtVeOn1z_DOZBqHF5D8-xDJW0fqnIe1Qybp0uZbuW-r3m9EhDEsICjvUUZofmEut5VdCaVGhQRG9x80ULMO7YLQyr5nD2TzRsJzQ"], ["google_rating", "5"], ["google_place_id", "ChIJk85Oa40Z2jERriKgEOyp-CM"], ["vicinity", "350 Orchard Road Level 2 Isetan Scotts"], ["created_at", 2017-02-13 03:53:32 UTC], ["updated_at", 2017-02-13 03:53:32 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJHXFAbZIZ2jERX1RXo5CtxGU"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_photo_reference", "google_rating", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["lat", "1.304565"], ["lng", "103.833758"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Killiney Kopitiam"], ["google_photo_reference", "CoQBdwAAAAAA2MaFEWCr3E4KmXF-V03HS-HNB8MXXQKuGXy277KjZe6KC8ojn7XYn78V4i-GO0i9_aZg6k3FMI2FrOGhdkhDjMZJUcz8lxeJoDgTRx-UEF6OBK1-8oBIbwRXJhwhlPdijoKvHlyWFcHze6IoI4DaOSu8nhgzmO452BhMNU9zEhAWjFGU78Cf9DKM7vRk4HvLGhSuDHBWs6rxhGY4D-FCDuCUKbbs7g"], ["google_rating", "4.3"], ["google_place_id", "ChIJHXFAbZIZ2jERX1RXo5CtxGU"], ["vicinity", "#01-10 Lucky Plaza, 304 Orchard Road"], ["created_at", 2017-02-13 03:53:32 UTC], ["updated_at", 2017-02-13 03:53:32 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJ0Xm_W8QZ2jERg8VYmPESUII"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_photo_reference", "google_rating", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["lat", "1.3066802"], ["lng", "103.8296826"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png"], ["name", "P. Bistro"], ["google_photo_reference", "CoQBdwAAAMFsHGf08wveeXd-MtUebDqujCrhoZwFAvaKomZBK_MWfhLh-tEnf2PUcLJDEgZ_NQWNTRzNq9ep-5AQvJGZgsKHRi5Q_hVhYSwyyBQNeJNNlPZN8KwnhNyOmmsDIyty1bSgyq-ZcZjauH4yJqzfFmPi-KZ-oQkbZLz0S-Usq-YLEhCxQ_JWlBp1PmkrBpOmyYebGhQObtOhga6eD2DpelvWuehrFgzUig"], ["google_rating", "4.5"], ["google_place_id", "ChIJ0Xm_W8QZ2jERg8VYmPESUII"], ["vicinity", "390 Orchard Road, #B1-06 Palais Renaissance, Singapore"], ["created_at", 2017-02-13 03:53:32 UTC], ["updated_at", 2017-02-13 03:53:32 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJvTSar40Z2jERRoid6Ak1OtM"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["lat", "1.3051925"], ["lng", "103.8305905"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "The Coffee Bean"], ["google_place_id", "ChIJvTSar40Z2jERRoid6Ak1OtM"], ["vicinity", "541 Orchard Road"], ["created_at", 2017-02-13 03:53:32 UTC], ["updated_at", 2017-02-13 03:53:32 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJ00pVdY0Z2jERg2HsNWS-eRw"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_photo_reference", "google_rating", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["lat", "1.3055771"], ["lng", "103.831747"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Gelatissimo"], ["google_photo_reference", "CoQBdwAAADLVRv__VJ4rF02bgfN7c0eaeFBp1FUihduL6gEkwC4-Cr3ru735xbSgIzbJTZkalp6HfQI31JzWM4NgrkgKvptkJrPQGcICRDhF8xMjOVqAWDXcNSH0rc1b6f2TfsJRT31jaTDyOU1IxkN4T2bYYYH6H2D3HMoOzMyZd1g6xSQTEhAd46FNLEUM2wGtTmvwzqBFGhRYmAL1_UVBCB5GgB1cp9WPtZDyBQ"], ["google_rating", "4.8"], ["google_place_id", "ChIJ00pVdY0Z2jERg2HsNWS-eRw"], ["vicinity", "350 Orchard Road, #01-01 , Shaw House"], ["created_at", 2017-02-13 03:53:32 UTC], ["updated_at", 2017-02-13 03:53:32 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJyRIV6Y0Z2jER4IB6WdnCOTo"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_photo_reference", "google_rating", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["lat", "1.304018"], ["lng", "103.832007"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Starbucks"], ["google_photo_reference", "CoQBdwAAAPcLM-s4ZGq2Drgh0I3GljJlOOhcLhN-hL88JXHhUjCObvzuqJ1DJ8zwXq5kZOYUNttMtYNbisNyxrUZ-Ti2WBGMv_2g2qOhDbh5QIareG36Adg0ipsLt2RzbQ5WC3dBpOUsb8pQY6YNX8ALUBTjd2hh_leN0IDJt2dGJAsyvhWYEhCoP9_vO5EkJkC-eKeUG9NsGhSsHJTiVdjDleHf6_mMlJAp7VVsCA"], ["google_rating", "3.8"], ["google_place_id", "ChIJyRIV6Y0Z2jER4IB6WdnCOTo"], ["vicinity", "ION Orchard 238 Orchard Blvd #B3-59 Singapore 248652"], ["created_at", 2017-02-13 03:53:32 UTC], ["updated_at", 2017-02-13 03:53:32 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJUwTgFI0Z2jER95hoHauYxuE"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_photo_reference", "google_rating", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["lat", "1.30648"], ["lng", "103.832469"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Starbucks"], ["google_photo_reference", "CoQBdwAAANkkf0WxO7bVFabCYRKldte4SXo0SUVG_UVIEP0Gn14pyagGZWnl2rTZ-E_KLQUSnavFbFSZfQNUeqBPkq2a5W6jsAtYCrwcYhnIb5AdJRsL5VM-v7GWZpNZ6fCmYTo3O4fCd2OtUO5RnLEfYjO_bPZ2ZKIvs7EUtH3WYvbMWQdkEhBpqHJjfUBkqNF99A0V7vICGhS6WplVnfoIz0Ma_Vhm4ROaxios2g"], ["google_rating", "1"], ["google_place_id", "ChIJUwTgFI0Z2jER95hoHauYxuE"], ["vicinity", "9 Scotts Road #01-01A Pacific Plaza Singapore 228210"], ["created_at", 2017-02-13 03:53:32 UTC], ["updated_at", 2017-02-13 03:53:32 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJxUgvCo0Z2jERBikrmvu6m_4"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_photo_reference", "google_rating", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["lat", "1.3056226"], ["lng", "103.8317577"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Watanabe Coffee"], ["google_photo_reference", "CoQBdwAAACCcXcJll5wz6NiTzYphTQOxIYDrNBrE-dDxER0KhQritBE4gkypw6qJBFLYBlxW10encpDgQ1ekxnJLcg5UqOYu2TtdzLUNli_Qsz0j9UXjUXr9ScAqrH1jFEDOVqdBm6h5pvvHUEixLfdRvXiBjpi6Hznp3zELtrro7qT062sXEhAsS9uds6AcvdhFb-gblBmgGhQNxtyUfDztXSwf43_YDmWMjN_mnQ"], ["google_rating", "3.2"], ["google_place_id", "ChIJxUgvCo0Z2jERBikrmvu6m_4"], ["vicinity", "350 Orchard Road Shaw House, #01-00 Isetan Scotts"], ["created_at", 2017-02-13 03:53:32 UTC], ["updated_at", 2017-02-13 03:53:32 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJp_aWq5IZ2jERbIfxlGVM7P0"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_photo_reference", "google_rating", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["lat", "1.307675"], ["lng", "103.8335035"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Ya Kun Kaya Toast"], ["google_photo_reference", "CoQBdwAAAIoX11w1whplz_bT0TbZ7W27VnrlaPUEHkvzJkvD1_gIswO4VwogHENjJ7F-ZzQ3r2TW8bO6r8Ea_9kzkiXUU5wB5OLvm7Buaj4GW8tTHRUPx0spcLwtZv2MQlJxto1-xfRsYLiPsxvneBz-hH5a7YYB0Y1L31e7U57ByES4aLWvEhB99pmuyI_MJdcssJKy3KPIGhR3jGQvo-yPsogKoMvPA3B_AvDvXg"], ["google_rating", "4"], ["google_place_id", "ChIJp_aWq5IZ2jERbIfxlGVM7P0"], ["vicinity", "14 Scotts Road, Singapore"], ["created_at", 2017-02-13 03:53:32 UTC], ["updated_at", 2017-02-13 03:53:32 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJgU9dqZIZ2jERgxS44rStZ6I"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_photo_reference", "google_rating", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["lat", "1.307152"], ["lng", "103.8338378"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Gong Cha"], ["google_photo_reference", "CoQBdwAAABONthZ1iOw6Q2UrLKNyw9_zOI6tidKlnVTr9kKk7Im7Pjt8Xgv6wc7TBVgt3NzfXDTnJDiNgIIOysqgktbOok3NTpL1z0-1pRh9yaRYEdoJ7BHzx0PhZrXRMCKC_p7i4z63mHKeDUEruKn8UcZuedCjQgXfnoEtfDD3K1pI5R0SEhAhcIP9WQOFf5VdoFwexnJmGhQiv7rZQrHCoabdl1zAeGaH6L19hw"], ["google_rating", "3"], ["google_place_id", "ChIJgU9dqZIZ2jERgxS44rStZ6I"], ["vicinity", "14 Scotts Rd, #01-16F, Far East Plaza"], ["created_at", 2017-02-13 03:53:32 UTC], ["updated_at", 2017-02-13 03:53:32 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJh0FigY0Z2jERG60JAnBSUhs"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["lat", "1.3053376"], ["lng", "103.8328632"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Ya Kun Family Cafe"], ["google_place_id", "ChIJh0FigY0Z2jERG60JAnBSUhs"], ["vicinity", "310 & 238896, 320 Orchard Road, Singapore"], ["created_at", 2017-02-13 03:53:32 UTC], ["updated_at", 2017-02-13 03:53:32 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.6ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJeff1ho0Z2jERwrH2IZNeP44"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["lat", "1.3053193"], ["lng", "103.8330739"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Ya Kun Family Cafe"], ["google_place_id", "ChIJeff1ho0Z2jERwrH2IZNeP44"], ["vicinity", "310 Orchard Road"], ["created_at", 2017-02-13 03:53:35 UTC], ["updated_at", 2017-02-13 03:53:35 UTC]]
+  [1m[35m (3.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJ06MdvY0Z2jERx4PGt3RxdP4"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_photo_reference", "google_rating", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["lat", "1.3049474"], ["lng", "103.8315683"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Hoshino Coffee"], ["google_photo_reference", "CoQBdwAAANnnr6xAMe-QCyvalISQo5xy4CeRula6Y6xB-qc45B2tkHDZnJgSHhNJWjUNG9qd2L3emjsiB-Nk6QclVNdj7Gw7aEK2Rhfi8j4VpNyK2u6mBJi_wQnpzyoEDBuVDlaC57SWy6AHRyMq5k8RTnjnyH0BJET_-whxt4T0aCIZd8NQEhDSgPuLeDW8EfCpAtwAjhE9GhTxOVWHjbWm9NqJWPazKb8l2aMlcA"], ["google_rating", "3.7"], ["google_place_id", "ChIJ06MdvY0Z2jERx4PGt3RxdP4"], ["vicinity", "#B3-25/26, 2 Orchard Turn, The Orchard Residences, Singapore"], ["created_at", 2017-02-13 03:53:35 UTC], ["updated_at", 2017-02-13 03:53:35 UTC]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJHxUevo0Z2jERki2z8020eLc"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_photo_reference", "google_rating", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["lat", "1.3046538"], ["lng", "103.8317996"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "The Coffee Bean & Tea Leaf"], ["google_photo_reference", "CoQBdwAAAIotskYc1iqQPjlkDwGGhXFY5xaV0rvxJB_GpWNVmcOCsSK9si1QIC1PFXwdpiqQOPvPxJLV46NLN-7ZQlOkwSVv4RyKdpBQnOfYGRZiA_-JZukXs2TAdHT14mjrAJR53PvyEXhORFNiP-CVIJ-7c0FiMJXBIrb8Xs6LHYv3KMQwEhCIvNtxjfeYxfhcUzRcWUmZGhRrDVYDd5xo0Gbj7oPd3Ao_t3r1VA"], ["google_rating", "4"], ["google_place_id", "ChIJHxUevo0Z2jERki2z8020eLc"], ["vicinity", "2 Orchard Turn, B1-12"], ["created_at", 2017-02-13 03:53:35 UTC], ["updated_at", 2017-02-13 03:53:35 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJ94znv40Z2jERwJVtVB5hAcE"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["lat", "1.3044883"], ["lng", "103.8317096"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Bread Society"], ["google_place_id", "ChIJ94znv40Z2jERwJVtVB5hAcE"], ["vicinity", "2 Orchard Turn, B4-08/09 Leica Store ION Orchard, Singapore"], ["created_at", 2017-02-13 03:53:35 UTC], ["updated_at", 2017-02-13 03:53:35 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJ1ygx6I0Z2jERCMOWP-h0BX8"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_photo_reference", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["lat", "1.3043835"], ["lng", "103.8318006"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Dunkin' Donuts"], ["google_photo_reference", "CoQBdwAAAJS6M6azviLr_McorO0ohLPCQpoKnFXT_Lw9Tauo55x6Qjq-XXdv6u9PP-UVusC1LXJWiE-NX7XGqIRDHki8ZbkfL8cDoR0azmN6IDII2yI5ePjU5z_G55liJ3HGC_8EoCqbB3tQ5jHqSZpT1Vnvk5xsa5AfIEo2ME45QSq1pq2xEhDNGUVhmPThAzTmGAc0roPwGhQawIlq4bqARyZXcLfV2FEBKjWj8A"], ["google_place_id", "ChIJ1ygx6I0Z2jERCMOWP-h0BX8"], ["vicinity", "2 Orchard Turn Unit #B4-60 ION Orchard Singapore 238801, B4-60"], ["created_at", 2017-02-13 03:53:35 UTC], ["updated_at", 2017-02-13 03:53:35 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJezAEyIwZ2jER4SXUxxlBAeU"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_photo_reference", "google_rating", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["lat", "1.3073551"], ["lng", "103.8289192"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Jewel Coffee at Claymore Connect"], ["google_photo_reference", "CoQBdwAAAGsfFl0qHWIhktBLuHcYfGBXpZnpvZsUAalGRBtbo1MFRtR7B9pFrB8ltk2ljSuxSfSLNozJ18wXxOnQNoUylMv06htb4NGOE1AETfAwwD8rYKpL_kQ2iq2bvCSVZU0K1G1Vo1r6CisnM9iMHVEeEJPa0ouiCaOJwOesE83egk3eEhCAbQ-ZTaeNs7feWcC11-JbGhR4IeOMwuTNfwgoPR5iD27giW3I4Q"], ["google_rating", "4.4"], ["google_place_id", "ChIJezAEyIwZ2jER4SXUxxlBAeU"], ["vicinity", "442 Orchard Rd, #01-01 Claymore Connect Mall"], ["created_at", 2017-02-13 03:53:35 UTC], ["updated_at", 2017-02-13 03:53:35 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJ____z5YZ2jERsaqAgb1FZGI"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_photo_reference", "google_rating", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["lat", "1.3041353"], ["lng", "103.8315589"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "TCC - The Connoisseur Concerto"], ["google_photo_reference", "CoQBdwAAAEFdi8gpiRO5MbF3SAXE6KtNks-Jotr9Kf4cfInvs8OFxfWNHLtKfKnVtNzKR8AVVZNgWd8xz7gHR6xoWhcIrCX8vex4lXBmwmmXbPCEWcf38UEjY16BZXJ8G203_VmvZxWLyzijuW8Nl71UIEd2alGD2GfWkmcvNRcLLFpfioHlEhBpYFAnwsSOR-J2Y__KGMyWGhRpBt8inUqX8ncKNe7I2aveFnZYDA"], ["google_rating", "4.7"], ["google_place_id", "ChIJ____z5YZ2jERsaqAgb1FZGI"], ["vicinity", "2 Orchard Turn, #B2-49, Ion Orchard, B2-49"], ["created_at", 2017-02-13 03:53:35 UTC], ["updated_at", 2017-02-13 03:53:35 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJpdkS5Y0Z2jERk3Gp3cqoCk8"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_photo_reference", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["lat", "1.3041739"], ["lng", "103.8319083"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Koi Cafe"], ["google_photo_reference", "CoQBdwAAAC0AXgh5qyXHxDiM6I45sLAAdjlXxkewMlKH9lLOQmV9N2Tzpjlb51bykp5gMfcziF_cLN1gohOk_r906jQZiLiCnADGslSSzkFob50NKfVPFzeMuvBpDFm79l3x7HVMrKPDv4YWcdaHCoFSMDCKSz6IgomGAaIDCR9-qHHmLnfzEhC4oTfkv3fdBW1X0q_quQdtGhSRdRFDmm6AlJzWP-2VwFDQT9eMKg"], ["google_place_id", "ChIJpdkS5Y0Z2jERk3Gp3cqoCk8"], ["vicinity", "2 Orchard Turn, B4-35 The Orchard Residences, Singapore"], ["created_at", 2017-02-13 03:53:35 UTC], ["updated_at", 2017-02-13 03:53:35 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJ3VmA_4wZ2jER47HmEGqIGHw"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_photo_reference", "google_rating", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["lat", "1.305555"], ["lng", "103.83015"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Hob Nob Cafe Bar"], ["google_photo_reference", "CoQBdwAAACZl6KJ1UiAJM7oYkVjHgHVngjJ4Xw-GByObVHlxaiSTJ7cOtKKtYVIMIpMhTHJMHNev7-IOJcZT1Y2Tr0IYdU6uYAfXJOzhWUcuhKvSeEtwAfW_hMHa2VrYEu8K_cr5_Iiqs7KCw4p3UdL9Gr4lZE37tWEzj_CoW536TNozlfy9EhDM86nqb9kyXKaETScxmp4EGhTpzjjXpd0f96gdS7D75khPLtzAqg"], ["google_rating", "4"], ["google_place_id", "ChIJ3VmA_4wZ2jER47HmEGqIGHw"], ["vicinity", "545 Orchard Road"], ["created_at", 2017-02-13 03:53:35 UTC], ["updated_at", 2017-02-13 03:53:35 UTC]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJs4uEw40Z2jER4a8HWX_fayc"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.5ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_photo_reference", "google_rating", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["lat", "1.3040192"], ["lng", "103.8318256"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Each-a-cup"], ["google_photo_reference", "CoQBdwAAAK_8IfeGqn34VsxerUjl3q0vayfYU79AjscJjWYDtJHOUXSvUQL8ESdeT9Dca1wH9OySfiR34Y-UmeIjO-C3MiT1NV_qkFYDoU2uub-zoPEiXUBqhln75WMT0rtkUxZjZqip8KK9l2TlDgge4DqTVnhbey1DO27aq9SupUpmi0UGEhBaIahodbQpAtKd-EvFJuAkGhQLocyHXLPXuLH6Ul21Xqyu8xUMWA"], ["google_rating", "4.3"], ["google_place_id", "ChIJs4uEw40Z2jER4a8HWX_fayc"], ["vicinity", "#B4-69, 2 Orchard Turn, B4-69 The Orchard Residences, Singapore"], ["created_at", 2017-02-13 03:53:35 UTC], ["updated_at", 2017-02-13 03:53:35 UTC]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJjSLAppIZ2jERwVXlBau2vd8"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_photo_reference", "google_rating", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["lat", "1.307064"], ["lng", "103.833485"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Graffiti Cafe"], ["google_photo_reference", "CoQBdwAAAHFU7qadK0NmxnXRS8p_3KQ-9dWO4MueMUwFZ4aqUOTyL_TKgQBzK-5_xFSMGlTrsUWSIVffZL2bwbsSy68QPGvpwpo9MKQIKA4EhMKFcuEWl6WuU_Q7LXo8SF8wlvaInPXaWwmqAF00IrAqU51IvBBDR_-IpIbnsDhCMWuPrcJPEhB5sdjasAO8rGvw2poZJJxtGhTyYYmDY_OEnOVEEOJ6-xJ6_VYkHA"], ["google_rating", "5"], ["google_place_id", "ChIJjSLAppIZ2jERwVXlBau2vd8"], ["vicinity", "Far East Organization, Singapore"], ["created_at", 2017-02-13 03:53:35 UTC], ["updated_at", 2017-02-13 03:53:35 UTC]]
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.4ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJRY4V6Y0Z2jER_IK9DKgAbkY"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_photo_reference", "google_rating", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["lat", "1.3039893"], ["lng", "103.8320394"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Plain Vanilla Bakery"], ["google_photo_reference", "CoQBdwAAAPpykxPDH0ZJCxWfE2GSDrlkokqcTbM1DIDt5Sa-1tBQLZskE2qiasSQGLFmgeuCeQ1GGCr02acdjzOaSKI1Pjn9xFZKglCkJ0CUmlaHk-4DPE-IVipixh0z98-DKU3CQX0RxFUNzY6xmVVARLUlps8BFeejbsyWpbQMrNTYA6XmEhDhhYHvHNn_aULwE6E215gcGhTLosRFmPO1J7z3t7Gq6mEsP63Mlg"], ["google_rating", "4.5"], ["google_place_id", "ChIJRY4V6Y0Z2jER_IK9DKgAbkY"], ["vicinity", "B1-06, 2 Orchard Turn, The Orchard Residences, Singapore"], ["created_at", 2017-02-13 03:53:35 UTC], ["updated_at", 2017-02-13 03:53:35 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJbQAK6Y0Z2jER6j2BbuJq9UU"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["lat", "1.303984"], ["lng", "103.8319514"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Yummy in my Tummy"], ["google_place_id", "ChIJbQAK6Y0Z2jER6j2BbuJq9UU"], ["vicinity", "238 Orchard Boulevard, 248652 Orchard Boulevard"], ["created_at", 2017-02-13 03:53:35 UTC], ["updated_at", 2017-02-13 03:53:35 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJSQoT5Y0Z2jEROOczRpNx4rU"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_photo_reference", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["lat", "1.3039325"], ["lng", "103.8318334"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Ya Kun Kaya Toast"], ["google_photo_reference", "CoQBdwAAALiI2YFztjYUUsqDSS8S7Og3UBa0UtpqmY5Mdqo_ezZHhMZLfFjxNK8mQHGps9WRoDrM8U1RKDBekN0l3m_YMDFXwqPOxb4Z_UOFxG8GjqBipRdxeqk10nX2rGAUglgMGCZ-nbhUbgEKGOAEPJ7YbRLPqjJHHVdfoEpFe0_LxkJUEhC-EUacnQ0-jUPOzh-L7PbVGhSRLCaeTLnWoJOUJ4rlaBFB2A47Pg"], ["google_place_id", "ChIJSQoT5Y0Z2jEROOczRpNx4rU"], ["vicinity", "2 Orchard Turn, B4-71/72"], ["created_at", 2017-02-13 03:53:35 UTC], ["updated_at", 2017-02-13 03:53:35 UTC]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJvzeLuYwZ2jERj4-DCD4SoSE"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_photo_reference", "google_rating", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["lat", "1.3071692"], ["lng", "103.8285526"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Starbucks"], ["google_photo_reference", "CoQBdwAAAE89aidVS7A7keR04cDMyztiz20wJLntMxspn8IwbMKQvhpQbiWcqEmlx945274B8HhKOwhJHd64w-5-zgaydGBclcMvMi05TYGdQgcAHn9OTBt5CeJ9TcShGHbu7Qr0E_Gav7pIIkQKO18tL0-g5cGqs3x2RlcAI7LTNyMPkG66EhB_bjGQahuEfjKbBOc1AwERGhS4NcNcYUBZVL3Y9sBouq7zQnsbVQ"], ["google_rating", "3.8"], ["google_place_id", "ChIJvzeLuYwZ2jERj4-DCD4SoSE"], ["vicinity", "402 Orchard Road #01-01 Singapore 238876"], ["created_at", 2017-02-13 03:53:35 UTC], ["updated_at", 2017-02-13 03:53:35 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJc6zIfr0Z2jERZHmTr9Tp4lo"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_photo_reference", "google_rating", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["lat", "1.3045649"], ["lng", "103.8339296"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Wang Cafe"], ["google_photo_reference", "CoQBdwAAAJpPdDohoNl3KnXWToojLexlR4JcbCWAikn_swA4EI3b5N2W0ohCCDUSRlRJr_KwILJ74yt9MGf5yRhIlnORZ8UNxPZKJCY3V1FWitbk9Ur9IG-GzV1pAl1v2NZ7NH7KccrjuYq_gysCTGle0HCM0vAznFBoZw_Z1NjTiArzhM18EhCkEawc0lZpv-6NbMf2ua7aGhQAdhIN5t9k3iYF1yeE90zVr-0lig"], ["google_rating", "4"], ["google_place_id", "ChIJc6zIfr0Z2jERZHmTr9Tp4lo"], ["vicinity", "68 B2-35/36 238839, 304 Orchard Road, Lucky Plaza, Singapore"], ["created_at", 2017-02-13 03:53:35 UTC], ["updated_at", 2017-02-13 03:53:35 UTC]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJIwKGbZIZ2jERDGnNM5BqYXM"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_photo_reference", "google_rating", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["lat", "1.3045649"], ["lng", "103.8339296"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Killiney Kopitiam - Lucky Plaza"], ["google_photo_reference", "CoQBdwAAAEx3OOuyw5mt8r2swNFYrwAHmSSm4DSML-C-crJt1bkfmShVawjC5ZZaa_St-AEv-CpEAqvw76dZB_gdF9ypiQU-e8-jOXr4D-7buMI-qno5hdImaUboI8pBD0AC6t_-DS1nU0YZESNSK-EvBgOjxXV_hlkH39cMGkpVtb3-sBfyEhDGGECqq1KQekzfP1p_a8oRGhTX8mIVxqAiuq-tqpWzThTnwMb_-Q"], ["google_rating", "4"], ["google_place_id", "ChIJIwKGbZIZ2jERDGnNM5BqYXM"], ["vicinity", "304 Orchard Road, #01-10, Lucky Plaza"], ["created_at", 2017-02-13 03:53:35 UTC], ["updated_at", 2017-02-13 03:53:35 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJF1YwuowZ2jERVNZdkzy2wO0"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_photo_reference", "google_rating", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["lat", "1.307196"], ["lng", "103.828453"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Rocky Master"], ["google_photo_reference", "CoQBdwAAANkbVC3N_dliMj-xC7Tqjec-wOSGRxYZsZmXZprDjGbnRLtPHAzova_1rvgH3H7G__O4rnLKDeOk5gMih7To7Zh09O4GJMiXKjETR6VO0Grtl3sDngD0VkaK0tNOvcZCJEp2PeYRdw55xu7qHkhX0BfU_mKgKVXkRxgjFKbLJN_vEhCorMSv2AitE4UqkA7DcnqqGhTT8CjZQf3NiatBsyeE_TemnZlOrg"], ["google_rating", "3.1"], ["google_place_id", "ChIJF1YwuowZ2jERVNZdkzy2wO0"], ["vicinity", "402 Orchard Rd, #01-02/03 Delfi Orchard, Singapore"], ["created_at", 2017-02-13 03:53:35 UTC], ["updated_at", 2017-02-13 03:53:35 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJF1YwuowZ2jERHuGcMKjr3J0"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_photo_reference", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["lat", "1.307196"], ["lng", "103.828453"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Spinelli Coffee Company"], ["google_photo_reference", "CoQBdwAAAFKoGslBdU1Eh6HjVCc1SnvDWc4Sqe4Q5d36M-u3mf6k8fdFeotXjRMiZb_3fTAZI8qGJPPQQ24P6Hk8AQwTJZHDY_SoFA4IqxrQu7ggE2JoJSkDrufSgmMiMRmFgOL1fJKvZyCsvvLKrt2uKTLZT0exsNcvnoAuTDrFH5Dze5gQEhC-ZEhQl_lT2rRrN1CvM5BXGhSWFS_-x8DHRo5vfw8-DjDBwzT-BQ"], ["google_place_id", "ChIJF1YwuowZ2jERHuGcMKjr3J0"], ["vicinity", ""], ["created_at", 2017-02-13 03:53:35 UTC], ["updated_at", 2017-02-13 03:53:35 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJ3_C4pZIZ2jERO2JNA0WmxQY"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_photo_reference", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["lat", "1.307185"], ["lng", "103.83368"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/shopping-71.png"], ["name", "TenEleven Cupcakes"], ["google_photo_reference", "CoQBdwAAABcLNiNB_06c7_BeXqsQ4FocJB6F37SKPAtxlgQePIN-oZDv63HiREwy-DcSXbgPqz9oeeKnSkCKfjkeY1gCYgRUZEST1dKTHjRh35hSAGOL2_MjJGAqssKdOupF36W6Rjn1DknRiSuIZQFdQJZfaYKId2b2b6B87cQpkQ3KhIT5EhBthqu9TU9pkWcxNcxJhBs3GhSBFMpqgiF61lLF4NunJh_u6vvorg"], ["google_place_id", "ChIJ3_C4pZIZ2jERO2JNA0WmxQY"], ["vicinity", "01-54/55, 14 Scotts Road, Singapore"], ["created_at", 2017-02-13 03:53:35 UTC], ["updated_at", 2017-02-13 03:53:35 UTC]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.5ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJXSBscpIZ2jERIQrletijT6A"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_photo_reference", "google_rating", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["lat", "1.304398"], ["lng", "103.8339892"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Koi Cafe"], ["google_photo_reference", "CoQBdwAAAN_ERo3c4T1ki6d0qV41mqSsWDqnq47ejG9-2FmnzJFaoIg1DJylqDPMzRfgzBhy1uhX-Lb87KzC_DxLRcTYsRjWRAChgfp5vmLAmH19idDZTpIK0byslDiPMOIlMKFGxiBnF1pVcFX3MytDYOW3yWbcfgRGUZ7yYk8mZUUmsHbWEhAcu4IlQnb34MFR11Pom5fJGhTqqySgCaUS52-ijulLbfwxsRsAkg"], ["google_rating", "4.5"], ["google_place_id", "ChIJXSBscpIZ2jERIQrletijT6A"], ["vicinity", "304 Orchard Road, #01-015B, Lucky Plaza"], ["created_at", 2017-02-13 03:53:39 UTC], ["updated_at", 2017-02-13 03:53:39 UTC]]
+  [1m[35m (3.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.4ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJHXFAbZIZ2jERwnVb4GC0Mso"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["lat", "1.304423"], ["lng", "103.8340325"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "As-Shifaa Cafe"], ["google_place_id", "ChIJHXFAbZIZ2jERwnVb4GC0Mso"], ["vicinity", "Lucky Plaza, Singapore"], ["created_at", 2017-02-13 03:53:39 UTC], ["updated_at", 2017-02-13 03:53:39 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJjSLAppIZ2jERk_9YXk0pdFk"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["lat", "1.3067015"], ["lng", "103.8332193"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Greenview Cafe"], ["google_place_id", "ChIJjSLAppIZ2jERk_9YXk0pdFk"], ["vicinity", "14 Scotts Road, #04-96"], ["created_at", 2017-02-13 03:53:39 UTC], ["updated_at", 2017-02-13 03:53:39 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJdVshco0Z2jER-I9DgudY3OE"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_photo_reference", "google_rating", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["lat", "1.3065252"], ["lng", "103.8316151"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Tarte"], ["google_photo_reference", "CoQBdwAAAGgydmCX7QIkj4BmkSF31WB3JwuHYNmueWtc06hf2evya7vJ4izWltxEiryjGPouooEkDswflcjsEYdNY009taUmsuDVGdxS06Ju80E-qmapoOsb_-LSeLMfxPt9VcsOgFTWcRCvGSJ8uBDOxzgcpyQNpftBYALUSBgKY7Usn171EhCcJ2HLscQp_W85jKBUaBxcGhTxWzf5fTlS8iyNUn1H2DckbJggDA"], ["google_rating", "4.2"], ["google_place_id", "ChIJdVshco0Z2jER-I9DgudY3OE"], ["vicinity", "1 Scotts Rd, #01-12 Shaw Centre"], ["created_at", 2017-02-13 03:53:39 UTC], ["updated_at", 2017-02-13 03:53:39 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (2.0ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJdVshco0Z2jEREqFdr1Gooq8"], ["LIMIT", 1]]
+  [1m[35m (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_photo_reference", "google_rating", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["lat", "1.306385"], ["lng", "103.8319065"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Cocoa Colony"], ["google_photo_reference", "CoQBdwAAAA90G48KRsEp2-kI9JCLE3uCekvd4SoQiADbLN-8r9r2AufjF8RtzK_cdTLmj38m-c2a-tpXN4mXhy4QLFipm1z2uTsKvk7k53H773R6O34xLG505g4csO4eB-SGQsXITWHmfwaRlEcEfaF-MuJNwQm7t6Go1mzr0UeRjFucB44IEhBWEUEZZk2TyVzMx85MWVfGGhSDdp5waiHwuqwTOMb78XYlyKLu_A"], ["google_rating", "4"], ["google_place_id", "ChIJdVshco0Z2jEREqFdr1Gooq8"], ["vicinity", "1 Scotts Road, 01-06"], ["created_at", 2017-02-13 03:53:39 UTC], ["updated_at", 2017-02-13 03:53:39 UTC]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJ22yJoI0Z2jERjQKVAd6RsFU"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_photo_reference", "google_rating", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["lat", "1.305691"], ["lng", "103.8317805"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Toast Box - Shaw House"], ["google_photo_reference", "CoQBdwAAANY8RUtF2Eale4dJHMvwZX8iilwB0RVQEfzcyaNe0Jfw-n7yBL80tZD9Gjtzfd54t3Bh5kzY-YvDsywCgaStnqRKpWfDu2y9yTQRE6OODaY_qw4mFyfY4Wh9_7Gc5fxG0o3xqHhCjgNB8klHRw3hwmqkb0qYWOFhh38SR8Ef0Bd8EhBqkm1b8oqwfTa2ir23Yf1DGhR1AHFsXdUPyK1iIWhNqBrKS4G5ZA"], ["google_rating", "4"], ["google_place_id", "ChIJ22yJoI0Z2jERjQKVAd6RsFU"], ["vicinity", "#B1-03, Shaw House, 350 Orchard Road"], ["created_at", 2017-02-13 03:53:39 UTC], ["updated_at", 2017-02-13 03:53:39 UTC]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJPx6dfI0Z2jERWEo8N-m2pCY"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_photo_reference", "google_rating", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["lat", "1.3060907"], ["lng", "103.8329104"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "The Coffee Academics"], ["google_photo_reference", "CoQBdwAAAMLDF6TvKl0-H2K-ul0tkCXEaAq_rpi253PABQYhnAhNIwPfUX26lj2oDXCxkclTTp1UYTqMT5qB-VJ7tzTjP6ZN8j8He0xlbtY73ckQ9xumdosibRmaR62Gcx_X0bEhMxNk1gQ6vQmhqqYXyZirSv7F8vN2ih99BjB7Q_ugQfeHEhBvvCwITjwgtBxTq-gKJBE7GhSFWi8yfzh6TSMcrmCJOZ8WCQnoWA"], ["google_rating", "3.2"], ["google_place_id", "ChIJPx6dfI0Z2jERWEo8N-m2pCY"], ["vicinity", "Scotts Square, #02-01/02, Scotts Square,, 6 Scotts Road"], ["created_at", 2017-02-13 03:53:39 UTC], ["updated_at", 2017-02-13 03:53:39 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJjSLAppIZ2jERiqdT46PIsdk"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["lat", "1.307064"], ["lng", "103.833485"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Mansor D'Cafe"], ["google_place_id", "ChIJjSLAppIZ2jERiqdT46PIsdk"], ["vicinity", "Far East Organization, Singapore"], ["created_at", 2017-02-13 03:53:39 UTC], ["updated_at", 2017-02-13 03:53:39 UTC]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJjSLAppIZ2jERMOW926r9bpc"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["lat", "1.307064"], ["lng", "103.833485"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "C.Nai Hong Kong Express"], ["google_place_id", "ChIJjSLAppIZ2jERMOW926r9bpc"], ["vicinity", "Far East Organization, Singapore"], ["created_at", 2017-02-13 03:53:39 UTC], ["updated_at", 2017-02-13 03:53:39 UTC]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJjSLAppIZ2jERME2gqEn3oXs"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["lat", "1.307064"], ["lng", "103.833485"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Toms N Toms Coffee"], ["google_place_id", "ChIJjSLAppIZ2jERME2gqEn3oXs"], ["vicinity", "Far East Organization, Singapore"], ["created_at", 2017-02-13 03:53:39 UTC], ["updated_at", 2017-02-13 03:53:39 UTC]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJjSLAppIZ2jERvT--G7BuHx4"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["lat", "1.307064"], ["lng", "103.833485"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Bin Talib Dahlia (S) Cafe"], ["google_place_id", "ChIJjSLAppIZ2jERvT--G7BuHx4"], ["vicinity", "Far East Organization, Singapore"], ["created_at", 2017-02-13 03:53:39 UTC], ["updated_at", 2017-02-13 03:53:39 UTC]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJPwWJoI0Z2jERj0DsRBU9RQo"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["lat", "1.3054926"], ["lng", "103.8315751"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Kyan's cafe"], ["google_place_id", "ChIJPwWJoI0Z2jERj0DsRBU9RQo"], ["vicinity", "orchid business centre"], ["created_at", 2017-02-13 03:53:39 UTC], ["updated_at", 2017-02-13 03:53:39 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJz2Q3rZIZ2jEREcSOLT6kfno"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["lat", "1.3078335"], ["lng", "103.833839"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Street 69"], ["google_place_id", "ChIJz2Q3rZIZ2jEREcSOLT6kfno"], ["vicinity", "No. 14, Scotts Road, #04-33, Far East Plaza, 228213"], ["created_at", 2017-02-13 03:53:39 UTC], ["updated_at", 2017-02-13 03:53:39 UTC]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJscISsI0Z2jERAclCe6y6vfA"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["lat", "1.3052341"], ["lng", "103.8308611"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Starbucks Coffee"], ["google_place_id", "ChIJscISsI0Z2jERAclCe6y6vfA"], ["vicinity", "501 Orchard Road, #B1-01, Singapore"], ["created_at", 2017-02-13 03:53:39 UTC], ["updated_at", 2017-02-13 03:53:39 UTC]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJ9YtqhY0Z2jERgx2rqomJ4iQ"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_photo_reference", "google_rating", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["lat", "1.3050401"], ["lng", "103.8327618"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Krispy Kreme"], ["google_photo_reference", "CoQBdwAAABk85kPjuDfsO9kIvZ6CkSUj5jlrqZk5dz3DX9OXXQQvGy2zBwtpV3zgjzN8sGxTGbXNx3WyRucbJ7IF5Zk3cm6rfqGWGQ_1UuNfxDgJFH0eEr6MzA3QJciidWuz59FpAzsICi9YqFEMq6T2M-tSuiuOb8n0PhOvVq6zRYfeLTVKEhB6Oj_Or9h-FQVWAiEP8hItGhTaynyQCPJx9tyj0iKyHSRTtBrKQg"], ["google_rating", "4.5"], ["google_place_id", "ChIJ9YtqhY0Z2jERgx2rqomJ4iQ"], ["vicinity", "310 Orchard Road, Singapore"], ["created_at", 2017-02-13 03:53:39 UTC], ["updated_at", 2017-02-13 03:53:39 UTC]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.4ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJTfcmvI0Z2jERSXNwQWIZQwc"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_rating", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["lat", "1.3046743"], ["lng", "103.831531"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "星乃珈琲店"], ["google_rating", "3"], ["google_place_id", "ChIJTfcmvI0Z2jERSXNwQWIZQwc"], ["vicinity", "Paterson Road"], ["created_at", 2017-02-13 03:53:39 UTC], ["updated_at", 2017-02-13 03:53:39 UTC]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJ3Tcl0IwZ2jERH99e068OR_Q"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_photo_reference", "google_rating", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["lat", "1.3069439"], ["lng", "103.8291434"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Korat Thai Cafe"], ["google_photo_reference", "CoQBdwAAAFJhDqYrNi0etaphpmoCNlsH--QSt1Zve-zFQU8XRR-cK1L2fXZMw8qX7NALCr4tiwcHOigp1YeX935lTvv5xHMApX8D7bxYkJ7dVQEZtMfoQ6Pf8PZsiiqU8i98oONk5L1uopcgWbjlILPkKVubBEwKKXSV7KC5tIoQ3E2kw5ybEhC3hFhgNiLWa8JI9epsz9CcGhQB1nyCgOmSiIKLNdspDBht5vOTnw"], ["google_rating", "4.2"], ["google_place_id", "ChIJ3Tcl0IwZ2jERH99e068OR_Q"], ["vicinity", "400 Orchard Road, Singapore"], ["created_at", 2017-02-13 03:53:39 UTC], ["updated_at", 2017-02-13 03:53:39 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJ3Tcl0IwZ2jER30q3w1WAj9g"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_photo_reference", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["lat", "1.3069439"], ["lng", "103.8291434"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Isle Eating House"], ["google_photo_reference", "CoQBdwAAACS8W_qzPupR6clDST5W06QNWQPmioerCqO8GEz9HTfjrVQZvh8Pv-0BydZh62s7wwap2I6QE6WwxcYzipT9oanEVd1kB9foK9p3GPQAQVEwgNnycM9rpKrcIOewXPmloNfy1dVaRoVsJjGZH_icQMJYDWeFt4Nk6oWegMnaVsZiEhDJh2H0aKZZ6rIkcC_LeacJGhS3ZFTs0ih-El2R38aHuyanvmnXdg"], ["google_place_id", "ChIJ3Tcl0IwZ2jER30q3w1WAj9g"], ["vicinity", "400 Orchard Road, Singapore"], ["created_at", 2017-02-13 03:53:39 UTC], ["updated_at", 2017-02-13 03:53:39 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJywScxYwZ2jERUWZXsY6GbBc"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["lat", "1.3069439"], ["lng", "103.8291434"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Cabbage Green Juice Cafe"], ["google_place_id", "ChIJywScxYwZ2jERUWZXsY6GbBc"], ["vicinity", "400 Orchard Road, Singapore"], ["created_at", 2017-02-13 03:53:39 UTC], ["updated_at", 2017-02-13 03:53:39 UTC]]
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."google_place_id" = $1 LIMIT $2[0m  [["google_place_id", "ChIJ1bVEsY0Z2jER4LZAb-7WjKM"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "locations" ("lat", "lng", "icon", "name", "google_place_id", "vicinity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["lat", "1.304718"], ["lng", "103.8307298"], ["icon", "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png"], ["name", "Netwave Cybercafe Pte Ltd"], ["google_place_id", "ChIJ1bVEsY0Z2jER4LZAb-7WjKM"], ["vicinity", "501 Orchard Rd"], ["created_at", 2017-02-13 03:53:39 UTC], ["updated_at", 2017-02-13 03:53:39 UTC]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/" for 127.0.0.1 at 2017-02-13 12:34:41 +0800
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  Rendered locations/index.html.erb within layouts/application (4.0ms)
+  Rendered partials/_navbar.html.erb (1.7ms)
+  Rendered partials/_flash.html.erb (0.8ms)
+Completed 200 OK in 752ms (Views: 704.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/locations/secret" for 127.0.0.1 at 2017-02-13 12:35:25 +0800
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-02-13 12:35:25 +0800
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.7ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (26.8ms)
+  Rendered partials/_navbar.html.erb (1.8ms)
+  Rendered partials/_flash.html.erb (0.7ms)
+Completed 200 OK in 104ms (Views: 75.9ms | ActiveRecord: 9.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-02-13 12:37:50 +0800
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  Rendered locations/index.html.erb within layouts/application (2.0ms)
+  Rendered partials/_navbar.html.erb (1.6ms)
+  Rendered partials/_flash.html.erb (0.8ms)
+Completed 200 OK in 588ms (Views: 559.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-02-13 12:37:53 +0800
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  Rendered locations/index.html.erb within layouts/application (0.6ms)
+  Rendered partials/_navbar.html.erb (2.2ms)
+  Rendered partials/_flash.html.erb (0.8ms)
+Completed 200 OK in 214ms (Views: 210.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-02-13 12:37:57 +0800
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  Rendered locations/index.html.erb within layouts/application (0.5ms)
+  Rendered partials/_navbar.html.erb (1.4ms)
+  Rendered partials/_flash.html.erb (0.7ms)
+Completed 200 OK in 52ms (Views: 46.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-02-13 12:38:40 +0800
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  Rendered locations/index.html.erb within layouts/application (0.5ms)
+  Rendered partials/_navbar.html.erb (1.8ms)
+  Rendered partials/_flash.html.erb (0.7ms)
+Completed 200 OK in 53ms (Views: 49.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-02-13 12:44:20 +0800
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  Rendered locations/index.html.erb within layouts/application (0.6ms)
+Completed 500 Internal Server Error in 42ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (couldn't find file 'rails_bootstrap_forms' with type 'text/css'
+Checked in these paths: 
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/app/assets/config
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/app/assets/images
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/app/assets/javascripts
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/app/assets/stylesheets
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/vendor/assets/javascripts
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/vendor/assets/stylesheets
+  /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/jquery-rails-4.2.2/vendor/assets/javascripts
+  /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/coffee-rails-4.2.1/lib/assets/javascripts
+  /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actioncable-5.0.1/lib/assets/compiled
+  /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/turbolinks-source-5.0.0/lib/assets/javascripts):
+    4:     <title>WDIProject3Wherework</title>
+    5:     <%= csrf_meta_tags %>
+    6: 
+    7:     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    8:     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    9:     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+   10:   </head>
+  
+app/assets/stylesheets/application.scss:13
+app/views/layouts/application.html.erb:7:in `_app_views_layouts_application_html_erb___1447387557402139076_70361440626620'
+  Rendering /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (18.0ms)
+  Rendering /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (6.2ms)
+  Rendering /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (213.6ms)
+Started GET "/" for 127.0.0.1 at 2017-02-13 12:46:05 +0800
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  Rendered locations/index.html.erb within layouts/application (0.5ms)
+Completed 500 Internal Server Error in 26ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (couldn't find file 'rails_bootstrap_forms' with type 'text/css'
+Checked in these paths: 
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/app/assets/config
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/app/assets/images
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/app/assets/javascripts
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/app/assets/stylesheets
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/vendor/assets/javascripts
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/vendor/assets/stylesheets
+  /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/jquery-rails-4.2.2/vendor/assets/javascripts
+  /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/coffee-rails-4.2.1/lib/assets/javascripts
+  /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actioncable-5.0.1/lib/assets/compiled
+  /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/turbolinks-source-5.0.0/lib/assets/javascripts):
+    4:     <title>WDIProject3Wherework</title>
+    5:     <%= csrf_meta_tags %>
+    6: 
+    7:     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    8:     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    9:     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+   10:   </head>
+  
+app/assets/stylesheets/application.scss:13
+app/views/layouts/application.html.erb:7:in `_app_views_layouts_application_html_erb___1447387557402139076_70361440629380'
+  Rendering /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (16.3ms)
+  Rendering /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (7.3ms)
+  Rendering /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (181.3ms)
+Started GET "/" for 127.0.0.1 at 2017-02-13 12:48:52 +0800
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  Rendered locations/index.html.erb within layouts/application (0.5ms)
+Completed 500 Internal Server Error in 27ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (couldn't find file 'rails_bootstrap_forms' with type 'text/css'
+Checked in these paths: 
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/app/assets/config
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/app/assets/images
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/app/assets/javascripts
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/app/assets/stylesheets
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/vendor/assets/javascripts
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/vendor/assets/stylesheets
+  /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/jquery-rails-4.2.2/vendor/assets/javascripts
+  /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/coffee-rails-4.2.1/lib/assets/javascripts
+  /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actioncable-5.0.1/lib/assets/compiled
+  /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/turbolinks-source-5.0.0/lib/assets/javascripts):
+    4:     <title>WDIProject3Wherework</title>
+    5:     <%= csrf_meta_tags %>
+    6: 
+    7:     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    8:     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    9:   </head>
+   10: 
+  
+app/assets/stylesheets/application.scss:13
+app/views/layouts/application.html.erb:7:in `_app_views_layouts_application_html_erb___1447387557402139076_70361416279580'
+  Rendering /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (16.3ms)
+  Rendering /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (6.4ms)
+  Rendering /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (181.2ms)
+Started GET "/" for 127.0.0.1 at 2017-02-13 12:49:36 +0800
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  Rendered locations/index.html.erb within layouts/application (0.5ms)
+Completed 500 Internal Server Error in 28ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (couldn't find file 'rails_bootstrap_forms' with type 'text/css'
+Checked in these paths: 
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/app/assets/config
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/app/assets/images
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/app/assets/javascripts
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/app/assets/stylesheets
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/vendor/assets/javascripts
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/vendor/assets/stylesheets
+  /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/jquery-rails-4.2.2/vendor/assets/javascripts
+  /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/coffee-rails-4.2.1/lib/assets/javascripts
+  /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actioncable-5.0.1/lib/assets/compiled
+  /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/turbolinks-source-5.0.0/lib/assets/javascripts):
+    4:     <title>WDIProject3Wherework</title>
+    5:     <%= csrf_meta_tags %>
+    6: 
+    7:     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    8:     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    9:   </head>
+   10: 
+  
+app/assets/stylesheets/application.scss:13
+app/views/layouts/application.html.erb:7:in `_app_views_layouts_application_html_erb___1447387557402139076_70361426449100'
+  Rendering /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (18.1ms)
+  Rendering /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (6.7ms)
+  Rendering /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (184.7ms)
+Started GET "/" for 127.0.0.1 at 2017-02-13 12:50:51 +0800
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  Rendered locations/index.html.erb within layouts/application (0.5ms)
+Completed 500 Internal Server Error in 43ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (couldn't find file 'rails_bootstrap_forms' with type 'text/css'
+Checked in these paths: 
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/app/assets/config
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/app/assets/images
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/app/assets/javascripts
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/app/assets/stylesheets
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/vendor/assets/javascripts
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/vendor/assets/stylesheets
+  /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/jquery-rails-4.2.2/vendor/assets/javascripts
+  /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/coffee-rails-4.2.1/lib/assets/javascripts
+  /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actioncable-5.0.1/lib/assets/compiled
+  /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/turbolinks-source-5.0.0/lib/assets/javascripts):
+     7:     <title>WDIProject3Wherework</title>
+     8:     <%= csrf_meta_tags %>
+     9: 
+    10:     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    11:     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    12:   </head>
+    13: 
+  
+app/assets/stylesheets/application.scss:13
+app/views/layouts/application.html.erb:10:in `_app_views_layouts_application_html_erb___1447387557402139076_70361446766160'
+  Rendering /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (18.6ms)
+  Rendering /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (7.0ms)
+  Rendering /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (183.2ms)
+Started GET "/" for 127.0.0.1 at 2017-02-13 12:50:55 +0800
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  Rendered locations/index.html.erb within layouts/application (0.5ms)
+Completed 500 Internal Server Error in 26ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (couldn't find file 'rails_bootstrap_forms' with type 'text/css'
+Checked in these paths: 
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/app/assets/config
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/app/assets/images
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/app/assets/javascripts
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/app/assets/stylesheets
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/vendor/assets/javascripts
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/vendor/assets/stylesheets
+  /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/jquery-rails-4.2.2/vendor/assets/javascripts
+  /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/coffee-rails-4.2.1/lib/assets/javascripts
+  /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actioncable-5.0.1/lib/assets/compiled
+  /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/turbolinks-source-5.0.0/lib/assets/javascripts):
+     7:     <title>WDIProject3Wherework</title>
+     8:     <%= csrf_meta_tags %>
+     9: 
+    10:     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    11:     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    12:   </head>
+    13: 
+  
+app/assets/stylesheets/application.scss:13
+app/views/layouts/application.html.erb:10:in `_app_views_layouts_application_html_erb___1447387557402139076_70361441705940'
+  Rendering /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (17.9ms)
+  Rendering /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.5ms)
+  Rendering /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (185.7ms)
+Started GET "/" for 127.0.0.1 at 2017-02-13 12:51:07 +0800
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  Rendered locations/index.html.erb within layouts/application (2.4ms)
+Completed 500 Internal Server Error in 522ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (couldn't find file 'rails_bootstrap_forms' with type 'text/css'
+Checked in these paths: 
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/app/assets/config
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/app/assets/images
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/app/assets/javascripts
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/app/assets/stylesheets
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/vendor/assets/javascripts
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/vendor/assets/stylesheets
+  /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/jquery-rails-4.2.2/vendor/assets/javascripts
+  /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/coffee-rails-4.2.1/lib/assets/javascripts
+  /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actioncable-5.0.1/lib/assets/compiled
+  /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/turbolinks-source-5.0.0/lib/assets/javascripts):
+     7:     <title>WDIProject3Wherework</title>
+     8:     <%= csrf_meta_tags %>
+     9: 
+    10:     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    11:     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    12:   </head>
+    13: 
+  
+app/assets/stylesheets/application.scss:13
+app/views/layouts/application.html.erb:10:in `_app_views_layouts_application_html_erb__2482922081882931390_70114518787420'
+  Rendering /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (17.4ms)
+  Rendering /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (7.3ms)
+  Rendering /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.9ms)
+  Rendered /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (199.6ms)
+Started GET "/" for 127.0.0.1 at 2017-02-13 12:52:03 +0800
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  Rendered locations/index.html.erb within layouts/application (0.5ms)
+Completed 500 Internal Server Error in 32ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (couldn't find file 'rails_bootstrap_forms' with type 'text/css'
+Checked in these paths: 
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/app/assets/config
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/app/assets/images
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/app/assets/javascripts
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/app/assets/stylesheets
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/vendor/assets/javascripts
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/vendor/assets/stylesheets
+  /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/jquery-rails-4.2.2/vendor/assets/javascripts
+  /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/coffee-rails-4.2.1/lib/assets/javascripts
+  /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actioncable-5.0.1/lib/assets/compiled
+  /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/turbolinks-source-5.0.0/lib/assets/javascripts):
+     7:     <title>WDIProject3Wherework</title>
+     8:     <%= csrf_meta_tags %>
+     9: 
+    10:     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    11:     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    12:   </head>
+    13: 
+  
+app/assets/stylesheets/application.scss:13
+app/views/layouts/application.html.erb:10:in `_app_views_layouts_application_html_erb__2482922081882931390_70114530937580'
+  Rendering /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (17.6ms)
+  Rendering /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (6.6ms)
+  Rendering /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (192.4ms)
+Started GET "/" for 127.0.0.1 at 2017-02-13 12:52:07 +0800
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  Rendered locations/index.html.erb within layouts/application (0.5ms)
+Completed 500 Internal Server Error in 22ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (couldn't find file 'rails_bootstrap_forms' with type 'text/css'
+Checked in these paths: 
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/app/assets/config
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/app/assets/images
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/app/assets/javascripts
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/app/assets/stylesheets
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/vendor/assets/javascripts
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/vendor/assets/stylesheets
+  /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/jquery-rails-4.2.2/vendor/assets/javascripts
+  /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/coffee-rails-4.2.1/lib/assets/javascripts
+  /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actioncable-5.0.1/lib/assets/compiled
+  /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/turbolinks-source-5.0.0/lib/assets/javascripts):
+     7:     <title>WDIProject3Wherework</title>
+     8:     <%= csrf_meta_tags %>
+     9: 
+    10:     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    11:     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    12:   </head>
+    13: 
+  
+app/assets/stylesheets/application.scss:13
+app/views/layouts/application.html.erb:10:in `_app_views_layouts_application_html_erb__2482922081882931390_70114529529480'
+  Rendering /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (16.8ms)
+  Rendering /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.3ms)
+  Rendering /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (189.6ms)
+Started GET "/" for 127.0.0.1 at 2017-02-13 12:52:32 +0800
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  Rendered locations/index.html.erb within layouts/application (0.6ms)
+Completed 500 Internal Server Error in 27ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (couldn't find file 'rails_bootstrap_forms' with type 'text/css'
+Checked in these paths: 
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/app/assets/config
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/app/assets/images
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/app/assets/javascripts
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/app/assets/stylesheets
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/vendor/assets/javascripts
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/vendor/assets/stylesheets
+  /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/jquery-rails-4.2.2/vendor/assets/javascripts
+  /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/coffee-rails-4.2.1/lib/assets/javascripts
+  /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actioncable-5.0.1/lib/assets/compiled
+  /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/turbolinks-source-5.0.0/lib/assets/javascripts):
+     7:     <title>WDIProject3Wherework</title>
+     8:     <%= csrf_meta_tags %>
+     9: 
+    10:     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    11:     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    12:   </head>
+    13: 
+  
+app/assets/stylesheets/application.scss:13
+app/views/layouts/application.html.erb:10:in `_app_views_layouts_application_html_erb__2482922081882931390_70114533876620'
+  Rendering /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (28.7ms)
+  Rendering /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (8.2ms)
+  Rendering /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (198.2ms)
+Started GET "/" for 127.0.0.1 at 2017-02-13 12:53:44 +0800
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  Rendered locations/index.html.erb within layouts/application (0.5ms)
+Completed 500 Internal Server Error in 27ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (couldn't find file 'rails_bootstrap_forms' with type 'text/css'
+Checked in these paths: 
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/app/assets/config
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/app/assets/images
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/app/assets/javascripts
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/app/assets/stylesheets
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/vendor/assets/javascripts
+  /Users/melvinmok/code/wdi7/projects/WDI-Project3-WhereWork/vendor/assets/stylesheets
+  /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/jquery-rails-4.2.2/vendor/assets/javascripts
+  /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/coffee-rails-4.2.1/lib/assets/javascripts
+  /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actioncable-5.0.1/lib/assets/compiled
+  /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/turbolinks-source-5.0.0/lib/assets/javascripts):
+     7:     <title>WDIProject3Wherework</title>
+     8:     <%= csrf_meta_tags %>
+     9: 
+    10:     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    11:     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    12:   </head>
+    13: 
+  
+app/assets/stylesheets/application.scss:13
+app/views/layouts/application.html.erb:10:in `_app_views_layouts_application_html_erb__2482922081882931390_70114533833480'
+  Rendering /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (17.4ms)
+  Rendering /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (6.2ms)
+  Rendering /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /Users/melvinmok/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (192.6ms)
+Started GET "/" for 127.0.0.1 at 2017-02-13 12:53:55 +0800
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  Rendered locations/index.html.erb within layouts/application (2.0ms)
+  Rendered partials/_navbar.html.erb (1.8ms)
+  Rendered partials/_flash.html.erb (1.0ms)
+Completed 200 OK in 7798ms (Views: 7771.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-02-13 12:54:56 +0800
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  Rendered locations/index.html.erb within layouts/application (0.5ms)
+  Rendered partials/_navbar.html.erb (4.9ms)
+  Rendered partials/_flash.html.erb (0.7ms)
+Completed 200 OK in 181ms (Views: 177.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-02-13 12:55:26 +0800
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  Rendered locations/index.html.erb within layouts/application (1.0ms)
+  Rendered partials/_navbar.html.erb (1.5ms)
+  Rendered partials/_flash.html.erb (0.7ms)
+Completed 200 OK in 115ms (Views: 109.5ms | ActiveRecord: 0.0ms)
+
+
