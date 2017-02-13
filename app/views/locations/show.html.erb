@@ -7,10 +7,9 @@
     <p><%= "#{@location.sockets} sockets available" %>
   </div>
   <div class="panel-footer">
-    <p><%= "Last updated by #{@last_updated_user.email} at #{@location.updated_at}" %></p>
+    <p><%= "Last updated by #{@last_updated_user.email} #{time_ago_in_words(@location.updated_at)} ago" %></p>
   </div>
 </div>
-<h1><%= current_user.email %></h1>
 <%= form_for @location do |f| %>
   <%= f.text_field :seats %>
   <%= f.text_field :sockets %>

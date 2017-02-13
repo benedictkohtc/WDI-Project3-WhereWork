@@ -1,5 +1,5 @@
 class LocationsController < ApplicationController
-  before_action :find_location, only: [:show, :update]
+  before_action :find_location, only: [:show, :update, :edit]
   def index
   end
 
@@ -8,6 +8,9 @@ class LocationsController < ApplicationController
 
   def show
     @last_updated_user = User.find(@location.last_updated_user)
+  end
+
+  def edit
   end
 
   def update
