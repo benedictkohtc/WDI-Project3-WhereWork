@@ -1,8 +1,24 @@
 class LocationsController < ApplicationController
+  before_action :find_location, only: [:show, :update, :edit]
   def index
   end
 
   def secret
+  end
+
+  def show
+    @last_updated_user = User.find(@location.last_updated_user)
+  end
+
+  def edit
+  end
+
+  def update
+    @location.update(location_params)
+    @location.last_updated_user = current_user.id
+    @location.save
+    flash[:info] = 'Location info updated.'
+    redirect_to @location
   end
 
   def twilio_test
@@ -24,5 +40,15 @@ class LocationsController < ApplicationController
     )
     flash[:success] = 'Test SMS sent!'
     redirect_to action: 'secret'
+  end
+
+  private
+
+  def find_location
+    @location = Location.find(params[:id])
+  end
+
+  def location_params
+    params.require(:location).permit(:seats, :sockets, :last_updated_user)
   end
 end
