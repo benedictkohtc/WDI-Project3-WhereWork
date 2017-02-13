@@ -10,13 +10,9 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
-<<<<<<< HEAD:app/assets/stylesheets/application.scss
- *= require rails_bootstrap_forms
-=======
  *= require_tree .
  *= require rails_bootstrap_forms
  *= require_self
->>>>>>> 9a3d98ac9979ec1617d404ee951ad479d7b3e5fc:app/assets/stylesheets/application.css
  */
 
 @import "bootstrap-sprockets";
@@ -30,4 +26,7 @@
 #map {
   height: 400px;
   width: 100%;
+
+.alert {
+  margin-top: -20px;
 }

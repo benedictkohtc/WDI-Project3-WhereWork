@@ -3,7 +3,7 @@ task seed_from_google_places: :environment do
   require 'httparty' # need to gem install
   require 'json'
 
-  API_key = 'AIzaSyCm9k1ny7YRfy9IVPQbrtaFQayu70QaScg'.freeze
+  API_key = ENV['GOOGLE_PLACES_API_KEY']
   # 1000 free queries per 24h, 15000 if credit card linked (no payment)
   nearbysearch_url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/'
   output_type = 'json'
@@ -26,10 +26,22 @@ task seed_from_google_places: :environment do
         l.name = result_hash['name']
         if result_hash['photos']
           l.google_photo_reference = result_hash['photos'][0]['photo_reference']
-        end
+        end # saving only reference for first photo
         l.google_place_id = result_hash['place_id']
         l.google_rating = result_hash['rating']
-        l.vicinity = result_hash['vicinity'] # looks like street address
+        l.vicinity = result_hash['vicinity']
+        # looks like street address but not reliable
+        l.coffee = rand(2) == 1 ? true : false
+        l.quiet = rand(2) == 1 ? true : false
+        l.wifi = rand(2) == 1 ? true : false
+        if l.wifi
+          l.wifi_password = ('a'..'z').to_a.shuffle[0,8].join
+        end
+        l.aircon = rand(2) == 1 ? true : false
+        l.total_sockets = rand(2) == 1 ? rand(10) : 0
+        l.available_sockets = (l.total_sockets / 2).floor
+        l.total_seats = 20 + rand(30)
+        l.available_seats = (l.total_seats / 2).floor
       end
       location.save
     end
@@ -46,8 +58,8 @@ task seed_from_google_places: :environment do
   puts 'adding data for first twenty locations...'
   add_data_to_locations_table(results_first_twenty)
 
-  puts 'waiting three seconds to let next_page_token become valid...'
-  sleep(3)
+  puts 'waiting two seconds to let next_page_token become valid...'
+  sleep(2)
 
   puts 'making second HTTP request (second page)...'
   args_string = '&key=' + API_key + '&pagetoken=' + next_page_token
@@ -58,8 +70,8 @@ task seed_from_google_places: :environment do
   puts 'adding data for next twenty locations...'
   add_data_to_locations_table(results_second_twenty)
 
-  puts 'waiting three seconds to let next_page_token become valid...'
-  sleep(3)
+  puts 'waiting two seconds to let next_page_token become valid...'
+  sleep(2)
 
   puts 'making third HTTP request (third page)...'
   args_string = '&key=' + API_key + '&pagetoken=' + next_page_token
@@ -69,7 +81,7 @@ task seed_from_google_places: :environment do
   puts 'adding data for next twenty locations...'
   add_data_to_locations_table(results_third_twenty)
 
-  puts 'all done (60 locations added).'
+  puts "all done (60 locations added of type #{type})."
   # puts JSON.pretty_generate(results_first_twenty)
   # puts 'RESPONSE.CODE:'
   # puts response.code
