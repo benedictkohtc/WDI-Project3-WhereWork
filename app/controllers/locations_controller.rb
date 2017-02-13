@@ -7,10 +7,13 @@ class LocationsController < ApplicationController
   end
 
   def show
+    @last_updated_user = User.find(@location.last_updated_user)
   end
 
   def update
     @location.update(location_params)
+    @location.last_updated_user = current_user.id
+    @location.save
     flash[:info] = 'Location info updated.'
     redirect_back fallback_location: root_path
   end
@@ -43,6 +46,6 @@ class LocationsController < ApplicationController
   end
 
   def location_params
-    params.require(:location).permit(:seats, :sockets)
+    params.require(:location).permit(:seats, :sockets, :last_updated_user)
   end
 end

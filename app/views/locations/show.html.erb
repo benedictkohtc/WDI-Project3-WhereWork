@@ -1,13 +1,16 @@
 <div class="panel panel-default">
-  <div class="panel-header">
+  <div class="panel-heading">
     <h1><%= @location.name %></h1>
   </div>
   <div class="panel-body">
     <p><%= "#{@location.seats} seats available" %>
     <p><%= "#{@location.sockets} sockets available" %>
   </div>
+  <div class="panel-footer">
+    <p><%= "Last updated by #{@last_updated_user.email}" %></p>
+  </div>
 </div>
-
+<h1><%= current_user.email %></h1>
 <%= form_for @location do |f| %>
   <%= f.text_field :seats %>
   <%= f.text_field :sockets %>
