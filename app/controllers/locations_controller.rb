@@ -1,5 +1,6 @@
 class LocationsController < ApplicationController
   before_action :find_location, only: [:show, :update, :edit]
+  before_action :authenticate_user!, only: [:update, :edit]
   def index
   end
 
@@ -7,7 +8,8 @@ class LocationsController < ApplicationController
   end
 
   def show
-    @last_updated_user = User.find(@location.last_updated_user)
+    @last_updated_user = User.find(@location.last_updated_user) if @location.last_updated_user
+    @API_key = Figaro.env.GOOGLE_PLACES_API_KEY
   end
 
   def edit
@@ -49,6 +51,6 @@ class LocationsController < ApplicationController
   end
 
   def location_params
-    params.require(:location).permit(:seats, :sockets, :last_updated_user)
+    params.require(:location).permit(:available_seats, :available_sockets, :last_updated_user, :wifi_password)
   end
 end
