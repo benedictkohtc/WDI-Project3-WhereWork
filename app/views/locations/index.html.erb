@@ -8,14 +8,14 @@
 //   ['Killiney Kopitiam', 1.304565, 103.833758]
 // ];
 function placeMarker (location) {
-  var latLng = new google.maps.LatLng(location[1], location[2]);
+  var latLng = new google.maps.LatLng(location['lat'], location['lng']);
   var marker = new google.maps.Marker({
     position: latLng,
     map: map
   });
   google.maps.event.addListener(marker, 'click', function(){
     infoWindow.close();
-    infoWindow.setContent("<div id= 'infoWindow'>" + location[0] + "</div>")
+    infoWindow.setContent("<div id= 'infoWindow'>" + location['name'] + "</div>")
     infoWindow.open(map, marker);
   });
 }
@@ -43,8 +43,8 @@ function initMap() {
           contentType: 'application/json',
           dataType: 'json'
         }).done(function(response){
-          for (var i = 0; i < locations.length; i++) {
-            placeMarker(locations[i])
+          for (var object in response) {
+            placeMarker(response[object])
           }
         })
       }, function() {
