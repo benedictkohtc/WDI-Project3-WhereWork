@@ -50,3 +50,13 @@ Load local_env.yml into the ENV array.
         end if File.exist?(env_file)
       end
     end
+
+##### Seeding From Google Places
+
+Uses httparty gem for making requests. Task file is in lib\tasks\seed_from_google_places.rake
+
+To seed directly from Google Places, type from command line: 
+
+    rails seed_from_google_places
+
+Also, the Rails db seed file has been populated using the seed-dump gem.

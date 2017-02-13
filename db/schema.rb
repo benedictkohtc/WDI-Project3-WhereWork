@@ -24,6 +24,15 @@ ActiveRecord::Schema.define(version: 20170213045739) do
     t.string   "google_rating"
     t.string   "google_place_id"
     t.string   "vicinity"
+    t.integer  "total_sockets"
+    t.integer  "available_sockets"
+    t.integer  "total_seats"
+    t.integer  "available_seats"
+    t.boolean  "coffee"
+    t.boolean  "quiet"
+    t.boolean  "wifi"
+    t.string   "wifi_password"
+    t.boolean  "aircon"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.integer  "seats"

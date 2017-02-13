@@ -61,4 +61,10 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+# Allows making http requests from backend and managing responses
+# https://github.com/jnunemaker/httparty
 gem 'httparty', '0.14.0'
+
+# copies database to seed file. just run rails db:seed:dump after installing
+gem 'seed_dump', '3.2.4'
+
