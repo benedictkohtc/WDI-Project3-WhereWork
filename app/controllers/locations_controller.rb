@@ -7,7 +7,9 @@ class LocationsController < ApplicationController
   end
 
   def show
-    @last_updated_user = User.find(@location.last_updated_user)
+    @last_updated_user = User.find(@location.last_updated_user) if @location.last_updated_user
+    @API_key = ENV['GOOGLE_PLACES_API_KEY']
+    # @API_key = 'AIzaSyCm9k1ny7YRfy9IVPQbrtaFQayu70QaScg'
   end
 
   def edit

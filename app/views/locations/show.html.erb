@@ -1,13 +1,29 @@
 <div class="panel panel-default">
-  <div class="panel-heading">
-    <h1><%= @location.name %></h1>
+  <div class="panel-heading" id='location-photo'>
+    <p><%= @API_key %></p>
+    <img src='<%= "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=#{@location.google_photo_reference}&key=#{@API_key}" %>' alt="" class='img-responsive'>
   </div>
   <div class="panel-body">
-    <p><%= "#{@location.seats} seats available" %>
-    <p><%= "#{@location.sockets} sockets available" %>
+    <h1><%= @location.name %></h1>
+    <p>Opening hours: xxx</p>
+    <p><%= @location.vicinity %></p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, est! Asperiores et facilis inventore perferendis placeat delectus fugit eveniet dolorum provident natus nam, mollitia ullam odit earum. Earum, cumque, sequi.</p>
+    <hr>
+    <p>Coffee: <span class="label label-default"><%= @location.coffee %></span></p>
+    <p>Quiet: <span class="label label-default"><%= @location.quiet %></span></p>
+    <p>Wifi: <span class="label label-default"><%= @location.wifi %></span></p>
+    <p>Air-Con: <span class="label label-default"><%= @location.aircon %></span></p>
+    <hr>
+    <p>WIFI PASSWORD: <%= @location.wifi_password %></p>
+    <hr>
+    <p class="label label-primary"><%= "#{@location.available_seats} seats available" %></p>
+    <p class="label label-primary"><%= "#{@location.available_sockets} sockets available" %></p>
+    <p class="label label-warning">Crowded</p>
   </div>
   <div class="panel-footer">
+    <% if @last_updated_user %>
     <p><%= "Last updated by #{@last_updated_user.email} #{time_ago_in_words(@location.updated_at)} ago" %></p>
+    <% end %>
   </div>
 </div>
 <%= link_to("Update Location", edit_location_path(@location), class: 'btn btn-default') %>
