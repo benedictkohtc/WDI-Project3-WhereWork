@@ -35,7 +35,8 @@ gem 'jbuilder', '~> 2.5'
 # NOTE: to be commented out on *NIX dev environments and on production
 gem 'bcrypt', '3.1.11', require: 'bcrypt'
 
-# Use devise for authentication
+# Use Devise for authentication
+# https://github.com/plataformatec/devise
 gem 'devise'
 
 # Use Capistrano for deployment
