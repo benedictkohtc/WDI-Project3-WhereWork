@@ -22,7 +22,7 @@
         <div class="input-group">
           <input type="text" class="form-control" value='<%= @location.wifi_password %>' aria-label="..." id='fe_text'>
           <div class="input-group-btn">
-            <button class='my_clip_button btn btn-primary' data-clipboard-target='fe_text' data-clipboard-text='Default clipboard text from attribute' id='d_clip_button' title='Click me to copy to clipboard.'>Copy Password</button>
+            <button class='my_clip_button btn btn-primary' data-content='Copied!' data-placement='top' data-trigger='focus' data-clipboard-target='fe_text' data-clipboard-text='Default clipboard text from attribute' id='d_clip_button'>Copy Password</button>
           </div>
         </div>
       </div>
@@ -44,6 +44,10 @@
 <script>
   $(document).ready(function() {
     var clip = new ZeroClipboard($("#d_clip_button"))
+    $('#d_clip_button').popover()
+    // $('#d_clip_button').click(() => {
+    //   $('#d_clip_button').attr('title', 'Copied!').tooltip('fixTitle').tooltip('show')
+    // });
   });
 </script>
 
