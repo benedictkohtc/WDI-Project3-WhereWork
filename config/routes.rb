@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   authenticate :user do
     get 'locations/secret'
     get 'locations/twilio_test'
+    get 'locations/return_nearby_locations'
   end
 
   resources :locations

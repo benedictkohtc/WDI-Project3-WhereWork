@@ -16,13 +16,24 @@
  */
 
 @import "bootstrap-sprockets";
+
 @import "bootstrap";
+
+.container {
+  margin: 20px auto;
+}
+
+#map {
+  height: 400px;
+  width: 100%;
+}
+
+.alert {
+  margin-top: -20px;
+}
 
 .navbar {
   margin-bottom: 0;
   border-radius: 0;
 }
 
-.container {
-  margin: 20px auto;
-}

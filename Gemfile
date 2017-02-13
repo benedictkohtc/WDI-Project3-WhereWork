@@ -12,6 +12,7 @@ gem 'pg', '~> 0.18'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
+gem 'bootstrap-sass', '~> 3.3.6'
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -51,6 +52,8 @@ gem 'devise'
 # https://github.com/twilio/twilio-ruby
 gem 'twilio-ruby'
 
+gem 'json'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -73,4 +76,3 @@ gem 'httparty', '0.14.0'
 
 # copies database to seed file. just run rails db:seed:dump after installing
 gem 'seed_dump', '3.2.4'
-
