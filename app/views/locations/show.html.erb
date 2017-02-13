@@ -1,6 +1,5 @@
 <div class="panel panel-default">
   <div class="panel-heading" id='location-photo'>
-    <p><%= @API_key %></p>
     <img src='<%= "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=#{@location.google_photo_reference}&key=#{@API_key}" %>' alt="" class='img-responsive'>
   </div>
   <div class="panel-body">
