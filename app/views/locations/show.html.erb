@@ -1,29 +1,49 @@
 <div class="panel panel-default">
-  <div class="panel-heading" id='location-photo'>
-    <img src='<%= "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=#{@location.google_photo_reference}&key=#{@API_key}" %>' alt="" class='img-responsive'>
+  <div class="panel-heading">
+      <h1><%= @location.name %></h1>
   </div>
   <div class="panel-body">
-    <h1><%= @location.name %></h1>
-    <p>Opening hours: xxx</p>
-    <p><%= @location.vicinity %></p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, est! Asperiores et facilis inventore perferendis placeat delectus fugit eveniet dolorum provident natus nam, mollitia ullam odit earum. Earum, cumque, sequi.</p>
-    <hr>
-    <p>Coffee: <span class="label label-default"><%= @location.coffee %></span></p>
-    <p>Quiet: <span class="label label-default"><%= @location.quiet %></span></p>
-    <p>Wifi: <span class="label label-default"><%= @location.wifi %></span></p>
-    <p>Air-Con: <span class="label label-default"><%= @location.aircon %></span></p>
-    <hr>
-    <p>WIFI PASSWORD: <%= @location.wifi_password %></p>
-    <hr>
-    <p class="label label-primary"><%= "#{@location.available_seats} seats available" %></p>
-    <p class="label label-primary"><%= "#{@location.available_sockets} sockets available" %></p>
-    <p class="label label-warning">Crowded</p>
+    <div class="col-md-4">
+      <img src='<%= "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=#{@location.google_photo_reference}&key=#{@API_key}" %>' alt="" class='img-responsive'>
+    </div>
+    <div class="col-md-8">
+      <p>Opening hours: xxx</p>
+      <p><%= @location.vicinity %></p>
+      <hr>
+      <p>Coffee: <span class="label label-default"><%= @location.coffee %></span></p>
+      <p>Quiet: <span class="label label-default"><%= @location.quiet %></span></p>
+      <p>Wifi: <span class="label label-default"><%= @location.wifi %></span></p>
+      <p>Air-Con: <span class="label label-default"><%= @location.aircon %></span></p>
+      <hr>
+      <div class="well">
+        <strong>Wifi network:</strong>
+        <p>THE_WIFI_NETWORK</p>
+        <label for="fe_text">Password</label>
+        <div class="input-group">
+          <input type="text" class="form-control" value='<%= @location.wifi_password %>' aria-label="..." id='fe_text'>
+          <div class="input-group-btn">
+            <button class='my_clip_button btn btn-primary' data-clipboard-target='fe_text' data-clipboard-text='Default clipboard text from attribute' id='d_clip_button' title='Click me to copy to clipboard.'>Copy Password</button>
+          </div>
+        </div>
+      </div>
+      <p class="label label-primary"><%= "#{@location.available_seats} seats available" %></p>
+      <p class="label label-primary"><%= "#{@location.available_sockets} sockets available" %></p>
+      <% if (@location.available_seats.to_f / @location.total_seats.to_f <= 0.2) %>
+        <p class="label label-warning">Crowded</p>
+      <% end %>
+    </div>
   </div>
-  <div class="panel-footer">
+  <div class="panel-footer clearfix">
     <% if @last_updated_user %>
-    <p><%= "Last updated by #{@last_updated_user.email} #{time_ago_in_words(@location.updated_at)} ago" %></p>
+    <p class="pull-left"><%= "Last updated by #{@last_updated_user.email} #{time_ago_in_words(@location.updated_at)} ago" %></p>
     <% end %>
+    <%= link_to("Update Seats/Sockets", edit_location_path(@location), class: 'btn btn-default pull-right') %>
   </div>
 </div>
-<%= link_to("Update Location", edit_location_path(@location), class: 'btn btn-default') %>
+
+<script>
+  $(document).ready(function() {
+    var clip = new ZeroClipboard($("#d_clip_button"))
+  });
+</script>
 
