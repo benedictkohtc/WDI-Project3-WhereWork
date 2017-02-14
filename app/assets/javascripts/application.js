@@ -11,10 +11,10 @@
 // about supported directives.
 //
 //= require jquery
-//= require bootstrap-sprockets
 //= require jquery_ujs
-//= require turbolinks
-//= require zeroclipboard
+//= require bootstrap-sprockets
+//= require clipboard
+//= require password-copy
 //= require_tree .
 
 setTimeout(() => ($('.alert').slideUp(300)), 2000)

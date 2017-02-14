@@ -1,0 +1,22 @@
+<p class="lead">These are the locations near you.</p>
+<%= link_to("Map view", locations_path, class: 'btn btn-primary') %>
+<hr>
+<% @locations.each do |location| %>
+<div class="well location-card row">
+    <!-- <img src='<%= "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=#{location.google_photo_reference}&key=#{@API_key}" %>' alt="" class='img-responsive'> -->
+    <!-- <div class="col-xs-5 col-md-3 location-card-img">
+      <img src="http://www.fillmurray.com/100/100" class="img-responsive img-rounded">
+      <span class="label label-default">5min away</span>
+    </div> -->
+    <div class="col-xs-7 col-md-9">
+      <h3><%= link_to(location.name, location) %></h3>
+      <%= location.vicinity  %>
+      <hr>
+      <p class="label label-default"><%= "#{location.available_seats} seats available" %></p>
+      <p class="label label-default"><%= "#{location.available_sockets} sockets available" %></p>
+      <% if (location.available_seats.to_f / location.total_seats.to_f <= 0.2) %>
+        <p class="label label-warning">Crowded</p>
+      <% end %>
+    </div>
+</div>
+<% end %>
