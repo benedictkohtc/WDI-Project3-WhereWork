@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'locations/secret'
   get 'locations/twilio_test'
   get 'locations/list'
+  get 'locations/map_view'
 
   # custom devise resource
   devise_for :users
