@@ -11,9 +11,10 @@ function initMap() {
     function placeMarker (location) {
       var latLng = new google.maps.LatLng(location['lat'], location['lng']);
       var marker = new google.maps.Marker({
-        position: latLng,
-        map: map
+        position: latLng
+        // , map: map
       });
+      marker.setMap(map)
       google.maps.event.addListener(marker, 'click', function(){
         infoWindow.close();
         infoWindow.setContent("<div id= 'infoWindow'>" + "<a href='/locations/" + location['id'] + "'>" + location['name'] + "</a>" + "</div>")
