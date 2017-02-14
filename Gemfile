@@ -35,14 +35,6 @@ gem 'jbuilder', '~> 2.5'
 # NOTE: to be commented out on *NIX dev environments and on production
 gem 'bcrypt', '3.1.11', require: 'bcrypt'
 
-# Use Devise for authentication
-# https://github.com/plataformatec/devise
-gem 'devise'
-
-# Use Twilio-ruby for SMS notification
-# https://github.com/twilio/twilio-ruby
-gem 'twilio-ruby'
-
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
