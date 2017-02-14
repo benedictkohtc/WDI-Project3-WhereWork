@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'locations#index'
   get 'locations/index'
+  get 'locations/list' => 'locations#list'
 
   # custom devise resource
   devise_for :users

@@ -1,5 +1,6 @@
-<h1>Locations#index</h1>
-<p>Find me in app/views/locations/index.html.erb</p>
+<p class="lead">These are the locations near you.</p>
+<%= link_to("List view", locations_list_path, class: 'btn btn-primary') %>
+<hr>
 <div id="map"></div><br>
 <script>
 function initMap() {

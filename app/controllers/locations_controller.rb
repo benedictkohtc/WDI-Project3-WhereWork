@@ -4,7 +4,12 @@ class LocationsController < ApplicationController
 
   before_action :find_location, only: [:show, :update, :edit]
   before_action :authenticate_user!, only: [:update, :edit]
+
   def index
+  end
+
+  def list
+    @locations = Location.limit(10)
   end
 
   def secret
