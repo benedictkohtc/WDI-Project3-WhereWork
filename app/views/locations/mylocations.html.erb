@@ -1,0 +1,5 @@
+<p class="lead">These are the locations that you've saved.</p>
+<% @locations.each do |location| %>
+  <%= link_to(location.name, location, class: 'btn btn-default') %>
+  <br>
+<% end %>
