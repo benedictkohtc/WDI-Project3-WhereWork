@@ -40,15 +40,6 @@ ActiveRecord::Schema.define(version: 20170214112048) do
     t.integer  "last_updated_user"
   end
 
-  create_table "locations_users", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "location_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["location_id"], name: "index_locations_users_on_location_id", using: :btree
-    t.index ["user_id"], name: "index_locations_users_on_user_id", using: :btree
-  end
-
   create_table "openingtimes", force: :cascade do |t|
     t.integer  "location_id"
     t.string   "day"
@@ -88,8 +79,6 @@ ActiveRecord::Schema.define(version: 20170214112048) do
   end
 
   add_foreign_key "locations", "users", column: "last_updated_user"
-  add_foreign_key "locations_users", "locations"
-  add_foreign_key "locations_users", "users"
   add_foreign_key "openingtimes", "locations"
   add_foreign_key "saved_locations", "locations"
   add_foreign_key "saved_locations", "users"
