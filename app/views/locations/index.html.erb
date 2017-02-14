@@ -34,7 +34,7 @@ function initMap() {
       map.setCenter(pos);
       $.ajax({
         type: 'GET',
-        url: '/locations/return_nearby_locations',
+        url: '/locations/map_view',
         data: pos,
         contentType: 'application/json',
         dataType: 'json'
