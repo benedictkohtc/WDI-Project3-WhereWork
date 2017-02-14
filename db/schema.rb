@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170214085917) do
+ActiveRecord::Schema.define(version: 20170214112048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,15 @@ ActiveRecord::Schema.define(version: 20170214085917) do
     t.integer  "last_updated_user"
   end
 
+  create_table "locations_users", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "location_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["location_id"], name: "index_locations_users_on_location_id", using: :btree
+    t.index ["user_id"], name: "index_locations_users_on_user_id", using: :btree
+  end
+
   create_table "openingtimes", force: :cascade do |t|
     t.integer  "location_id"
     t.string   "day"
@@ -48,6 +57,15 @@ ActiveRecord::Schema.define(version: 20170214085917) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.index ["location_id"], name: "index_openingtimes_on_location_id", using: :btree
+  end
+
+  create_table "saved_locations", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "location_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["location_id"], name: "index_saved_locations_on_location_id", using: :btree
+    t.index ["user_id"], name: "index_saved_locations_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -70,5 +88,9 @@ ActiveRecord::Schema.define(version: 20170214085917) do
   end
 
   add_foreign_key "locations", "users", column: "last_updated_user"
+  add_foreign_key "locations_users", "locations"
+  add_foreign_key "locations_users", "users"
   add_foreign_key "openingtimes", "locations"
+  add_foreign_key "saved_locations", "locations"
+  add_foreign_key "saved_locations", "users"
 end
