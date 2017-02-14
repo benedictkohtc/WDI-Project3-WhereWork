@@ -4,16 +4,35 @@
   </div>
   <div class="panel-body">
     <div class="col-md-4">
-      <img src='<%= "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=#{@location.google_photo_reference}&key=#{@API_key}" %>' alt="" class='img-responsive img-rounded'>
+      <img src='<%= "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=#{@location.google_photo_reference}&key=#{@API_key}" %>' alt="" class='img-responsive img-rounded center-block'>
+      <hr>
     </div>
     <div class="col-md-8">
-      <p>Opening hours: xxx</p>
       <p><%= @location.vicinity %></p>
       <p class="label label-default"><%= "#{@location.available_seats} seats available" %></p>
       <p class="label label-default"><%= "#{@location.available_sockets} sockets available" %></p>
       <% if (@location.available_seats.to_f / @location.total_seats.to_f <= 0.2) %>
         <p class="label label-warning">Crowded</p>
       <% end %>
+      <hr>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Day</th>
+            <th>Opening</th>
+            <th>Closing</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @location.openingtimes.to_a.reverse_each do |opening| %>
+            <tr>
+              <td><%= opening.day %></td>
+              <td><%= opening.opening_time.to_s(:time) %></td>
+              <td><%= opening.closing_time.to_s(:time) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
       <hr>
       <p>Coffee: <span class="label label-default"><%= @location.coffee %></span></p>
       <p>Quiet: <span class="label label-default"><%= @location.quiet %></span></p>
