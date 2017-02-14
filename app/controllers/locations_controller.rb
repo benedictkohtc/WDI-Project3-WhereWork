@@ -10,7 +10,7 @@ class LocationsController < ApplicationController
     render json: nearby_locations
   end
 
-  def list
+  def list_view
     # @locations = Location.limit(10)
     @locations = return_nearby_locations(params['lat'], params['lng'])
   end

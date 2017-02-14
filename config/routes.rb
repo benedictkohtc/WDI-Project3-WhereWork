@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'locations/return_nearby_locations'
   get 'locations/secret'
   get 'locations/twilio_test'
-  get 'locations/list'
+  get 'locations/list_view'
   get 'locations/map_view'
 
   # custom devise resource
