@@ -4,11 +4,16 @@
   </div>
   <div class="panel-body">
     <div class="col-md-4">
-      <img src='<%= "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=#{@location.google_photo_reference}&key=#{@API_key}" %>' alt="" class='img-responsive'>
+      <img src='<%= "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=#{@location.google_photo_reference}&key=#{@API_key}" %>' alt="" class='img-responsive img-rounded'>
     </div>
     <div class="col-md-8">
       <p>Opening hours: xxx</p>
       <p><%= @location.vicinity %></p>
+      <p class="label label-primary"><%= "#{@location.available_seats} seats available" %></p>
+      <p class="label label-primary"><%= "#{@location.available_sockets} sockets available" %></p>
+      <% if (@location.available_seats.to_f / @location.total_seats.to_f <= 0.2) %>
+        <p class="label label-warning">Crowded</p>
+      <% end %>
       <hr>
       <p>Coffee: <span class="label label-default"><%= @location.coffee %></span></p>
       <p>Quiet: <span class="label label-default"><%= @location.quiet %></span></p>
@@ -26,11 +31,6 @@
           </div>
         </div>
       </div>
-      <p class="label label-primary"><%= "#{@location.available_seats} seats available" %></p>
-      <p class="label label-primary"><%= "#{@location.available_sockets} sockets available" %></p>
-      <% if (@location.available_seats.to_f / @location.total_seats.to_f <= 0.2) %>
-        <p class="label label-warning">Crowded</p>
-      <% end %>
     </div>
   </div>
   <div class="panel-footer clearfix">
@@ -40,11 +40,3 @@
     <%= link_to("Update Seats/Sockets", edit_location_path(@location), class: 'btn btn-default pull-right') %>
   </div>
 </div>
-
-<script>
-  $(document).ready(function() {
-    var clip = new ZeroClipboard($("#d_clip_button"))
-    $('#d_clip_button').popover()
-  });
-</script>
-
