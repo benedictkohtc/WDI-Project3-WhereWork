@@ -60,7 +60,7 @@
   </div>
   <div class="panel-footer clearfix">
     <% if @last_updated_user %>
-    <p class="pull-left"><%= "Last updated by #{@last_updated_user.email} #{time_ago_in_words(@location.updated_at)} ago" %></p>
+    <p class="pull-left"><%= "Last updated by #{@last_updated_user.first_name} #{@last_updated_user.last_name} #{time_ago_in_words(@location.updated_at)} ago" %></p>
     <% end %>
     <%= link_to("Update Seats/Sockets", edit_location_path(@location), class: 'btn btn-default pull-right') %>
   </div>
