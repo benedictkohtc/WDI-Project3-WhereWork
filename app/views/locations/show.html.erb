@@ -1,6 +1,11 @@
 <div class="panel panel-default">
-  <div class="panel-heading">
-    <h1><%= @location.name %></h1>
+  <div class="panel-heading clearfix">
+      <h1 class="pull-left"><%= @location.name %></h1>
+      <% if @saved_location %>
+        <%= link_to("Unsave Location", save_path(@location) , class: 'btn btn-default pull-right') %>
+      <% else %>
+        <%= link_to("Save Location", save_path(@location) , class: 'btn btn-primary pull-right') %>
+      <% end %>
   </div>
   <div class="panel-body">
     <div class="col-md-4">
