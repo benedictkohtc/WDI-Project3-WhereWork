@@ -14,9 +14,9 @@ class LocationsController < ApplicationController
 
   def mylocations
     @locations = []
-    saved_location_ids = SavedLocation.where(user_id: current_user.id)
-    saved_location_ids.each do |id|
-      @locations.push(Location.find(id))
+    saved_locations = SavedLocation.where(user_id: current_user.id)
+    saved_locations.each do |record|
+      @locations.push(Location.find(record.location_id))
     end
   end
 
@@ -27,7 +27,7 @@ class LocationsController < ApplicationController
   end
 
   def save
-    saved_location = SavedLocation.find_by(user_id: current_user.id, location_id: @location.id)
+    saved_location = SavedLocation.find_by(user_id: current_user.id, location_id: params[:id])
     if saved_location == nil
       SavedLocation.create({:user_id => current_user.id, :location_id => @location.id})
     else
