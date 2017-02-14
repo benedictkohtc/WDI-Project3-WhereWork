@@ -3,11 +3,10 @@
 <hr>
 <% @locations.each do |location| %>
 <div class="well location-card row">
-    <!-- <img src='<%= "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=#{location.google_photo_reference}&key=#{@API_key}" %>' alt="" class='img-responsive'> -->
-    <!-- <div class="col-xs-5 col-md-3 location-card-img">
-      <img src="http://www.fillmurray.com/100/100" class="img-responsive img-rounded">
+    <div class="col-xs-5 col-md-3 location-card-img">
+      <img src="<%= location.cloudinary_link %>" class="img-responsive img-rounded">
       <span class="label label-default">5min away</span>
-    </div> -->
+    </div>
     <div class="col-xs-7 col-md-9">
       <h3><%= link_to(location.name, location) %></h3>
       <%= location.vicinity  %>

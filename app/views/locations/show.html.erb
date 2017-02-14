@@ -4,11 +4,11 @@
   </div>
   <div class="panel-body">
     <div class="col-md-4">
-      <img src='<%= "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=#{@location.google_photo_reference}&key=#{@API_key}" %>' alt="" class='img-responsive img-rounded center-block'>
+      <img src='<%= @location.cloudinary_link %>' alt="" class='img-responsive img-rounded center-block'>
       <hr>
     </div>
     <div class="col-md-8">
-      <p><%= @location.vicinity %></p>
+      <p class="lead"><%= @location.vicinity %></p>
       <p class="label label-default"><%= "#{@location.available_seats} seats available" %></p>
       <p class="label label-default"><%= "#{@location.available_sockets} sockets available" %></p>
       <% if (@location.available_seats.to_f / @location.total_seats.to_f <= 0.2) %>
@@ -39,17 +39,19 @@
       <p>Wifi: <span class="label label-default"><%= @location.wifi %></span></p>
       <p>Air-Con: <span class="label label-default"><%= @location.aircon %></span></p>
       <hr>
-      <div class="well">
-        <strong>Wifi network:</strong>
-        <p>THE_WIFI_NETWORK</p>
-        <label for="fe_text">Password</label>
-        <div class="input-group">
-          <input type="text" class="form-control" value='<%= @location.wifi_password %>' aria-label="..." id='wifi-password'>
-          <div class="input-group-btn">
-            <button class='my_clip_button btn btn-primary' data-placement='top' data-trigger='focus' data-clipboard-target='#wifi-password' data-clipboard-action='copy' id='d_clip_button'>Copy Password</button>
+      <% if @location.wifi_name %>
+        <div class="well">
+          <strong>Wifi network:</strong>
+          <p><%= @location.wifi_name %></p>
+          <label for="fe_text">Password:</label>
+          <div class="input-group">
+            <input type="text" class="form-control" value='<%= @location.wifi_password %>' aria-label="..." id='wifi-password'>
+            <div class="input-group-btn">
+              <button class='my_clip_button btn btn-primary' data-placement='top' data-trigger='focus' data-clipboard-target='#wifi-password' data-clipboard-action='copy' id='d_clip_button'>Copy Password</button>
+            </div>
           </div>
         </div>
-      </div>
+      <% end %>
     </div>
   </div>
   <div class="panel-footer clearfix">
