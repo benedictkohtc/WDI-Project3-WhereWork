@@ -71,5 +71,3 @@ gem 'devise'
 # Use Twilio-ruby for SMS notification
 # https://github.com/twilio/twilio-ruby
 gem 'twilio-ruby'
-# for adding event listeners with jquery with turbolinks
-gem 'jquery-turbolinks'
