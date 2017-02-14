@@ -11,12 +11,12 @@
 // about supported directives.
 //
 //= require jquery
-//= require bootstrap-sprockets
+//= require jquery.turbolinks
 //= require jquery_ujs
-//= require turbolinks
-//= require zeroclipboard
+//= require bootstrap-sprockets
+//= require clipboard
+//= require password-copy
 //= require_tree .
 
+
 setTimeout(() => ($('.alert').slideUp(300)), 2000)
-// var clip = new ZeroClipboard($('#d_clip_button'))
-// $('#d_clip_button').popover()
