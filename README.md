@@ -1,7 +1,7 @@
 # README
 
-### Development Database Setup
-##### Postgres  
+## Database Setup
+##### Setup Postgres  
 Setup DB username (and password)
 
 > config>database.yml
@@ -9,16 +9,15 @@ Setup DB username (and password)
     default: &default  
         username: postgres
 
-##### Seeding From Google Places
+##### Location Seeding from Google Places
 Uses HTTParty gem for making requests. Task file is in `lib\tasks\seed_from_google_places.rake`
 
-To seed directly from Google Places, type from command line:  
-`rails seed_from_google_places`
+To seed, type `rails seed_from_google_places`.
 
-Also, the Rails DB seed file has been populated using the seed-dump gem.  
+Rails DB seed file has been populated using the seed-dump gem.  
 Type `rails db:seed` to use it.
 
-### Development environment variables
+## Environment Variables Setup
 ##### Devise Secret Keys  
 These secret keys are used for verifying the integrity of signed cookies used by Devise.  
 Use `rails secret` to generate your own secure secret key.
@@ -35,7 +34,8 @@ Use `rails secret` to generate your own secure secret key.
       secret_key_base: <%= ENV["SECRET_KEY_BASE"] %>
 
 ##### Figaro Gem Setup
-Type `bundle exec figaro install` to create `config\application.yml` and auto add it to .gitignore
+Type `bundle exec figaro install` to create `config\application.yml` and auto add it to .gitignore.
+**Note that this may create duplicate entries in .gitignore**
 
 ##### Add Twillio ENV vars to Figaro
 
@@ -48,4 +48,4 @@ Note: All phone numbers need to have country codes!
 
     TWILIO_SID: <insert_SID>
     TWILIO_AUTH_TOKEN: <insert_tuth_token>
-    TWILIO_NUMBER: <insert_twilio_number>
+    TWILIO_NUMBER: <insert_twilio_number> (in single quotes!)
