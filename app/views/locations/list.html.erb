@@ -20,6 +20,12 @@
       <% if (location.available_seats.to_f / location.total_seats.to_f <= 0.2) %>
         <p class="label label-warning">Crowded</p>
       <% end %>
+      <hr>
+      <% if SavedLocation.find_by(user_id: current_user.id, location_id: location.id) != nil %>
+        <%= link_to("Unsave Location", save_path(location) , class: 'btn btn-default') %>
+      <% else %>
+        <%= link_to("Save Location", save_path(location) , class: 'btn btn-primary') %>
+      <% end %>
     </div>
 </div>
 <% end %>
