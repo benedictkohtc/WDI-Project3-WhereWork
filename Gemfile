@@ -23,7 +23,7 @@ gem 'coffee-rails', '~> 4.2'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
+# gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
@@ -57,7 +57,8 @@ gem 'httparty', '0.14.0'
 # copies database to seed file. just run rails db:seed:dump after installing
 gem 'seed_dump', '3.2.4'
 # copy to clipboard functionality
-gem 'zeroclipboard-rails'
+# gem 'zeroclipboard-rails'
+gem 'clipboard-rails'
 # local env vars
 gem 'figaro'
 # Bootstrap!
@@ -70,3 +71,5 @@ gem 'devise'
 # Use Twilio-ruby for SMS notification
 # https://github.com/twilio/twilio-ruby
 gem 'twilio-ruby'
+# for adding event listeners with jquery with turbolinks
+gem 'jquery-turbolinks'
