@@ -17,5 +17,4 @@
 //= require password-copy
 //= require_tree .
 
-
 setTimeout(() => ($('.alert').slideUp(300)), 2000)
