@@ -50,7 +50,7 @@ class LocationsController < ApplicationController
   end
 
   def return_nearby_locations
-    nearby_locations = {}
+    nearby_locations = []
 
     l = Location.all
 
@@ -63,8 +63,11 @@ class LocationsController < ApplicationController
       location_hash['name'] = location.name
       location_hash['lat'] = location.lat
       location_hash['lng'] = location.lng
-      nearby_locations[location.id] = location_hash
+      location_hash['distance'] = distance
+      nearby_locations.push(location_hash)
     end
+
+    nearby_locations.sort_by! { |x| x['distance'] }
     render json: nearby_locations
   end
 
