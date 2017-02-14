@@ -4,7 +4,11 @@
   </div>
   <div class="panel-body">
     <div class="col-md-4">
+    <% if @location.cloudinary_link %>
       <img src='<%= @location.cloudinary_link %>' alt="" class='img-responsive img-rounded center-block'>
+    <% else %>
+      <img src="http://placehold.it/300x300" alt="" class='img-responsive img-rounded center-block'>
+    <% end %>
       <hr>
     </div>
     <div class="col-md-8">
