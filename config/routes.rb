@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   get 'locations/return_nearby_locations'
   get 'locations/secret'
   get 'locations/twilio_test'
-  get 'locations/list'
+  get 'locations/list_view'
+  get 'locations/map_view'
+  get 'locations/mylocations'
+  get 'locations/:id/save', to: 'locations#save', as: :save
 
   # custom devise resource
   devise_for :users
