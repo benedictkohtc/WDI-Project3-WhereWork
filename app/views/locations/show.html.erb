@@ -9,8 +9,8 @@
     <div class="col-md-8">
       <p>Opening hours: xxx</p>
       <p><%= @location.vicinity %></p>
-      <p class="label label-primary"><%= "#{@location.available_seats} seats available" %></p>
-      <p class="label label-primary"><%= "#{@location.available_sockets} sockets available" %></p>
+      <p class="label label-default"><%= "#{@location.available_seats} seats available" %></p>
+      <p class="label label-default"><%= "#{@location.available_sockets} sockets available" %></p>
       <% if (@location.available_seats.to_f / @location.total_seats.to_f <= 0.2) %>
         <p class="label label-warning">Crowded</p>
       <% end %>
@@ -40,3 +40,8 @@
     <%= link_to("Update Seats/Sockets", edit_location_path(@location), class: 'btn btn-default pull-right') %>
   </div>
 </div>
+
+<script>
+  var clip = new ZeroClipboard($('#d_clip_button'))
+  $('#d_clip_button').popover()
+</script>
