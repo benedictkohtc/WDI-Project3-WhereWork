@@ -70,3 +70,5 @@ gem 'devise'
 # Use Twilio-ruby for SMS notification
 # https://github.com/twilio/twilio-ruby
 gem 'twilio-ruby'
+
+gem 'cloudinary', '1.4.0'

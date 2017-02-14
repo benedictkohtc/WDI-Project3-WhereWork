@@ -4,7 +4,8 @@ task seed_from_google_places: :environment do
   require 'json'
 
   API_key = ENV['GOOGLE_PLACES_API_KEY']
-  # 1000 free queries per 24h, 15000 if credit card linked (no payment)
+
+  # for getting 60 locations from Google Places
   nearbysearch_url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/'
   output_type = 'json'
   latitude = 1.3072052
@@ -12,7 +13,11 @@ task seed_from_google_places: :environment do
   location = latitude.to_s + ',' + longitude.to_s
   radius = '400' # meters, max 50000
   type = 'cafe' # only matches one type per request,
-  # multiple types per request will stop working as of 16 Feb 2017
+
+  # for getting photo from Google Places Photos
+  @places_photo_url = 'https://maps.googleapis.com/maps/api/place/photo'
+  @maxheight = '800'
+  @maxwidth = '800'
 
   def add_data_to_locations_table(results)
     results.each do |result_hash|
@@ -24,9 +29,20 @@ task seed_from_google_places: :environment do
         l.lng = result_hash['geometry']['location']['lng']
         l.icon = result_hash['icon']
         l.name = result_hash['name']
-        if result_hash['photos']
+        if result_hash['photos'] # saving only reference for first photo
           l.google_photo_reference = result_hash['photos'][0]['photo_reference']
-        end # saving only reference for first photo
+          photo_args_string = 'key=' + API_key + \
+                              '&photoreference=' + l.google_photo_reference + \
+                              '&maxheight=' + @maxheight + '&maxwidth=' + @maxwidth
+          response = HTTParty.get(@places_photo_url + '?' + photo_args_string)
+          File.open("#{result_hash['place_id']}.jpg", 'wb') do |f|
+            f.write response.body
+          end
+          cloudinary_response = Cloudinary::Uploader.upload("#{result_hash['place_id']}.jpg")
+          puts "uploading image #{result_hash['place_id']} to cloudinary"
+          l.cloudinary_link = cloudinary_response['secure_url']
+          File.delete("#{result_hash['place_id']}.jpg")
+        end
         l.google_place_id = result_hash['place_id']
         l.google_rating = result_hash['rating']
         l.vicinity = result_hash['vicinity']
@@ -34,9 +50,8 @@ task seed_from_google_places: :environment do
         l.coffee = rand(2) == 1 ? true : false
         l.quiet = rand(2) == 1 ? true : false
         l.wifi = rand(2) == 1 ? true : false
-        if l.wifi
-          l.wifi_password = ('a'..'z').to_a.shuffle[0,8].join
-        end
+        l.wifi_name = l.name.squish.downcase.tr(' ','_')[0..12] + rand(9).to_s + rand(9).to_s if l.wifi
+        l.wifi_password = ('a'..'z').to_a.sample(8).join if l.wifi
         l.aircon = rand(2) == 1 ? true : false
         l.total_sockets = rand(2) == 1 ? rand(10) : 0
         l.available_sockets = (l.total_sockets / 2).floor
