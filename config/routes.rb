@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   root 'locations#index'
-  get 'locations/index'
   get 'locations/return_nearby_locations'
 
   # custom devise resource
