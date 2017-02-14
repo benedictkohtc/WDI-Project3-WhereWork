@@ -16,7 +16,6 @@
  */
 
 @import "bootstrap-sprockets";
-
 @import "bootstrap";
 
 .container {
@@ -33,6 +32,17 @@
 }
 
 .navbar {
-  margin-bottom: 0;
+  margin-top: 0;
   border-radius: 0;
+}
+
+.location-card {
+  border-radius: 0;
+  .location-card-img {
+    padding: 0;
+  }
+  img {
+    width: 100%;
+    min-height: 150px;
+  }
 }

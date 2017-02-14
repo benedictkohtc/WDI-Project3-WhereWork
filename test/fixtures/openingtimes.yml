@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  location: one
+  day: 1
+  opening_time: 2017-02-13 10:32:00
+  closing_time: 2017-02-13 10:32:00
+
+two:
+  location: two
+  day: 1
+  opening_time: 2017-02-13 10:32:00
+  closing_time: 2017-02-13 10:32:00
