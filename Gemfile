@@ -20,14 +20,6 @@ gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
-# copy to clipboard functionality
-gem 'zeroclipboard-rails'
-# local env vars
-gem "figaro"
-# Bootstrap!
-gem 'bootstrap-sass', '~> 3.3.6'
-# Easy bootstrap forms
-gem 'bootstrap_form'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -42,14 +34,6 @@ gem 'jbuilder', '~> 2.5'
 # bcrypt workaround for windows
 # NOTE: to be commented out on *NIX dev environments and on production
 gem 'bcrypt', '3.1.11', require: 'bcrypt'
-
-# Use Devise for authentication
-# https://github.com/plataformatec/devise
-gem 'devise'
-
-# Use Twilio-ruby for SMS notification
-# https://github.com/twilio/twilio-ruby
-gem 'twilio-ruby'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -70,6 +54,19 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Allows making http requests from backend and managing responses
 # https://github.com/jnunemaker/httparty
 gem 'httparty', '0.14.0'
-
 # copies database to seed file. just run rails db:seed:dump after installing
 gem 'seed_dump', '3.2.4'
+# copy to clipboard functionality
+gem 'zeroclipboard-rails'
+# local env vars
+gem 'figaro'
+# Bootstrap!
+gem 'bootstrap-sass', '~> 3.3.6'
+# Easy bootstrap forms
+gem 'bootstrap_form'
+# Use Devise for authentication
+# https://github.com/plataformatec/devise
+gem 'devise'
+# Use Twilio-ruby for SMS notification
+# https://github.com/twilio/twilio-ruby
+gem 'twilio-ruby'
