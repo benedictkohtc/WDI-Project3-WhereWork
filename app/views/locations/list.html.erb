@@ -4,8 +4,8 @@
 <% @locations.each do |location| %>
 <div class="well location-card row">
     <div class="col-xs-5 col-md-3 location-card-img">
-      <% if @location.cloudinary_link %>
-        <img src='<%= @location.cloudinary_link %>' alt="" class='img-responsive img-rounded center-block'>
+      <% if location.cloudinary_link %>
+        <img src='<%= location.cloudinary_link %>' alt="" class='img-responsive img-rounded center-block'>
       <% else %>
         <img src="http://placehold.it/300x300" alt="" class='img-responsive img-rounded center-block'>
       <% end %>
