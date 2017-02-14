@@ -6,6 +6,7 @@ class CreateLocations < ActiveRecord::Migration[5.0]
       t.string :icon
       t.string :name
       t.string :google_photo_reference
+      t.string :cloudinary_link
       t.string :google_rating
       t.string :google_place_id
       t.string :vicinity
@@ -16,6 +17,7 @@ class CreateLocations < ActiveRecord::Migration[5.0]
       t.boolean :coffee
       t.boolean :quiet
       t.boolean :wifi
+      t.string :wifi_name
       t.string :wifi_password
       t.boolean :aircon
       t.timestamps
