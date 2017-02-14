@@ -5,11 +5,14 @@ class LocationsController < ApplicationController
   def index
   end
 
-  def list
-    @locations = Location.limit(10)
+  def map_view
+    nearby_locations = return_nearby_locations(params['lat'], params['lng'])
+    render json: nearby_locations
   end
 
-  def secret
+  def list
+    # @locations = Location.limit(10)
+    @locations = return_nearby_locations(params['lat'], params['lng'])
   end
 
   def show
@@ -26,6 +29,9 @@ class LocationsController < ApplicationController
     @location.save
     flash[:info] = 'Location info updated.'
     redirect_to @location
+  end
+
+  def secret
   end
 
   def twilio_test
@@ -47,11 +53,6 @@ class LocationsController < ApplicationController
     )
     flash[:success] = 'Test SMS sent!'
     redirect_to action: 'secret'
-  end
-
-  def map_view
-    nearby_locations = return_nearby_locations(params['lat'], params['lng'])
-    render json: nearby_locations
   end
 
   private
