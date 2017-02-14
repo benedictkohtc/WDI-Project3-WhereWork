@@ -2,12 +2,13 @@
 <button id="get_list_view" class="btn btn-primary">List View</button>
 
 <hr>
-<div id="map"></div><br>
+<div id="listMap"></div><br>
 <script>
 function initMap() {
   var user_lat;
   var user_lng;
-  var map = new google.maps.Map(document.getElementById('map'), {
+  var map = new google.maps.Map(document.getElementById('listMap'), {
+
     zoom: 16,
     center: {lat: 1.3072052, lng: 103.831843},
   });

@@ -1,6 +1,6 @@
 class LocationsController < ApplicationController
-  before_action :find_location, only: [:show, :update, :edit]
-  before_action :authenticate_user!, only: [:update, :edit, :secret, :twilio_test]
+  before_action :find_location, only: [:show, :update, :edit, :save]
+  before_action :authenticate_user!, only: [:update, :edit, :secret, :twilio_test, :mylocations]
 
   def index
   end
@@ -14,9 +14,28 @@ class LocationsController < ApplicationController
     @locations = return_nearby_locations(params['lat'], params['lng'])
   end
 
+  def mylocations
+    @locations = []
+    saved_locations = SavedLocation.where(user_id: current_user.id)
+    saved_locations.each do |record|
+      @locations.push(Location.find(record.location_id))
+    end
+  end
+
   def show
+    @saved_location = SavedLocation.find_by(user_id: current_user.id, location_id: @location.id)
     @last_updated_user = User.find(@location.last_updated_user) if @location.last_updated_user
     @API_key = Figaro.env.GOOGLE_PLACES_API_KEY
+  end
+
+  def save
+    saved_location = SavedLocation.find_by(user_id: current_user.id, location_id: params[:id])
+    if saved_location == nil
+      SavedLocation.create({:user_id => current_user.id, :location_id => @location.id})
+    else
+      SavedLocation.delete(saved_location.id)
+    end
+    redirect_back(fallback_location: locations_list_path)
   end
 
   def edit

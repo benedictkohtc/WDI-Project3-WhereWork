@@ -1,3 +1,14 @@
+# normally, use rails db:seed instead of running this task,
+# this task is only for getting new data from Google Places from scratch.
+
+# populates locations from Google Places
+# makes random values for some fields
+# will get photos and upload them to Cloudinary also,
+# so you need valid Cloudinary account data in config/cloudinary.yml
+
+# run "rails add_opening_times" after this task to add opening times to all locations
+
+
 task seed_from_google_places: :environment do
   require 'rubygems'
   require 'httparty' # need to gem install
