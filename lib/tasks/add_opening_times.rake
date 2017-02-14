@@ -1,3 +1,5 @@
+# run this after seed_from_google_places to add opening times to all locations
+
 task add_opening_times: :environment do
   all_locations = Location.all
   all_locations.each do |l|
