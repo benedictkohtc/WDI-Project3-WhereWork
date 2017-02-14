@@ -2,7 +2,7 @@
 <%#= link_to("List view", locations_list_path(:lat => position.coords.latitude, :lng => position.coords.longitude), class: 'btn btn-primary get_list_view') %>
 
 <%#= link_to locations_list_path, method: :get, :lat => position.coords.latitude, :lng => position.coords.longitude, class: 'btn btn-primary', :remote => true %>
-<button id="get_list_view" class="btn btn-primary">Map View</button>
+<button id="get_list_view" class="btn btn-primary">List View</button>
 
 <hr>
 <div id="map"></div><br>
@@ -34,7 +34,7 @@ function initMap() {
       user_lat = position.coords.latitude;
       user_lng = position.coords.longitude;
       $('#get_list_view').click(function() {
-      window.location.href = '/locations/list_view/?lat='+user_lat+'lng='+user_lng
+      window.location.href = '/locations/list_view/?lat='+user_lat+'&lng='+user_lng
      });
       var pos = {
         lat: position.coords.latitude,

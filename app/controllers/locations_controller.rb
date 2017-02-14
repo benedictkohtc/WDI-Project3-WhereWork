@@ -12,6 +12,8 @@ class LocationsController < ApplicationController
 
   def list_view
     # @locations = Location.limit(10)
+    puts '***********'
+    puts `lat is #{params['lat']}, lng is #{params['lng']}`
     @locations = return_nearby_locations(params['lat'], params['lng'])
   end
 
