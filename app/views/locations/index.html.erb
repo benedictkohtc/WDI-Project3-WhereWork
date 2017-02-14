@@ -50,13 +50,13 @@ function initMap() {
       handleLocationError(false, userLocationInfoWindow, map.getCenter());
     };
   }
-  function handleLocationError(browserHasGeolocation, userLocationInfoWindow, pos) {
-    userLocationInfoWindow.setPosition(pos);
-    userLocationInfoWindow.setContent(browserHasGeolocation ?
-      'Error: Please allow your Geolocation service.' :
-      'Error: Your browser doesn\'t support geolocation.');
-    }
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBAbRwB5MRYYe7V01n2_suO8lni8njzPYM&callback=initMap">
-    </script>
+function handleLocationError(browserHasGeolocation, userLocationInfoWindow, pos) {
+  userLocationInfoWindow.setPosition(pos);
+  userLocationInfoWindow.setContent(browserHasGeolocation ?
+    'Error: Please allow your Geolocation service.' :
+    'Error: Your browser doesn\'t support geolocation.');
+  }
+</script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBAbRwB5MRYYe7V01n2_suO8lni8njzPYM&callback=initMap">
+</script>
