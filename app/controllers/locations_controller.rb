@@ -73,6 +73,10 @@ class LocationsController < ApplicationController
       location_hash['name'] = location.name
       location_hash['lat'] = location.lat
       location_hash['lng'] = location.lng
+      location_hash['cloudinary_link'] = location.cloudinary_link
+      location_hash['vicinity'] = location.vicinity
+      location_hash['available_seats'] = location.available_seats
+      location_hash['total_seats'] = location.total_seats
       location_hash['distance'] = distance
       nearby_locations.push(location_hash)
     end
