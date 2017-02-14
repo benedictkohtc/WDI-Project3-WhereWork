@@ -5,11 +5,13 @@ class LocationsController < ApplicationController
   def index
   end
 
-  def list
-    @locations = Location.limit(10)
+  def map_view
+    nearby_locations = return_nearby_locations(params['lat'], params['lng'])
+    render json: nearby_locations
   end
 
-  def secret
+  def list_view
+    @locations = return_nearby_locations(params['lat'], params['lng'])
   end
 
   def mylocations
@@ -47,6 +49,9 @@ class LocationsController < ApplicationController
     redirect_to @location
   end
 
+  def secret
+  end
+
   def twilio_test
     require 'twilio-ruby'
 
@@ -68,13 +73,15 @@ class LocationsController < ApplicationController
     redirect_to action: 'secret'
   end
 
-  def return_nearby_locations
+  private
+
+  def return_nearby_locations(user_lat, user_lng)
     nearby_locations = []
 
     l = Location.all
 
     l.each do |location|
-      distance = calc_distance(params['lat'], params['lng'], location.lat, location.lng)
+      distance = calc_distance(user_lat, user_lng, location.lat, location.lng)
       # only create hash if location is nearer than 400 metres
       next unless distance < 400
       location_hash = {}
@@ -82,15 +89,16 @@ class LocationsController < ApplicationController
       location_hash['name'] = location.name
       location_hash['lat'] = location.lat
       location_hash['lng'] = location.lng
+      location_hash['cloudinary_link'] = location.cloudinary_link
+      location_hash['vicinity'] = location.vicinity
+      location_hash['available_seats'] = location.available_seats
+      location_hash['total_seats'] = location.total_seats
       location_hash['distance'] = distance
       nearby_locations.push(location_hash)
     end
 
     nearby_locations.sort_by! { |x| x['distance'] }
-    render json: nearby_locations
   end
-
-  private
 
   def find_location
     @location = Location.find(params[:id])

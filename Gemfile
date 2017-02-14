@@ -72,3 +72,7 @@ gem 'devise'
 gem 'twilio-ruby'
 
 gem 'cloudinary', '1.4.0'
+
+# ffi dependency, only on windows
+# NOTE: to be commented out on *NIX dev environments and on production
+gem 'ffi'
