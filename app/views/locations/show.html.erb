@@ -1,14 +1,14 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-      <h1><%= @location.name %></h1>
+    <h1><%= @location.name %></h1>
   </div>
   <div class="panel-body">
     <div class="col-md-4">
-    <% if @location.cloudinary_link %>
+      <% if @location.cloudinary_link %>
       <img src='<%= @location.cloudinary_link %>' alt="" class='img-responsive img-rounded center-block'>
-    <% else %>
+      <% else %>
       <img src="http://placehold.it/300x300" alt="" class='img-responsive img-rounded center-block'>
-    <% end %>
+      <% end %>
       <hr>
     </div>
     <div class="col-md-8">
@@ -16,7 +16,7 @@
       <p class="label label-default"><%= "#{@location.available_seats} seats available" %></p>
       <p class="label label-default"><%= "#{@location.available_sockets} sockets available" %></p>
       <% if (@location.available_seats.to_f / @location.total_seats.to_f <= 0.2) %>
-        <p class="label label-warning">Crowded</p>
+      <p class="label label-warning">Crowded</p>
       <% end %>
       <hr>
       <table class="table">
@@ -29,11 +29,11 @@
         </thead>
         <tbody>
           <% @location.openingtimes.to_a.reverse_each do |opening| %>
-            <tr>
-              <td><%= opening.day %></td>
-              <td><%= opening.opening_time.to_s(:time) %></td>
-              <td><%= opening.closing_time.to_s(:time) %></td>
-            </tr>
+          <tr>
+            <td><%= opening.day %></td>
+            <td><%= opening.opening_time.to_s(:time) %></td>
+            <td><%= opening.closing_time.to_s(:time) %></td>
+          </tr>
           <% end %>
         </tbody>
       </table>
@@ -44,17 +44,17 @@
       <p>Air-Con: <span class="label label-default"><%= @location.aircon %></span></p>
       <hr>
       <% if @location.wifi_name %>
-        <div class="well">
-          <strong>Wifi network:</strong>
-          <p><%= @location.wifi_name %></p>
-          <label for="fe_text">Password:</label>
-          <div class="input-group">
-            <input type="text" class="form-control" value='<%= @location.wifi_password %>' aria-label="..." id='wifi-password'>
-            <div class="input-group-btn">
-              <button class='my_clip_button btn btn-primary' data-placement='top' data-trigger='focus' data-clipboard-target='#wifi-password' data-clipboard-action='copy' id='d_clip_button'>Copy Password</button>
-            </div>
+      <div class="well">
+        <strong>Wifi network:</strong>
+        <p><%= @location.wifi_name %></p>
+        <label for="fe_text">Password:</label>
+        <div class="input-group">
+          <input type="text" class="form-control" value='<%= @location.wifi_password %>' aria-label="..." id='wifi-password'>
+          <div class="input-group-btn">
+            <button class='my_clip_button btn btn-primary' data-placement='top' data-trigger='focus' data-clipboard-target='#wifi-password' data-clipboard-action='copy' id='d_clip_button'>Copy Password</button>
           </div>
         </div>
+      </div>
       <% end %>
     </div>
   </div>
@@ -65,7 +65,7 @@
     <%= link_to("Update Seats/Sockets", edit_location_path(@location), class: 'btn btn-default pull-right') %>
   </div>
 </div>
-
+<div id="showMap"></div>
 <script>
 $(document).ready(function(){
   let copyButton = document.getElementById('d_clip_button')
@@ -78,8 +78,8 @@ $(document).ready(function(){
 
   function setTooltip(btn, message) {
     $(btn).tooltip('hide')
-      .attr('data-original-title', message)
-      .tooltip('show')
+    .attr('data-original-title', message)
+    .tooltip('show')
   }
 
   function hideTooltip(btn) {
@@ -98,4 +98,67 @@ $(document).ready(function(){
     hideTooltip(e.trigger)
   })
 })
+</script>
+
+<script>
+function initMap() {
+  var map = new google.maps.Map(document.getElementById("showMap"), {
+    zoom: 16,
+    center: {
+      lat: 1.3072052,
+      lng: 103.831843
+    }
+  });
+  var markerArray = [];
+  var stepDisplay = new google.maps.InfoWindow;
+  function attachInstructionText(stepDisplay, marker, text, map) {
+      google.maps.event.addListener(marker, 'click', function() {
+      stepDisplay.setContent(text);
+      stepDisplay.open(map, marker);
+    });
+  }
+  function showSteps(directionResult, markerArray, stepDisplay, map) {
+    for (var i = 0; i < markerArray.length; i++) {
+      markerArray[i].setMap(null);
+    }
+    var myRoute = directionResult.routes[0].legs[0];
+    for (var j = 0; j < myRoute.steps.length; j++) {
+      var marker = markerArray[j] = markerArray[j] || new google.maps.Marker;
+        marker.setMap(map);
+        marker.setPosition(myRoute.steps[j].start_location);
+        attachInstructionText(stepDisplay, marker, myRoute.steps[j].instructions, map);
+    }
+  }
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      var pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+      map.setCenter(pos);
+      var coords = new google.maps.LatLng(pos);
+      var directionsService = new google.maps.DirectionsService();
+      var directionsDisplay = new google.maps.DirectionsRenderer();
+      directionsDisplay.setMap(map);
+      var request = {
+        origin: coords,
+        destination: {
+          lat: <%= @location.lat %>,
+          lng: <%= @location.lng %>
+        },
+        travelMode: google.maps.DirectionsTravelMode.WALKING
+      };
+
+      directionsService.route(request, function (response, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+          directionsDisplay.setDirections(response);
+          showSteps(response, markerArray, stepDisplay, map);
+        }
+      });
+    });
+  }
+}
+</script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBAbRwB5MRYYe7V01n2_suO8lni8njzPYM&callback=initMap">
 </script>
