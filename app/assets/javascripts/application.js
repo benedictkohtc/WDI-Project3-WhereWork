@@ -18,3 +18,5 @@
 //= require_tree .
 
 setTimeout(() => ($('.alert').slideUp(300)), 2000)
+var clip = new ZeroClipboard($('#d_clip_button'))
+$('#d_clip_button').popover()
