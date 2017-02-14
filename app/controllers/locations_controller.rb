@@ -1,9 +1,6 @@
-require 'json'
-
 class LocationsController < ApplicationController
-
   before_action :find_location, only: [:show, :update, :edit]
-  before_action :authenticate_user!, only: [:update, :edit]
+  before_action :authenticate_user!, only: [:update, :edit, :secret, :twilio_test]
 
   def index
   end
@@ -34,19 +31,19 @@ class LocationsController < ApplicationController
   def twilio_test
     require 'twilio-ruby'
 
-    account_sid = ENV['TWILIO_SID']
-    auth_token = ENV['TWILIO_AUTH_TOKEN']
+    account_sid = Figaro.env.TWILIO_SID
+    auth_token = Figaro.env.TWILIO_AUTH_TOKEN
 
     # set up a client to talk to the Twilio REST API
     @client = Twilio::REST::Client.new account_sid, auth_token
 
     @client.messages.create(
       # from assigned number from Twilio
-      from: ENV['TWILIO_NUMBER'],
+      from: Figaro.env.TWILIO_NUMBER,
       # to receipient's phone number
-      to: ENV['DEV_HP'],
+      to: Figaro.env.DEV_HP,
       # input SMS msg here. NOTE: 1 SMS = 160 chars!
-      body: 'Localhost test, button test'
+      body: 'Localhost test, figaro test'
     )
     flash[:success] = 'Test SMS sent!'
     redirect_to action: 'secret'

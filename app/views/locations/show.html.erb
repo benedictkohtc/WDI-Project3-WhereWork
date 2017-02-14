@@ -25,9 +25,9 @@
         <p>THE_WIFI_NETWORK</p>
         <label for="fe_text">Password</label>
         <div class="input-group">
-          <input type="text" class="form-control" value='<%= @location.wifi_password %>' aria-label="..." id='fe_text'>
+          <input type="text" class="form-control" value='<%= @location.wifi_password %>' aria-label="..." id='wifi-password'>
           <div class="input-group-btn">
-            <button class='my_clip_button btn btn-primary' data-content='Copied!' data-placement='top' data-trigger='focus' data-clipboard-target='fe_text' data-clipboard-text='Default clipboard text from attribute' id='d_clip_button'>Copy Password</button>
+            <button class='my_clip_button btn btn-primary' data-placement='top' data-trigger='focus' data-clipboard-target='#wifi-password' data-clipboard-action='copy' id='d_clip_button'>Copy Password</button>
           </div>
         </div>
       </div>
@@ -40,8 +40,3 @@
     <%= link_to("Update Seats/Sockets", edit_location_path(@location), class: 'btn btn-default pull-right') %>
   </div>
 </div>
-
-<script>
-  var clip = new ZeroClipboard($('#d_clip_button'))
-  $('#d_clip_button').popover()
-</script>
