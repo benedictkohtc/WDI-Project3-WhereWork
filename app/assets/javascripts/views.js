@@ -2,7 +2,7 @@ function initMap() {
   let user_lat
   let user_lng
   let pos
-  let types = [ 'wifi', 'aircon', 'sockets', 'coffee', 'quiet', 'uncrowded' ]
+  let types = [ 'wifi', 'aircon', 'availsockets', 'coffee', 'quiet', 'uncrowded' ]
   let filterstates = {}
   let all_locations = []
   let shown_locations = []
