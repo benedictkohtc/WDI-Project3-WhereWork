@@ -1,46 +1,71 @@
 function initMap () {
-  let user_lat
-  let user_lng
-  let types = [ 'wifi', 'aircon', 'sockets', 'coffee', 'quiet', 'uncrowded' ]
-  let filterstates = {}
-  let all_locations = []
-  let shown_locations = []
-  let markers = []
-  let map = new google.maps.Map(document.getElementById('listMap'), {
+  var user_lat
+  var user_lng
+  var pos
+  var types = [ 'wifi', 'aircon', 'sockets', 'coffee', 'quiet', 'uncrowded' ]
+  var filterstates = {}
+  var all_locations = []
+  var shown_locations = []
+  var markers = []
+  var map = new google.maps.Map(document.getElementById('listMap'), {
     zoom: 16,
     center: { lat: 1.3072052, lng: 103.831843 },
     scaleControl: true,
     fullscreenControl: true
   })
-  let infoWindow = new google.maps.InfoWindow()
+  var userLocationInfoWindow = new google.maps.InfoWindow({ map: map })
+  var infoWindow = new google.maps.InfoWindow()
 
-  let defaultBounds = new google.maps.LatLngBounds(
+  var defaultBounds = new google.maps.LatLngBounds(
     new google.maps.LatLng(1.077484, 103.582585),
     new google.maps.LatLng(1.490568, 104.093450)
   )
-  let options = {
+  var options = {
     bounds: defaultBounds
   }
-  let input = document.getElementById('pac-input')
+  var input = document.getElementById('pac-input')
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(input)
-  let autocomplete = new google.maps.places.Autocomplete(input, options)
+  var autocomplete = new google.maps.places.Autocomplete(input, options)
+  autocomplete.addListener('place_changed', function () {
+    var place = autocomplete.getPlace()
+    if (!place.geometry) {
+      // User entered the name of a Place that was not suggested and pressed the Enter key, or the Place Details request failed.
+      window.alert("No details available for input: '" + place.name + "'")
+      return
+    }
+    map.setCenter(place.geometry.location)
+    map.setZoom(16)
+    userLocationInfoWindow.setPosition(place.geometry.location)
+    userLocationInfoWindow.setContent('Your location')
+    pos = {
+      lat: place.geometry.location.lat(),
+      lng: place.geometry.location.lng()
+    }
+    $.ajax({
+      type: 'GET',
+      url: '/locations/map_view',
+      data: pos,
+      contentType: 'application/json',
+      dataType: 'json'
+    }).done(function (response) {
+      all_locations = response
+      updateFiltering()
+    })
+  })
 
   function placeMarker (location) {
-    let latLng = new google.maps.LatLng(location[ 'lat' ], location[ 'lng' ])
-    let marker = new google.maps.Marker({
+    var latLng = new google.maps.LatLng(location[ 'lat' ], location[ 'lng' ])
+    var marker = new google.maps.Marker({
       position: latLng,
       map: map
     })
     google.maps.event.addListener(marker, 'click', function () {
       infoWindow.close()
-      infoWindow.setContent("<div id= 'infoWindow'>" +
-        "<a href='/locations/" + location[ 'id' ] + "'>" + location[
-          'name' ] + '</a>' + '</div>')
+      infoWindow.setContent("<div id= 'infoWindow'>" + "<a href='/locations/" + location[ 'id' ] + "'>" + location[ 'name' ] + '</a>' + '</div>')
       infoWindow.open(map, marker)
     })
     markers.push(marker)
-  };
-  let userLocationInfoWindow = new google.maps.InfoWindow({ map: map })
+  }
 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function (position) {
@@ -50,7 +75,7 @@ function initMap () {
         window.location.href = '/locations/list_view/?lat=' + user_lat +
           '&lng=' + user_lng
       })
-      let pos = {
+      pos = {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       }
