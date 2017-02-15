@@ -1,6 +1,6 @@
 class LocationsController < ApplicationController
   before_action :find_location, only: [:show, :update, :edit, :save]
-  before_action :authenticate_user!, only: [:update, :edit, :secret, :twilio_test, :mylocations]
+  before_action :authenticate_user!, only: [:update, :edit, :secret, :twilio_test, :mylocations, :save]
 
   def index
   end
@@ -23,7 +23,7 @@ class LocationsController < ApplicationController
   end
 
   def show
-    @saved_location = SavedLocation.find_by(user_id: current_user.id, location_id: @location.id)
+    @saved_location = SavedLocation.find_by(user_id: current_user.id, location_id: @location.id) if current_user
     @last_updated_user = User.find(@location.last_updated_user) if @location.last_updated_user
     @API_key = Figaro.env.GOOGLE_PLACES_API_KEY
   end
@@ -35,7 +35,7 @@ class LocationsController < ApplicationController
     else
       SavedLocation.delete(saved_location.id)
     end
-    redirect_back(fallback_location: locations_list_path)
+    redirect_back(fallback_location: locations_list_view_path)
   end
 
   def edit
@@ -75,28 +75,18 @@ class LocationsController < ApplicationController
 
   private
 
-  def return_nearby_locations(user_lat, user_lng)
+ def return_nearby_locations(user_lat, user_lng)
     nearby_locations = []
 
     l = Location.all
 
     l.each do |location|
-      distance = calc_distance(user_lat, user_lng, location.lat, location.lng)
-      # only create hash if location is nearer than 400 metres
-      next unless distance < 400
-      location_hash = {}
-      location_hash['id'] = location.id
-      location_hash['name'] = location.name
-      location_hash['lat'] = location.lat
-      location_hash['lng'] = location.lng
-      location_hash['cloudinary_link'] = location.cloudinary_link
-      location_hash['vicinity'] = location.vicinity
-      location_hash['available_seats'] = location.available_seats
-      location_hash['total_seats'] = location.total_seats
-      location_hash['distance'] = distance
+      location_hash = location.as_json
+      distance = calc_distance(user_lat, user_lng, location['lat'], location['lng'])
+      location_hash.store('distance', distance )
+      next unless location_hash['distance'].to_f < 400
       nearby_locations.push(location_hash)
     end
-
     nearby_locations.sort_by! { |x| x['distance'] }
   end
 

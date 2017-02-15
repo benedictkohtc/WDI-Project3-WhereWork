@@ -2,9 +2,23 @@
 <button id="get_list_view" class="btn btn-primary">List View</button>
 
 <hr>
+
+<a href="#" class="btn btn-sm btn-default button-wifi">wifi</a>
+<a href="#" class="btn btn-sm btn-default button-aircon">aircon</a>
+<a href="#" class="btn btn-sm btn-default button-sockets">sockets</a>
+<a href="#" class="btn btn-sm btn-default" data-toggle="collapse" data-target="#collapseOne">more filters</a>
+<div id="collapseOne" class="panel-collapse collapse">
+  <div class="panel-body">
+    <a href="#" class="btn btn-sm btn-default button-coffee">coffee</a>
+    <a href="#" class="btn btn-sm btn-default button-quiet">quiet</a>
+    <a href="#" class="btn btn-sm btn-default button-uncrowded">uncrowded</a>
+  </div>
+</div>
+<hr>
+
 <div id="listMap"></div><br>
 
-<%= javascript_include_tag 'list-map' %>
+<%= javascript_include_tag 'views' %>
 
 <script async defer
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBAbRwB5MRYYe7V01n2_suO8lni8njzPYM&callback=initMap">
