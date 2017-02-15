@@ -1,26 +1,102 @@
 <p class="lead">These are the locations near you.</p>
 <%= link_to("Map view", locations_path, class: 'btn btn-primary') %>
 <hr>
+<a href="#" class="btn btn-sm btn-default button-wifi">wifi</a>
+<a href="#" class="btn btn-sm btn-default button-aircon">aircon</a>
+<a href="#" class="btn btn-sm btn-default button-sockets">sockets</a>
+<a href="#" class="btn btn-sm btn-default" data-toggle="collapse" data-target="#collapseOne">more filters</a>
+<div id="collapseOne" class="panel-collapse collapse">
+  <div class="panel-body">
+    <a href="#" class="btn btn-sm btn-default button-coffee">coffee</a>
+    <a href="#" class="btn btn-sm btn-default button-quiet">quiet</a>
+    <a href="#" class="btn btn-sm btn-default button-uncrowded">uncrowded</a>
+  </div>
+</div>
+<hr>
 
 <% @locations.each do |location| %>
-<div class="well location-card row">
-    <div class="col-xs-5 col-md-3 location-card-img">
-      <% if location['cloudinary_link'] %>
-        <img src='<%= location['cloudinary_link'] %>' alt="" class='img-responsive img-rounded center-block'>
-      <% else %>
-        <img src="http://placehold.it/300x300" alt="" class='img-responsive img-rounded center-block'>
-      <% end %>
-      <span class="label label-default">5min away</span>
-    </div>
-    <div class="col-xs-7 col-md-9">
-      <h3><%= link_to(location['name'], location_path(location['id'])) %></h3>
-      <%= location['vicinity']  %>
+<div class="well location-card row
+    <% if location['wifi'] %> wifi <% end %>
+    <% if location['aircon'] %> aircon <% end %>
+    <% if location['available_sockets'] > 0 %> sockets <% end %>
+    <% if location['coffee'] %> coffee <% end %>
+    <% if location['quiet'] %> quiet <% end %>
+    <% if (location['available_seats'].to_f/location['total_seats'].to_f) > 0.3 %> uncrowded <% end %>
+  ">
+  <div class="col-xs-5 col-md-3 location-card-img">
+    
+    <% if location['cloudinary_link'] %>
+    <img src="<%= location['cloudinary_link'] %>" alt="" class='img-responsive img-rounded center-block'>
+    <% else %>
+    <img src="http://placehold.it/300x300" alt="" class='img-responsive img-rounded center-block'>
+    <% end %>
+    <span class="label label-default">5min away</span>
+  </div>
+  <div class="col-xs-7 col-md-9">
+    <h3><%= link_to(location['name'], location) %></h3>
+    <%= location['vicinity']  %>
+    <hr>
+    <% if location['wifi'] %> wifi <% end %>
+    <% if location['aircon'] %> aircon <% end %>
+    <% if location['available_sockets'] > 0 %> sockets <% end %>
+    <% if location['coffee'] %> coffee <% end %>
+    <% if location['quiet'] %> quiet <% end %>
+    <% if (location['available_seats'].to_f/location['total_seats'].to_f) > 0.3 %> uncrowded <% end %>
+    <hr>
+    <%= location['distance'].to_i %> metres away
+    <hr>
+    <p class="label label-default"><%= "#{location['available_seats']} seats available" %></p>
+    <p class="label label-default"><%= "#{location['available_sockets']} sockets available" %></p>
+    <% if (location['available_seats'].to_f / location['total_seats'].to_f <= 0.2) %>
+    <p class="label label-warning">Crowded</p>
+    <% end %>
       <hr>
-      <p class="label label-default"><%= "#{location['available_seats']} seats available" %></p>
-      <p class="label label-default"><%= "#{location['available_sockets']} sockets available" %></p>
-      <% if (location['available_seats'].to_f / location['total_seats'].to_f <= 0.2) %>
-        <p class="label label-warning">Crowded</p>
-      <% end %>
     </div>
 </div>
 <% end %>
+
+<script>
+let types = [ "wifi", "aircon", "sockets", "coffee", "quiet", "uncrowded" ]
+let filterstates = {}
+
+// populate filterstates with every type set to off 
+types.forEach( type => {
+  filterstates[ type ] = false
+} )  
+
+// unhides all rows, then hides any rows that are missing a filter that is true
+// also flips button color
+function updateFilters() {
+  $( ".location-card" ).removeClass( "hidden" )
+  types.forEach( type => {
+    if ( filterstates[ type ] === true ) {
+      $( ".button-" + type )
+        .removeClass( "btn-default" )
+        .addClass( "btn-primary" )
+      $( ".location-card" ).each( function() {
+        if ( !$( this ).hasClass( type ) )
+          $( this ).addClass( "hidden" )
+      } )
+    } else
+      $( ".button-" + type )
+      .addClass( "btn-default" )
+      .removeClass( "btn-primary" )
+  } )
+}
+
+// changes filter boolean states
+function flip( type ) {
+  console.log( "flip called on " + type )
+  filterstates[ type ] = filterstates[ type ] === true ? false : true
+  updateFilters();
+}
+
+// adds listeners to each button
+$( document ).ready( function() {
+  types.forEach( type => {
+    $( ".button-" + type ).click( function() {
+      flip( type )
+    } )
+  } )
+} )
+</script>
