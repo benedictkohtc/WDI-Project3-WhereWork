@@ -26,6 +26,8 @@ class LocationsController < ApplicationController
     @saved_location = SavedLocation.find_by(user_id: current_user.id, location_id: @location.id) if current_user
     @last_updated_user = User.find(@location.last_updated_user) if @location.last_updated_user
     @API_key = Figaro.env.GOOGLE_PLACES_API_KEY
+    @search_position_lat = params['lat']
+    @search_position_lng = params['lng']
   end
 
   def save

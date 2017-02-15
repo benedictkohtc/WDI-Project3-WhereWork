@@ -74,6 +74,10 @@
 
 <%= javascript_include_tag 'password-copy' %>
 <script>
+  search_position = {
+    lat: <%= @search_position_lat %>,
+    lng: <%= @search_position_lng %>
+  }
   destinationLatLng = {
     lat: <%= @location.lat %>,
     lng: <%= @location.lng %>
