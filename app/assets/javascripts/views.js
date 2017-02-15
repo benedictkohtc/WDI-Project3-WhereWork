@@ -217,7 +217,6 @@ function initMap() {
         shown_locations = shown_locations.filter( ( location ) => {
           return location[ type ] == true
         } )
-        console.log(shown_locations)
       } else {
         $( '.button-' + type )
           .addClass( 'btn-default' )
