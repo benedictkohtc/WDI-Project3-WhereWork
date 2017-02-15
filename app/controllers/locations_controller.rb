@@ -16,8 +16,8 @@ class LocationsController < ApplicationController
 
   def mylocations
     @locations = []
-    saved_locations = SavedLocation.where(user_id: current_user.id)
-    saved_locations.each do |record|
+    @saved_locations = SavedLocation.where(user_id: current_user.id)
+    @saved_locations.each do |record|
       @locations.push(Location.find(record.location_id))
     end
   end
