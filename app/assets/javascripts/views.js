@@ -1,7 +1,8 @@
 function initMap() {
   let user_lat
   let user_lng
-  let types = [ "wifi", "aircon", "sockets", "coffee", "quiet", "uncrowded" ]
+  let types = [ "wifi", "aircon", "availsockets", "coffee", "quiet",
+    "uncrowded" ]
   let filterstates = {}
   let all_locations = []
   let shown_locations = []
@@ -34,10 +35,6 @@ function initMap() {
     navigator.geolocation.getCurrentPosition( function( position ) {
       user_lat = position.coords.latitude;
       user_lng = position.coords.longitude;
-      $( '#get_list_view' ).click( function() {
-        window.location.href = '/locations/list_view/?lat=' + user_lat +
-          '&lng=' + user_lng
-      } );
       let pos = {
         lat: position.coords.latitude,
         lng: position.coords.longitude
@@ -53,6 +50,13 @@ function initMap() {
         dataType: 'json'
       } ).done( function( response ) {
         all_locations = response
+        all_locations.forEach( location => {
+          location[ 'availsockets' ] =
+            location[ 'sockets' ] > 0 ? true : false
+          location[ 'uncrowded' ] =
+            location[ 'available_seats' ] /
+            location[ 'total_seats' ] > 0.3 ? true : false
+        } )
         updateFiltering()
       } )
     }, function() {
@@ -67,12 +71,27 @@ function initMap() {
 
   // adds listeners to each button
   $( document ).ready( function() {
+    $( '#get_list_view' ).click( function() {
+      flipView()
+    } );
     types.forEach( type => {
-      $( ".button-" + type ).click( function() {
+      $( '.button-' + type ).click( function() {
         flipFilter( type )
       } )
     } )
   } )
+
+  // changes view from map to list or vice versa
+  function flipView() {
+    console.log( "flipview called" )
+    if ( $( '#listCards' ).hasClass( "hidden" ) ) {
+      $( '#listCards' ).removeClass( "hidden" )
+      $( '#listMap' ).addClass( "hidden" )
+    } else {
+      $( 'listCards' ).addClass( "hidden" )
+      $( 'listMap' ).removeClass( "hidden" )
+    }
+  }
 
   // changes filterstates type
   function flipFilter( type ) {
@@ -105,8 +124,9 @@ function initMap() {
   function renderShownLocations() {
     // add markers to map
     shown_locations.forEach( location => placeMarker( location ) )
-    // 
+      // add card for each location to list view
   }
+
 }
 
 function handleLocationError( browserHasGeolocation, userLocationInfoWindow,
