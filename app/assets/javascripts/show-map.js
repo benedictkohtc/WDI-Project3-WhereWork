@@ -4,7 +4,9 @@ function initMap () {
     center: {
       lat: 1.3072052,
       lng: 103.831843
-    }
+    },
+    scaleControl: true,
+    fullscreenControl: true
   })
   var markerArray = []
   var stepDisplay = new google.maps.InfoWindow()

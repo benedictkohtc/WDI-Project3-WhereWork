@@ -5,13 +5,25 @@ function initMap () {
   let filterstates = {}
   let all_locations = []
   let shown_locations = []
-  let markesrs = []
+  let markers = []
   let map = new google.maps.Map(document.getElementById('listMap'), {
-
     zoom: 16,
-    center: { lat: 1.3072052, lng: 103.831843 }
+    center: { lat: 1.3072052, lng: 103.831843 },
+    scaleControl: true,
+    fullscreenControl: true
   })
   let infoWindow = new google.maps.InfoWindow()
+
+  let defaultBounds = new google.maps.LatLngBounds(
+    new google.maps.LatLng(1.077484, 103.582585),
+    new google.maps.LatLng(1.490568, 104.093450)
+  )
+  let options = {
+    bounds: defaultBounds
+  }
+  let input = document.getElementById('pac-input')
+  map.controls[google.maps.ControlPosition.TOP_CENTER].push(input)
+  let autocomplete = new google.maps.places.Autocomplete(input, options)
 
   function placeMarker (location) {
     let latLng = new google.maps.LatLng(location[ 'lat' ], location[ 'lng' ])
