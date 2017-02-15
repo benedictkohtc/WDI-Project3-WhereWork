@@ -1,4 +1,4 @@
-https://codeship.com/projects/YOUR_PROJECT_UUID/status?branch=master
+[ ![Codeship Status for benedictkohtc/WDI-Project3-WhereWork](https://app.codeship.com/projects/3e284e50-d555-0134-2621-0eb6a9a7540b/status?branch=master)](https://app.codeship.com/projects/202447)
 
 # README
 
