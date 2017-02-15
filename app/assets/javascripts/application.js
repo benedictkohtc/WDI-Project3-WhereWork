@@ -10,8 +10,13 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery
+//= require jquery_ujs
+//= require bootstrap-sprockets
+//= require clipboard
+//= require_tree .
 
-// setTimeout(
-//   function() {
-//     $('.alert').slideUp(300)
-//   }, 2000)
+setTimeout(
+  function() {
+    $('.alert').slideUp(300)
+  }, 2000)
