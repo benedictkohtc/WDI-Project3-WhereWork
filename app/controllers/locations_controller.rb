@@ -1,6 +1,7 @@
 class LocationsController < ApplicationController
   before_action :find_location, only: [:show, :update, :edit, :save, :watch]
   before_action :authenticate_user!, only: [:update, :edit, :secret, :twilio_test, :mylocations, :save, :watch, :unwatch_all]
+  # after_action :some_func, only: :update
 
   def index
   end
