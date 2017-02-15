@@ -1,7 +1,6 @@
 class LocationsController < ApplicationController
   before_action :find_location, only: [:show, :update, :edit, :save, :watch]
   before_action :authenticate_user!, except: [:index, :map_view, :list_view, :show]
-  after_action :some_func, only: :update
 
   def index
   end
@@ -68,11 +67,27 @@ class LocationsController < ApplicationController
     @location.update(location_params)
     @location.last_updated_user = current_user.id
     @location.save
+    notification_check(@location.id, @location.available_seats, @location.name)
     flash[:info] = 'Location info updated.'
     redirect_to @location
   end
 
-  def twilio_test
+  private
+
+  def notification_check(id, seats, _name)
+    if seats > 0
+      saved_locations = SavedLocation.where(location_id: id).where(is_watched: true)
+      saved_locations.each do |location|
+        user = User.find(location.user_id)
+        # commented to prevent SMS spam
+        # send_twilio(user, name)
+        puts 'twilio msg sent'
+        SavedLocation.update(location.id, is_watched: false)
+      end
+    end
+  end
+
+  def send_twilio(user, location)
     require 'twilio-ruby'
 
     account_sid = Figaro.env.TWILIO_SID
@@ -85,15 +100,13 @@ class LocationsController < ApplicationController
       # from assigned number from Twilio
       from: Figaro.env.TWILIO_NUMBER,
       # to receipient's phone number
+      # to: user['mobile_number'],
+      # using DEV_HP due to twilio trial limitations
       to: Figaro.env.DEV_HP,
       # input SMS msg here. NOTE: 1 SMS = 160 chars!
-      body: 'Localhost test, figaro test'
+      body: "from input. Hi #{user['first_name']}! Seats are now available at #{location}!"
     )
-    flash[:success] = 'Test SMS sent!'
-    redirect_to action: 'secret'
   end
-
-  private
 
   def return_nearby_locations(user_lat, user_lng)
     nearby_locations = []

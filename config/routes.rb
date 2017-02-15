@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   root 'locations#index'
 
   get 'locations/return_nearby_locations'
-  get 'locations/twilio_test'
   get 'locations/list_view'
   get 'locations/map_view'
   get 'locations/mylocations'
