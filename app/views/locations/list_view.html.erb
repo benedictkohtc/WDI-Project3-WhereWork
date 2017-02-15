@@ -15,7 +15,6 @@
 <hr>
 
 <% @locations.each do |location| %>
-<div class="well location-card row
     <% if location['wifi'] %> wifi <% end %>
     <% if location['aircon'] %> aircon <% end %>
     <% if location['available_sockets'] > 0 %> sockets <% end %>
@@ -52,7 +51,6 @@
     <% end %>
       <hr>
     </div>
-
 </div>
 <% end %>
 
