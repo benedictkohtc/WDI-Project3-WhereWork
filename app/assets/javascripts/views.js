@@ -5,7 +5,7 @@ function initMap() {
   let filterstates = {}
   let all_locations = []
   let shown_locations = []
-  let markesrs = []
+  let markers = []
   let map = new google.maps.Map( document.getElementById( 'listMap' ), {
 
     zoom: 16,
