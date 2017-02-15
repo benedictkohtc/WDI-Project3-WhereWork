@@ -95,10 +95,7 @@ GEM
     nio4r (1.2.1)
     nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
-    nokogiri (1.7.0.1-x86-mingw32)
-      mini_portile2 (~> 2.1.0)
     pg (0.19.0)
-    pg (0.19.0-x86-mingw32)
     puma (3.7.0)
     rack (2.0.1)
     rack-test (0.6.3)
@@ -157,8 +154,6 @@ GEM
     turbolinks-source (5.0.0)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    tzinfo-data (1.2016.10)
-      tzinfo (>= 1.0.0)
     uglifier (3.0.4)
       execjs (>= 0.3.0, < 3)
     web-console (3.4.0)
@@ -172,7 +167,6 @@ GEM
 
 PLATFORMS
   ruby
-  x86-mingw32
 
 DEPENDENCIES
   bootstrap-sass (~> 3.3.6)
