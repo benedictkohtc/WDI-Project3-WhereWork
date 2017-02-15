@@ -214,6 +214,7 @@ function initMap() {
     renderShownLocations()
   }
 
+  // updates both the map markers and the cards
   function renderShownLocations() {
     // add markers to map
     shown_locations.forEach( location => placeMarker( location ) )
