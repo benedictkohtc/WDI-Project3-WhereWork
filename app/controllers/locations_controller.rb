@@ -1,6 +1,6 @@
 class LocationsController < ApplicationController
   before_action :find_location, only: [:show, :update, :edit, :save]
-  before_action :authenticate_user!, only: [:update, :edit, :secret, :twilio_test, :mylocations, :save]
+  before_action :authenticate_user!, only: [:update, :edit, :secret, :twilio_test, :mylocations, :watch_location, :save]
 
   def index
   end
@@ -22,6 +22,9 @@ class LocationsController < ApplicationController
     end
   end
 
+  def watch_location
+  end
+
   def show
     @saved_location = SavedLocation.find_by(user_id: current_user.id, location_id: @location.id) if current_user
     @last_updated_user = User.find(@location.last_updated_user) if @location.last_updated_user
@@ -30,8 +33,8 @@ class LocationsController < ApplicationController
 
   def save
     saved_location = SavedLocation.find_by(user_id: current_user.id, location_id: params[:id])
-    if saved_location == nil
-      SavedLocation.create({:user_id => current_user.id, :location_id => @location.id})
+    if saved_location.nil?
+      SavedLocation.create(user_id: current_user.id, location_id: @location.id)
     else
       SavedLocation.delete(saved_location.id)
     end
