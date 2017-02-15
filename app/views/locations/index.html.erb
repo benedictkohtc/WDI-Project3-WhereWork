@@ -4,6 +4,9 @@
 <hr>
 <div id="listMap"></div><br>
 <script>
+var $listViewBtn = $('#get_list_view')
+$listViewBtn.hide()
+
 function initMap() {
   var user_lat;
   var user_lng;
@@ -51,6 +54,7 @@ function initMap() {
         for (var object in response) {
           placeMarker(response[object])
         }
+        $listViewBtn.slideDown(300)
       })
     }, function() {
       handleLocationError(true, userLocationInfoWindow, map.getCenter());
