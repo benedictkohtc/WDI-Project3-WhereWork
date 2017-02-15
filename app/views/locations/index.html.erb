@@ -1,11 +1,11 @@
 <p class="lead">These are the locations near you.</p>
-<button id="get_list_view" class="btn btn-primary">List View</button>
+<button id="switch-views" class="btn btn-primary">List View</button>
 
 <hr>
 
 <a href="#" class="btn btn-sm btn-default button-wifi">wifi</a>
 <a href="#" class="btn btn-sm btn-default button-aircon">aircon</a>
-<a href="#" class="btn btn-sm btn-default button-sockets">sockets</a>
+<a href="#" class="btn btn-sm btn-default button-availsockets">sockets</a>
 <a href="#" class="btn btn-sm btn-default" data-toggle="collapse" data-target="#collapseOne">more filters</a>
 <div id="collapseOne" class="panel-collapse collapse">
   <div class="panel-body">
@@ -17,6 +17,9 @@
 <hr>
 
 <input id="pac-input" class="controls" type="text" size="50" placeholder="Search another location!">
+
+<div id="listCards" class="hidden"></div>
+
 <div id="listMap"></div><br>
 
 <%= javascript_include_tag 'views' %>
