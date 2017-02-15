@@ -53,9 +53,9 @@ ActiveRecord::Schema.define(version: 20170215040216) do
   create_table "saved_locations", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "location_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.boolean  "is_watched"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.boolean  "is_watched",  default: false
     t.index ["location_id"], name: "index_saved_locations_on_location_id", using: :btree
     t.index ["user_id"], name: "index_saved_locations_on_user_id", using: :btree
   end
