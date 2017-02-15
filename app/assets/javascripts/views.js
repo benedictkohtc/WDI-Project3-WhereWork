@@ -51,6 +51,7 @@ function initMap() {
     navigator.geolocation.getCurrentPosition( function( position ) {
       user_lat = position.coords.latitude
       user_lng = position.coords.longitude
+
       let pos = {
         lat: position.coords.latitude,
         lng: position.coords.longitude
@@ -190,7 +191,7 @@ function initMap() {
   function renderShownLocations() {
     // add markers to map
     shown_locations.forEach( location => placeMarker( location ) )
-      // update cards
+    // update cards
     updateCards()
   }
 
