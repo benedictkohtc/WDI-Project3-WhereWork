@@ -1,76 +1,29 @@
 <p class="lead">These are the locations near you.</p>
-<button id="get_list_view" class="btn btn-primary">List View</button>
+<button id="switch-views" class="btn btn-primary">List View</button>
 
 <hr>
+
+<a href="#" class="btn btn-sm btn-default button-wifi">wifi</a>
+<a href="#" class="btn btn-sm btn-default button-aircon">aircon</a>
+<a href="#" class="btn btn-sm btn-default button-availsockets">sockets</a>
+<a href="#" class="btn btn-sm btn-default" data-toggle="collapse" data-target="#collapseOne">more filters</a>
+<div id="collapseOne" class="panel-collapse collapse">
+  <div class="panel-body">
+    <a href="#" class="btn btn-sm btn-default button-coffee">coffee</a>
+    <a href="#" class="btn btn-sm btn-default button-quiet">quiet</a>
+    <a href="#" class="btn btn-sm btn-default button-uncrowded">uncrowded</a>
+  </div>
+</div>
+<hr>
+
+<input id="pac-input" class="controls" type="text" size="50" placeholder="Search another location!">
+
+<div id="listCards" class="hidden"></div>
+
 <div id="listMap"></div><br>
-<script>
-var $listViewBtn = $('#get_list_view')
-$listViewBtn.hide()
 
-function initMap() {
-  var user_lat;
-  var user_lng;
-  var map = new google.maps.Map(document.getElementById('listMap'), {
+<%= javascript_include_tag 'views' %>
 
-    zoom: 16,
-    center: {lat: 1.3072052, lng: 103.831843},
-  });
-  var infoWindow = new google.maps.InfoWindow();
-  function placeMarker (location) {
-    var latLng = new google.maps.LatLng(location['lat'], location['lng']);
-    var marker = new google.maps.Marker({
-      position: latLng,
-      map: map
-    });
-    google.maps.event.addListener(marker, 'click', function(){
-      infoWindow.close();
-      infoWindow.setContent("<div id= 'infoWindow'>" + "<a href='/locations/" + location['id'] + "'>" + location['name'] + "</a>" + "</div>")
-      infoWindow.open(map, marker);
-    });
-  };
-  var userLocationInfoWindow = new google.maps.InfoWindow({map: map});
-  // Try HTML5 geolocation.
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      user_lat = position.coords.latitude;
-      user_lng = position.coords.longitude;
-      $('#get_list_view').click(function() {
-      window.location.href = '/locations/list_view/?lat='+user_lat+'&lng='+user_lng
-     });
-      var pos = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      };
-      userLocationInfoWindow.setPosition(pos);
-      userLocationInfoWindow.setContent('Your location');
-      map.setCenter(pos);
-      $.ajax({
-        type: 'GET',
-        url: '/locations/map_view',
-        data: pos,
-        contentType: 'application/json',
-        dataType: 'json'
-      }).done(function(response){
-        for (var object in response) {
-          placeMarker(response[object])
-        }
-        $listViewBtn.slideDown(300)
-      })
-    }, function() {
-      handleLocationError(true, userLocationInfoWindow, map.getCenter());
-    });
-  } else {
-    // Browser doesn't support Geolocation
-    handleLocationError(false, userLocationInfoWindow, map.getCenter());
-  };
-}
-function handleLocationError(browserHasGeolocation, userLocationInfoWindow, pos) {
-  userLocationInfoWindow.setPosition(pos);
-  userLocationInfoWindow.setContent(browserHasGeolocation ?
-    'Error: Please allow your Geolocation service.' :
-    'Error: Your browser doesn\'t support geolocation.');
-  }
-</script>
 <script async defer
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBAbRwB5MRYYe7V01n2_suO8lni8njzPYM&callback=initMap">
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBAbRwB5MRYYe7V01n2_suO8lni8njzPYM&callback=initMap&libraries=places">
 </script>
