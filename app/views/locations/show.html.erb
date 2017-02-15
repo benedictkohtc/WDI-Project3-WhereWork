@@ -2,8 +2,14 @@
   <div class="panel-heading clearfix">
       <h1 class="pull-left"><%= @location.name %></h1>
       <% if @saved_location %>
+        <% if @saved_location.is_watched %>
+          <%= link_to("Unwatch Location", watch_path(@location) , class: 'btn btn-default pull-right') %>
+        <% else %>
+          <%= link_to("Watch Location", watch_path(@location) , class: 'btn btn-primary pull-right') %>
+        <% end %>
         <%= link_to("Unsave Location", save_path(@location) , class: 'btn btn-default pull-right') %>
       <% else %>
+        <%= link_to("Save and Watch Location", watch_path(@location) , class: 'btn btn-primary pull-right') %>
         <%= link_to("Save Location", save_path(@location) , class: 'btn btn-primary pull-right') %>
       <% end %>
   </div>

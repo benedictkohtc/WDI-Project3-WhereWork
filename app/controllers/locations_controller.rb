@@ -42,7 +42,7 @@ class LocationsController < ApplicationController
     saved_location = SavedLocation.find_by(user_id: current_user.id, location_id: params[:id])
     if saved_location.nil?
       SavedLocation.create(user_id: current_user.id, location_id: @location.id, is_watched: true)
-      redirect_back(fallback_location: locations_list_view_path)
+      redirect_back(fallback_location: locations_list_view_path) && return
     end
     if saved_location.is_watched
       SavedLocation.update(saved_location.id, is_watched: false)
