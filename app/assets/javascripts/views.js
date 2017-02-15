@@ -2,7 +2,8 @@ function initMap() {
   let user_lat
   let user_lng
   let pos
-  let types = [ 'wifi', 'aircon', 'availsockets', 'coffee', 'quiet', 'uncrowded' ]
+  let types = [ 'wifi', 'aircon', 'availsockets', 'coffee', 'quiet',
+    'uncrowded' ]
   let filterstates = {}
   let all_locations = []
   let shown_locations = []
@@ -13,9 +14,9 @@ function initMap() {
     center: { lat: 1.3072052, lng: 103.831843 },
     scaleControl: true,
     fullscreenControl: true
-  })
+  } )
 
-  let userLocationInfoWindow = new google.maps.InfoWindow({ map: map })
+  let userLocationInfoWindow = new google.maps.InfoWindow( { map: map } )
   let infoWindow = new google.maps.InfoWindow()
 
   let defaultBounds = new google.maps.LatLngBounds(
@@ -26,35 +27,43 @@ function initMap() {
     bounds: defaultBounds
   }
 
-  let input = document.getElementById('pac-input')
-  map.controls[google.maps.ControlPosition.TOP_CENTER].push(input)
-  let autocomplete = new google.maps.places.Autocomplete(input, options)
-  autocomplete.addListener('place_changed', function () {
+  let input = document.getElementById( 'pac-input' )
+  map.controls[ google.maps.ControlPosition.TOP_CENTER ].push( input )
+  let autocomplete = new google.maps.places.Autocomplete( input, options )
+  autocomplete.addListener( 'place_changed', function() {
     let place = autocomplete.getPlace()
-    if (!place.geometry) {
+    if ( !place.geometry ) {
       // User entered the name of a Place that was not suggested and pressed the Enter key, or the Place Details request failed.
-      window.alert("No details available for input: '" + place.name + "'")
+      window.alert( "No details available for input: '" + place.name + "'" )
       return
     }
-    map.setCenter(place.geometry.location)
-    map.setZoom(16)
-    userLocationInfoWindow.setPosition(place.geometry.location)
-    userLocationInfoWindow.setContent('Your location')
+    map.setCenter( place.geometry.location )
+    map.setZoom( 16 )
+    userLocationInfoWindow.setPosition( place.geometry.location )
+    userLocationInfoWindow.setContent( 'Your location' )
     pos = {
       lat: place.geometry.location.lat(),
       lng: place.geometry.location.lng()
     }
-    $.ajax({
+    $.ajax( {
       type: 'GET',
       url: '/locations/map_view',
       data: pos,
       contentType: 'application/json',
       dataType: 'json'
-    }).done(function (response) {
+    } ).done( function( response ) {
       all_locations = response
+      all_locations.forEach( location => {
+        location[ 'availsockets' ] =
+          location[ 'available_sockets' ] > 0 ? true : false
+        location[ 'uncrowded' ] =
+          location[ 'available_seats' ] /
+          location[ 'total_seats' ] > 0.3 ? true : false
+      } )
       updateFiltering()
-    })
-  })
+
+    } )
+  } )
 
   function placeMarker( location ) {
     let latLng = new google.maps.LatLng( location[ 'lat' ], location[ 'lng' ] )
@@ -64,20 +73,22 @@ function initMap() {
     } )
     google.maps.event.addListener( marker, 'click', function() {
       infoWindow.close()
-      infoWindow.setContent("<div id= 'infoWindow'>" + "<a href='/locations/" + location[ 'id' ] + "'>" + location[ 'name' ] + '</a>' + '</div>')
-      infoWindow.open(map, marker)
-    })
-    markers.push(marker)
+      infoWindow.setContent( "<div id= 'infoWindow'>" +
+        "<a href='/locations/" + location[ 'id' ] + "'>" + location[
+          'name' ] + '</a>' + '</div>' )
+      infoWindow.open( map, marker )
+    } )
+    markers.push( marker )
   }
 
   if ( navigator.geolocation ) {
     navigator.geolocation.getCurrentPosition( function( position ) {
       user_lat = position.coords.latitude
       user_lng = position.coords.longitude
-      $('#get_list_view').click(function () {
+      $( '#get_list_view' ).click( function() {
         window.location.href = '/locations/list_view/?lat=' + user_lat +
           '&lng=' + user_lng
-      })
+      } )
       pos = {
         lat: position.coords.latitude,
         lng: position.coords.longitude
@@ -96,7 +107,6 @@ function initMap() {
         all_locations.forEach( location => {
           location[ 'availsockets' ] =
             location[ 'available_sockets' ] > 0 ? true : false
-          console.log(location['availsockets'])
           location[ 'uncrowded' ] =
             location[ 'available_seats' ] /
             location[ 'total_seats' ] > 0.3 ? true : false
@@ -146,20 +156,23 @@ function initMap() {
     shown_locations.forEach( location => {
       let card = $( '<div></div>' )
       let imagelink = ''
-      if (location['cloudinary_link'])
-        imagelink = `<img src=" ${location['cloudinary_link']} " alt='' class='img-responsive img-rounded center-block'>'`
+      if ( location[ 'cloudinary_link' ] )
+        imagelink =
+        `<img src=" ${location['cloudinary_link']} " alt='' class='img-responsive img-rounded center-block'>'`
       else
-        imagelink = `<img src="http://placehold.it/300x300" alt="" class='img-responsive img-rounded center-block'>`
-      let walktime = Math.floor(location['distance']/40) + 1
+        imagelink =
+        `<img src="http://placehold.it/300x300" alt="" class='img-responsive img-rounded center-block'>`
+      let walktime = Math.floor( location[ 'distance' ] / 40 ) + 1
       let filtersString = ''
-      if (location['wifi']) filtersString += 'wifi '
-      if (location['aircon']) filtersString += 'aircon '
-      if (location['availsockets']) filtersString += 'sockets '
-      if (location['coffee']) filtersString += 'coffee '
-      if (location['quiet']) filtersString += 'quiet '
-      if (location['uncrowded']) filtersString += 'uncrowded '
-      let distance = Math.floor(location['distance'])
-      card.html(`
+      if ( location[ 'wifi' ] ) filtersString += 'wifi '
+      if ( location[ 'aircon' ] ) filtersString += 'aircon '
+      if ( location[ 'availsockets' ] ) filtersString += 'sockets '
+      if ( location[ 'coffee' ] ) filtersString += 'coffee '
+      if ( location[ 'quiet' ] ) filtersString += 'quiet '
+      if ( location[ 'uncrowded' ] ) filtersString += 'uncrowded '
+      let distance = Math.floor( location[ 'distance' ] )
+      card.html(
+        `
         <div class="well location-card row">
           <div class="col-xs-5 col-md-3 location-card-img">
             ${imagelink}
@@ -178,10 +191,11 @@ function initMap() {
           <hr>
           </div>
         </div>
-        `)
+        `
+      )
       cardslist.append( card )
     } )
-    $('#listCards').append(cardslist)
+    $( '#listCards' ).append( cardslist )
   }
 
   // changes filterstates type
@@ -200,11 +214,10 @@ function initMap() {
         $( '.button-' + type )
           .removeClass( 'btn-default' )
           .addClass( 'btn-primary' )
-        shown_locations.forEach( ( location, ind, arr ) => {
-          if ( location[ type ] === false ) {
-            arr.splice( ind, 1 )
-          }
+        shown_locations = shown_locations.filter( ( location ) => {
+          return location[ type ] == true
         } )
+        console.log(shown_locations)
       } else {
         $( '.button-' + type )
           .addClass( 'btn-default' )
@@ -218,7 +231,7 @@ function initMap() {
   function renderShownLocations() {
     // add markers to map
     shown_locations.forEach( location => placeMarker( location ) )
-    // update cards
+      // update cards
     updateCards()
   }
 
