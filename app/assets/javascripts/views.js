@@ -1,22 +1,21 @@
 function initMap() {
   let user_lat
   let user_lng
-
-  let types = [ "wifi", "aircon", "availsockets", "coffee", "quiet",
-    "uncrowded" ]
-
+  let pos
+  let types = [ 'wifi', 'aircon', 'availsockets', 'coffee', 'quiet', 'uncrowded' ]
   let filterstates = {}
   let all_locations = []
   let shown_locations = []
   let markers = []
 
   let map = new google.maps.Map( document.getElementById( 'listMap' ), {
-
     zoom: 16,
     center: { lat: 1.3072052, lng: 103.831843 },
     scaleControl: true,
     fullscreenControl: true
-  } )
+  })
+
+  let userLocationInfoWindow = new google.maps.InfoWindow({ map: map })
   let infoWindow = new google.maps.InfoWindow()
 
   let defaultBounds = new google.maps.LatLngBounds(
@@ -26,9 +25,36 @@ function initMap() {
   let options = {
     bounds: defaultBounds
   }
-  let input = document.getElementById( 'pac-input' )
-  map.controls[ google.maps.ControlPosition.TOP_CENTER ].push( input )
-  let autocomplete = new google.maps.places.Autocomplete( input, options )
+
+  let input = document.getElementById('pac-input')
+  map.controls[google.maps.ControlPosition.TOP_CENTER].push(input)
+  let autocomplete = new google.maps.places.Autocomplete(input, options)
+  autocomplete.addListener('place_changed', function () {
+    let place = autocomplete.getPlace()
+    if (!place.geometry) {
+      // User entered the name of a Place that was not suggested and pressed the Enter key, or the Place Details request failed.
+      window.alert("No details available for input: '" + place.name + "'")
+      return
+    }
+    map.setCenter(place.geometry.location)
+    map.setZoom(16)
+    userLocationInfoWindow.setPosition(place.geometry.location)
+    userLocationInfoWindow.setContent('Your location')
+    pos = {
+      lat: place.geometry.location.lat(),
+      lng: place.geometry.location.lng()
+    }
+    $.ajax({
+      type: 'GET',
+      url: '/locations/map_view',
+      data: pos,
+      contentType: 'application/json',
+      dataType: 'json'
+    }).done(function (response) {
+      all_locations = response
+      updateFiltering()
+    })
+  })
 
   function placeMarker( location ) {
     let latLng = new google.maps.LatLng( location[ 'lat' ], location[ 'lng' ] )
@@ -38,21 +64,21 @@ function initMap() {
     } )
     google.maps.event.addListener( marker, 'click', function() {
       infoWindow.close()
-      infoWindow.setContent( "<div id= 'infoWindow'>" +
-        "<a href='/locations/" + location[ 'id' ] + "'>" + location[
-          'name' ] + '</a>' + '</div>' )
-      infoWindow.open( map, marker )
-    } )
-    markers.push( marker )
-  };
-  let userLocationInfoWindow = new google.maps.InfoWindow( { map: map } )
+      infoWindow.setContent("<div id= 'infoWindow'>" + "<a href='/locations/" + location[ 'id' ] + "'>" + location[ 'name' ] + '</a>' + '</div>')
+      infoWindow.open(map, marker)
+    })
+    markers.push(marker)
+  }
 
   if ( navigator.geolocation ) {
     navigator.geolocation.getCurrentPosition( function( position ) {
       user_lat = position.coords.latitude
       user_lng = position.coords.longitude
-
-      let pos = {
+      $('#get_list_view').click(function () {
+        window.location.href = '/locations/list_view/?lat=' + user_lat +
+          '&lng=' + user_lng
+      })
+      pos = {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       }
@@ -120,7 +146,7 @@ function initMap() {
     shown_locations.forEach( location => {
       let card = $( '<div></div>' )
       let imagelink = ''
-      if (location['cloudinary_link'])      
+      if (location['cloudinary_link'])
         imagelink = `<img src=" ${location['cloudinary_link']} " alt='' class='img-responsive img-rounded center-block'>'`
       else
         imagelink = `<img src="http://placehold.it/300x300" alt="" class='img-responsive img-rounded center-block'>`
@@ -156,7 +182,7 @@ function initMap() {
       cardslist.append( card )
     } )
     $('#listCards').append(cardslist)
-  }  
+  }
 
   // changes filterstates type
   function flipFilter( type ) {
