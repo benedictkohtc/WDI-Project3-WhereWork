@@ -15,5 +15,4 @@
 //= require bootstrap-sprockets
 //= require clipboard
 
-
 setTimeout(() => ($('.alert').slideUp(300)), 2000)
