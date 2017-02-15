@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'locations/mylocations'
   get 'locations/:id/save', to: 'locations#save', as: :save
   get 'locations/:id/watch', to: 'locations#watch', as: :watch
+  get 'locations/:user_id/unwatch', to: 'locations#unwatch_all', as: :unwatch_all
 
   # custom devise resource
   devise_for :users

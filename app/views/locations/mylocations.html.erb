@@ -1,4 +1,5 @@
 <p class="lead">These are the locations that you've saved.</p>
+<%= link_to("Unwatch All Locations", unwatch_all_path(current_user.id), class: 'btn btn-primary') %>
 <hr>
 <% @locations.zip(@saved_locations).each do |location, saved_location| %>
   <div class="panel panel-default">

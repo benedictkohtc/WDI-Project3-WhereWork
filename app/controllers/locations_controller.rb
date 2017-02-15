@@ -1,6 +1,6 @@
 class LocationsController < ApplicationController
   before_action :find_location, only: [:show, :update, :edit, :save, :watch]
-  before_action :authenticate_user!, only: [:update, :edit, :secret, :twilio_test, :mylocations, :save, :watch]
+  before_action :authenticate_user!, only: [:update, :edit, :secret, :twilio_test, :mylocations, :save, :watch, :unwatch_all]
 
   def index
   end
@@ -50,6 +50,9 @@ class LocationsController < ApplicationController
       SavedLocation.update(saved_location.id, is_watched: true)
     end
     redirect_back(fallback_location: locations_list_view_path)
+  end
+
+  def unwatch_all
   end
 
   def edit
