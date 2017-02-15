@@ -13,7 +13,7 @@
       <span class="label label-default">5min away</span>
     </div>
     <div class="col-xs-7 col-md-9">
-      <h3><%= link_to(location['name'], location) %></h3>
+      <h3><%= link_to(location['name'], location_path(location['id'])) %></h3>
       <%= location['vicinity']  %>
       <hr>
       <p class="label label-default"><%= "#{location['available_seats']} seats available" %></p>
