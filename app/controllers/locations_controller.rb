@@ -35,7 +35,7 @@ class LocationsController < ApplicationController
     else
       SavedLocation.delete(saved_location.id)
     end
-    redirect_back(fallback_location: locations_list_path)
+    redirect_back(fallback_location: locations_list_view_path)
   end
 
   def edit
