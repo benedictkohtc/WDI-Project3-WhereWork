@@ -6,7 +6,9 @@ function initMap () {
   let all_locations = []
   let shown_locations = []
   let markers = []
+
   let map = new google.maps.Map(document.getElementById('listMap'), {
+
     zoom: 16,
     center: { lat: 1.3072052, lng: 103.831843 },
     scaleControl: true,
