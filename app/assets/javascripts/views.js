@@ -13,9 +13,9 @@ function initMap () {
     center: { lat: 1.3072052, lng: 103.831843 },
     scaleControl: true,
     fullscreenControl: true
-  })
+  } )
 
-  let userLocationInfoWindow = new google.maps.InfoWindow({ map: map })
+  let userLocationInfoWindow = new google.maps.InfoWindow( { map: map } )
   let infoWindow = new google.maps.InfoWindow()
 
   // bias search results for start location in favour of locations in Singapore
@@ -48,17 +48,25 @@ function initMap () {
       lat: place.geometry.location.lat(),
       lng: place.geometry.location.lng()
     }
-    $.ajax({
+    $.ajax( {
       type: 'GET',
       url: '/locations/map_view',
       data: search_position,
       contentType: 'application/json',
       dataType: 'json'
-    }).done(function (response) {
+    } ).done( function( response ) {
       all_locations = response
+      all_locations.forEach( location => {
+        location[ 'availsockets' ] =
+          location[ 'available_sockets' ] > 0 ? true : false
+        location[ 'uncrowded' ] =
+          location[ 'available_seats' ] /
+          location[ 'total_seats' ] > 0.3 ? true : false
+      } )
       updateFiltering()
-    })
-  })
+
+    } )
+  } )
 
   // place a marker at each location provided by the controller
   function placeMarker (location) {
@@ -154,14 +162,15 @@ function initMap () {
       }
       let walktime = Math.floor(location['distance'] / 40) + 1
       let filtersString = ''
-      if (location['wifi']) filtersString += 'wifi '
-      if (location['aircon']) filtersString += 'aircon '
-      if (location['availsockets']) filtersString += 'sockets '
-      if (location['coffee']) filtersString += 'coffee '
-      if (location['quiet']) filtersString += 'quiet '
-      if (location['uncrowded']) filtersString += 'uncrowded '
-      let distance = Math.floor(location['distance'])
-      card.html(`
+      if ( location[ 'wifi' ] ) filtersString += 'wifi '
+      if ( location[ 'aircon' ] ) filtersString += 'aircon '
+      if ( location[ 'availsockets' ] ) filtersString += 'sockets '
+      if ( location[ 'coffee' ] ) filtersString += 'coffee '
+      if ( location[ 'quiet' ] ) filtersString += 'quiet '
+      if ( location[ 'uncrowded' ] ) filtersString += 'uncrowded '
+      let distance = Math.floor( location[ 'distance' ] )
+      card.html(
+        `
         <div class="well location-card row">
           <div class="col-xs-5 col-md-3 location-card-img">
             ${imagelink}
@@ -180,10 +189,11 @@ function initMap () {
           <hr>
           </div>
         </div>
-        `)
-      cardslist.append(card)
-    })
-    $('#listCards').append(cardslist)
+        `
+      )
+      cardslist.append( card )
+    } )
+    $( '#listCards' ).append( cardslist )
   }
 
   // changes filterstates type
@@ -197,16 +207,14 @@ function initMap () {
     markers.forEach(marker => marker.setMap(null))
     markers = []
     shown_locations = all_locations.slice()
-    types.forEach(type => {
-      if (filterstates[ type ] === true) {
-        $('.button-' + type)
-          .removeClass('btn-default')
-          .addClass('btn-primary')
-        shown_locations.forEach((location, ind, arr) => {
-          if (location[ type ] === false) {
-            arr.splice(ind, 1)
-          }
-        })
+    types.forEach( type => {
+      if ( filterstates[ type ] === true ) {
+        $( '.button-' + type )
+          .removeClass( 'btn-default' )
+          .addClass( 'btn-primary' )
+        shown_locations = shown_locations.filter( ( location ) => {
+          return location[ type ] == true
+        } )
       } else {
         $('.button-' + type)
           .addClass('btn-default')
@@ -216,10 +224,11 @@ function initMap () {
     renderShownLocations()
   }
 
-  function renderShownLocations () {
+  // updates both the map markers and the cards
+  function renderShownLocations() {
     // add markers to map
-    shown_locations.forEach(location => placeMarker(location))
-    // update cards
+    shown_locations.forEach( location => placeMarker( location ) )
+      // update cards
     updateCards()
   }
 }
