@@ -1,6 +1,6 @@
 class LocationsController < ApplicationController
   before_action :find_location, only: [:show, :update, :edit, :save]
-  before_action :authenticate_user!, only: [:update, :edit, :secret, :twilio_test, :mylocations]
+  before_action :authenticate_user!, only: [:update, :edit, :secret, :twilio_test, :mylocations, :save]
 
   def index
   end
@@ -23,7 +23,7 @@ class LocationsController < ApplicationController
   end
 
   def show
-    @saved_location = SavedLocation.find_by(user_id: current_user.id, location_id: @location.id)
+    @saved_location = SavedLocation.find_by(user_id: current_user.id, location_id: @location.id) if current_user
     @last_updated_user = User.find(@location.last_updated_user) if @location.last_updated_user
     @API_key = Figaro.env.GOOGLE_PLACES_API_KEY
   end
