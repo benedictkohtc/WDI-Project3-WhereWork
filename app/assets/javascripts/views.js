@@ -1,33 +1,33 @@
 function initMap () {
-  var user_lat
-  var user_lng
-  var pos
-  var types = [ 'wifi', 'aircon', 'sockets', 'coffee', 'quiet', 'uncrowded' ]
-  var filterstates = {}
-  var all_locations = []
-  var shown_locations = []
-  var markers = []
-  var map = new google.maps.Map(document.getElementById('listMap'), {
+  let user_lat
+  let user_lng
+  let pos
+  let types = [ 'wifi', 'aircon', 'sockets', 'coffee', 'quiet', 'uncrowded' ]
+  let filterstates = {}
+  let all_locations = []
+  let shown_locations = []
+  let markers = []
+  let map = new google.maps.Map(document.getElementById('listMap'), {
     zoom: 16,
     center: { lat: 1.3072052, lng: 103.831843 },
     scaleControl: true,
     fullscreenControl: true
   })
-  var userLocationInfoWindow = new google.maps.InfoWindow({ map: map })
-  var infoWindow = new google.maps.InfoWindow()
+  let userLocationInfoWindow = new google.maps.InfoWindow({ map: map })
+  let infoWindow = new google.maps.InfoWindow()
 
-  var defaultBounds = new google.maps.LatLngBounds(
+  let defaultBounds = new google.maps.LatLngBounds(
     new google.maps.LatLng(1.077484, 103.582585),
     new google.maps.LatLng(1.490568, 104.093450)
   )
-  var options = {
+  let options = {
     bounds: defaultBounds
   }
-  var input = document.getElementById('pac-input')
+  let input = document.getElementById('pac-input')
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(input)
-  var autocomplete = new google.maps.places.Autocomplete(input, options)
+  let autocomplete = new google.maps.places.Autocomplete(input, options)
   autocomplete.addListener('place_changed', function () {
-    var place = autocomplete.getPlace()
+    let place = autocomplete.getPlace()
     if (!place.geometry) {
       // User entered the name of a Place that was not suggested and pressed the Enter key, or the Place Details request failed.
       window.alert("No details available for input: '" + place.name + "'")
@@ -54,8 +54,8 @@ function initMap () {
   })
 
   function placeMarker (location) {
-    var latLng = new google.maps.LatLng(location[ 'lat' ], location[ 'lng' ])
-    var marker = new google.maps.Marker({
+    let latLng = new google.maps.LatLng(location[ 'lat' ], location[ 'lng' ])
+    let marker = new google.maps.Marker({
       position: latLng,
       map: map
     })
