@@ -53,6 +53,11 @@ class LocationsController < ApplicationController
   end
 
   def unwatch_all
+    saved_locations = SavedLocation.where(user_id: current_user.id)
+    saved_locations.each do |location|
+      SavedLocation.update(location.id, is_watched: false)
+    end
+    redirect_back(fallback_location: locations_mylocations_path)
   end
 
   def edit
