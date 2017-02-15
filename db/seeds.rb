@@ -1901,3 +1901,5 @@ Openingtime.create!([
   {location_id: 211, day: "Sunday", opening_time: "2000-01-01 09:00:00", closing_time: "2000-01-01 19:00:00"},
   {location_id: 211, day: "Public Holidays", opening_time: "2000-01-01 09:00:00", closing_time: "2000-01-01 17:30:00"}
 ])
+User.create! first_name: 'John', last_name: 'Doe', email: '1@1.com', password: '1', password_confirmation: '1'
+User.create! first_name: 'Jane', last_name: 'Doe', email: '2@2.com', password: '2', password_confirmation: '2'
