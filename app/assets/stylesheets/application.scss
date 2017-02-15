@@ -15,6 +15,10 @@
  *= require_self
  */
 
+$body-bg: #c5d5d5;
+$font-family-sans-serif:  "Montserrat", Helvetica, Arial, sans-serif !default;
+
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
@@ -58,4 +62,8 @@
     width: 100%;
     height: 200px;
   }
+}
+
+.label {
+  font-size: 16px;
 }
