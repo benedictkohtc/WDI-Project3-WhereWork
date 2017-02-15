@@ -16,7 +16,8 @@
 //= require clipboard
 //= require_tree .
 
-setTimeout(
-  function() {
-    $('.alert').slideUp(300)
-  }, 2000)
+// setTimeout(
+//   function() {
+//     $('.alert').slideUp(300)
+//   }, 2000)
+setTimeout(() => $('.alert').slideUp(300), 2000)
