@@ -14,6 +14,6 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require clipboard
-//= require_tree .
+
 
 setTimeout(() => ($('.alert').slideUp(300)), 2000)
