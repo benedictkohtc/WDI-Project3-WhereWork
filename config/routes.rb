@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get 'locations/map_view'
   get 'locations/mylocations'
   get 'locations/:id/save', to: 'locations#save', as: :save
-  get 'locations/watch_location'
+  get 'locations/:id/watch', to: 'locations#watch', as: :watch
 
   # custom devise resource
   devise_for :users
