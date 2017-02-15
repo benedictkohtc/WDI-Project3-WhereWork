@@ -16,11 +16,11 @@
 </div>
 <hr>
 
-<div id="listCards hidden"> Cards View</div>
+<input id="pac-input" class="controls" type="text" placeholder="Search another location!">
 <div id="listMap"></div><br>
 
-<script async defer
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBAbRwB5MRYYe7V01n2_suO8lni8njzPYM&callback=initMap">
-</script>
-
 <%= javascript_include_tag 'views' %>
+
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBAbRwB5MRYYe7V01n2_suO8lni8njzPYM&callback=initMap&libraries=places">
+</script>
