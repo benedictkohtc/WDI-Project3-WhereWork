@@ -16,7 +16,10 @@ function initMap () {
     mapTypeControl: false,
     scaleControl: true,
     streetViewControl: false,
-    fullscreenControl: true
+    fullscreenControl: true,
+    fullscreenControlOptions: {
+      position: google.maps.ControlPosition.BOTTOM_LEFT
+    }
   })
 
   let userLocationInfoWindow = new google.maps.InfoWindow({ map: map })
@@ -25,7 +28,7 @@ function initMap () {
   // create a div to hold the geolocate button
   let centerControlDiv = document.createElement('div')
   let centerControl = new CenterControl(centerControlDiv, map)
-  map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv)
+  map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(centerControlDiv)
 
   function CenterControl(controlDiv, map) {
     // set CSS for button border
