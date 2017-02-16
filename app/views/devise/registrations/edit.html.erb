@@ -15,7 +15,9 @@
     </div>
 
     <div class="field">
-      <%= f.text_field :mobile_number %>
+      <%= f.label :mobile_number %><br />
+      <i> This allows for SMS notifications when you watch locations. Only SG numbers are supported, no country code necessary (eg: 91234567)</i><br />
+      <%= f.text_field :mobile_number, hide_label: true %>
     </div>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>

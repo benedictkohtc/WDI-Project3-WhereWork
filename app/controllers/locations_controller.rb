@@ -76,13 +76,14 @@ class LocationsController < ApplicationController
 
   private
 
-  def notification_check(id, seats, _name)
+  def notification_check(id, seats, name)
     if seats > 0
       saved_locations = SavedLocation.where(location_id: id).where(is_watched: true)
       saved_locations.each do |location|
         user = User.find(location.user_id)
         # commented to prevent SMS spam
         # send_twilio(user, name)
+        puts name
         puts 'twilio msg sent'
         SavedLocation.update(location.id, is_watched: false)
       end
@@ -102,16 +103,15 @@ class LocationsController < ApplicationController
       # from assigned number from Twilio
       from: Figaro.env.TWILIO_NUMBER,
       # to receipient's phone number
-      # to: user['mobile_number'],
+      # to: '+65' + user['mobile_number'],
       # using DEV_HP due to twilio trial limitations
-      to: Figaro.env.DEV_HP,
+      to: '+65' + Figaro.env.DEV_HP,
       # input SMS msg here. NOTE: 1 SMS = 160 chars!
-      body: "from input. Hi #{user['first_name']}! Seats are now available at #{location}!"
+      body: "Hi #{user['first_name']}! Seats are now available at #{location}!"
     )
   end
 
   def return_nearby_locations(user_lat, user_lng)
-
     nearby_locations = []
 
     l = Location.all
@@ -119,7 +119,7 @@ class LocationsController < ApplicationController
     l.each do |location|
       location_hash = location.as_json
       distance = calc_distance(user_lat, user_lng, location['lat'], location['lng'])
-      location_hash.store('distance', distance )
+      location_hash.store('distance', distance)
       next unless location_hash['distance'].to_f < 400
       nearby_locations.push(location_hash)
     end

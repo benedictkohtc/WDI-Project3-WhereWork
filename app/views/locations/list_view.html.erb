@@ -23,13 +23,18 @@
     <% if location['quiet'] %> quiet <% end %>
     <% if (location['available_seats'].to_f/location['total_seats'].to_f) > 0.3 %> uncrowded <% end %>
   ">
-  <div class="col-xs-5 col-md-3 location-card-img">
-    
-    
+  <div class="col-xs-4 hidden-xs col-md-3 location-card-img">
+
+    <% if location['cloudinary_link'] %>
+    <img src="<%= location['cloudinary_link'] %>" alt="" class='img-responsive img-rounded center-block'>
+    <% else %>
+    <img src="http://placehold.it/300x300" alt="" class='img-responsive img-rounded center-block'>
     <span class="label label-default">5min away</span>
+    <% end %>
   </div>
-  <div class="col-xs-7 col-md-9">
-    <h3><%= link_to(location['name'], location) %></h3>
+  <div class="col-xs-12 col-md-9">
+    <p class="lead pull-right"><%= location['distance'].to_i %> metres away</p>
+    <h3><%= link_to(location['name'], location_path(location['id'])) %></h3>
     <%= location['vicinity']  %>
     <hr>
     <% if location['wifi'] %> wifi <% end %>
@@ -39,14 +44,11 @@
     <% if location['quiet'] %> quiet <% end %>
     <% if (location['available_seats'].to_f/location['total_seats'].to_f) > 0.3 %> uncrowded <% end %>
     <hr>
-    <%= location['distance'].to_i %> metres away
-    <hr>
     <p class="label label-default"><%= "#{location['available_seats']} seats available" %></p>
     <p class="label label-default"><%= "#{location['available_sockets']} sockets available" %></p>
     <% if (location['available_seats'].to_f / location['total_seats'].to_f <= 0.2) %>
     <p class="label label-warning">Crowded</p>
     <% end %>
-      <hr>
     </div>
 </div>
 <% end %>
@@ -55,10 +57,10 @@
 let types = [ "wifi", "aircon", "sockets", "coffee", "quiet", "uncrowded" ]
 let filterstates = {}
 
-// populate filterstates with every type set to off 
+// populate filterstates with every type set to off
 types.forEach( type => {
   filterstates[ type ] = false
-} )  
+} )
 
 // unhides all rows, then hides any rows that are missing a filter that is true
 // also flips button color
