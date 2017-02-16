@@ -172,6 +172,7 @@ function initMap () {
       if ( location[ 'quiet' ] ) filtersString += 'quiet '
       if ( location[ 'uncrowded' ] ) filtersString += 'uncrowded '
       let distance = Math.floor( location[ 'distance' ] )
+      let showLinkString = `<a href="/locations/${location['id']}/?lat=${search_position['lat']}&lng=${search_position['lng']}">${location['name']}</a>`
       card.html(
         `
         <div class="well location-card row">
@@ -180,7 +181,7 @@ function initMap () {
             <span class="label label-default">${walktime} min away</span>
           </div>
           <div class="col-xs-7 col-md-9">
-          <h3> <a href="/locations/${location['id']}">${location['name']}</a> </h3>
+          <h3>${showLinkString}</h3>
           ${location['vicinity']}
           <br>
           ${filtersString}
