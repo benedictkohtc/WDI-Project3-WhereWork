@@ -130,6 +130,9 @@ function initMap () {
     $('#switch-views').click(function () {
       flipView()
     })
+    $('.button-morefilters').click(function(){
+      toggleMorefiltersButton()
+    })
     $('.button-clearfilters').click(function(){
       clearFilters()
     })
@@ -226,6 +229,14 @@ function initMap () {
       }
     })
     renderShownLocations()
+  }
+
+  // toggle morefilters button
+  function toggleMorefiltersButton () {
+    if ( $('.button-morefilters').text() === 'more filters' )
+      $('.button-morefilters').text('less filters')
+    else
+      $('.button-morefilters').text('more filters')
   }
 
   // clears filters and update
