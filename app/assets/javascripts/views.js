@@ -64,7 +64,6 @@ function initMap () {
           location[ 'total_seats' ] > 0.3 ? true : false
       } )
       updateFiltering()
-
     } )
   } )
 
@@ -86,41 +85,45 @@ function initMap () {
     markers.push(marker)
   }
 
-  // attempt to get the user's geolocation
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function (position) {
-      // send a get request to the controller with the search position as found by geolocation, expecting a number of locations in response
-      search_position = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      }
-      userLocationInfoWindow.setPosition(search_position)
-      userLocationInfoWindow.setContent('Your location')
-      map.setCenter(search_position)
-      $.ajax({
-        type: 'GET',
-        url: '/locations/map_view',
-        data: search_position,
-        contentType: 'application/json',
-        dataType: 'json'
-      }).done(function (response) {
-        all_locations = response
-        all_locations.forEach(location => {
-          location[ 'availsockets' ] =
-            location[ 'available_sockets' ] > 0 ? true : false
-          location[ 'uncrowded' ] =
-            location[ 'available_seats' ] /
-            location[ 'total_seats' ] > 0.3 ? true : false
+  // geolocation
+  function geolocate () {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function (position) {
+        // send a get request to the controller with the search position as found by geolocation, expecting a number of locations in response
+        search_position = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        }
+        userLocationInfoWindow.setPosition(search_position)
+        userLocationInfoWindow.setContent('Your location')
+        map.setCenter(search_position)
+        $.ajax({
+          type: 'GET',
+          url: '/locations/map_view',
+          data: search_position,
+          contentType: 'application/json',
+          dataType: 'json'
+        }).done(function (response) {
+          all_locations = response
+          all_locations.forEach(location => {
+            location[ 'availsockets' ] =
+              location[ 'available_sockets' ] > 0 ? true : false
+            location[ 'uncrowded' ] =
+              location[ 'available_seats' ] /
+              location[ 'total_seats' ] > 0.3 ? true : false
+          })
+          updateFiltering()
         })
-        updateFiltering()
+      }, function () {
+        handleLocationError(true, userLocationInfoWindow, map.getCenter())
       })
-    }, function () {
-      handleLocationError(true, userLocationInfoWindow, map.getCenter())
-    })
-  } else {
-    // Browser doesn't support Geolocation
-    handleLocationError(false, userLocationInfoWindow, map.getCenter())
-  };
+    } else {
+      // Browser doesn't support Geolocation
+      handleLocationError(false, userLocationInfoWindow, map.getCenter())
+    }
+  }
+
+  geolocate()
 
   // FILTERING CODE
 
