@@ -17,10 +17,25 @@
 
 $body-bg: #c5d5d5;
 $font-family-sans-serif:  "Montserrat", Helvetica, Arial, sans-serif !default;
+$navbar-default-bg: #c5d5d5;
+$navbar-default-brand-color: #fff;
+$text-color: #68665c;
+$btn-default-color: #8d8d8d;
+$btn-default-bg: #f7efed;
+$navbar-default-link-color: #877a87;
 
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+
+.btn {
+  transition: all 0.5s ease;
+}
+
+.btn-default:hover {
+  background-color: #ddd2ce;
+}
 
 .container {
   margin: 20px auto;
@@ -38,6 +53,14 @@ $font-family-sans-serif:  "Montserrat", Helvetica, Arial, sans-serif !default;
 .navbar {
   margin-top: 0;
   border-radius: 0;
+  border: none;
+  .navbar-collapse{
+    border: none;
+    border-bottom: 1px solid darken(#c5d5d5, 15%);
+  }
+  .navbar-text {
+    color: #fff;
+  }
 }
 
 #pac-input {
@@ -50,13 +73,25 @@ $font-family-sans-serif:  "Montserrat", Helvetica, Arial, sans-serif !default;
 }
 
 .location-card {
-  border-radius: 0;
+  box-shadow:0 2px 3px #aaa;
+  border-radius:3px;
+  border: none;
+  padding: 0;
   .location-card-img {
     padding: 0;
+    margin: 0;
+  }
+  .location-card-info {
+    padding: 20px;
   }
   img {
     width: 100%;
-    height: 200px;
+    height: 100%;
+    max-height: 300px;
+    o-object-fit: cover;
+  }
+  h3 {
+    margin-top: 0;
   }
 }
 

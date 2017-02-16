@@ -7,13 +7,13 @@
           <%= link_to("Unwatch Location", watch_path(@location) , class: 'btn btn-default pull-right') %>
         <% else %>
           <% if @location.available_seats<=0 %>
-            <%= link_to("Watch Location", watch_path(@location) , class: 'btn btn-primary pull-right') %>
+            <%= link_to("Watch Location", watch_path(@location) , class: 'btn btn-default pull-right') %>
           <% end %>
         <% end %>
       <% else %>
-        <%= link_to("Save Location", save_path(@location) , class: 'btn btn-primary pull-right') %>
+        <%= link_to("Save Location", save_path(@location) , class: 'btn btn-default pull-right') %>
         <% if @location.available_seats<=0 %>
-          <%= link_to("Watch and Save Location", watch_path(@location) , class: 'btn btn-primary pull-right') %>
+          <%= link_to("Watch and Save Location", watch_path(@location) , class: 'btn btn-default pull-right') %>
         <% end %>
       <% end %>
     </div>
@@ -33,6 +33,12 @@
             <% if (@location.available_seats.to_f / @location.total_seats.to_f <= 0.2) %>
             <p class="label label-warning">Crowded</p>
             <% end %>
+            <br>
+            <br>
+            <% if @last_updated_user %>
+                <p><%= "Last updated by #{@last_updated_user.first_name} #{@last_updated_user.last_name} #{time_ago_in_words(@location.updated_at)} ago" %></p>
+            <% end %>
+            <%= link_to("Update Seats/Sockets", edit_location_path(@location), class: 'btn btn-default') %>
             <hr>
             <table class="table">
                 <thead>
@@ -65,7 +71,6 @@
             <p>Air-Con:
                 <span class="label label-default"><%= @location.aircon %></span>
             </p>
-            <hr>
             <% if @location.wifi_name %>
             <div class="well">
                 <strong>Wifi network:</strong>
@@ -80,12 +85,6 @@
             </div>
             <% end %>
         </div>
-    </div>
-    <div class="panel-footer clearfix">
-        <% if @last_updated_user %>
-        <p class="pull-left"><%= "Last updated by #{@last_updated_user.first_name} #{@last_updated_user.last_name} #{time_ago_in_words(@location.updated_at)} ago" %></p>
-        <% end %>
-        <%= link_to("Update Seats/Sockets", edit_location_path(@location), class: 'btn btn-default pull-right') %>
     </div>
 </div>
 <div id="showMap"></div>

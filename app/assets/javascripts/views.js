@@ -157,8 +157,8 @@ function initMap () {
     shown_locations.forEach(location => {
       let card = $('<div></div>')
       let imagelink = ''
-      if (location['cloudinary_link']) { imagelink = `<img src=" ${location['cloudinary_link']} " alt='' class='img-responsive img-rounded center-block'>'` } else {
-        imagelink = `<img src="http://placehold.it/300x300" alt="" class='img-responsive img-rounded center-block'>`
+      if (location['cloudinary_link']) { imagelink = `<img src=" ${location['cloudinary_link']} " alt='' class='img-responsive center-block'>` } else {
+        imagelink = `<img src="http://placehold.it/300x300" alt="" class='img-responsive center-block'>`
       }
       let walktime = Math.floor(location['distance'] / 40) + 1
       let filtersString = ''
@@ -172,21 +172,21 @@ function initMap () {
       card.html(
         `
         <div class="well location-card row">
-          <div class="col-xs-5 col-md-3 location-card-img">
+          <div class="col-xs-5 col-md-3 location-card-img hidden-xs">
             ${imagelink}
-            <span class="label label-default">${walktime} min away</span>
           </div>
-          <div class="col-xs-7 col-md-9">
-          <h3> <a href="/locations/${location['id']}">${location['name']}</a> </h3>
+          <div class="col-xs-7 col-md-9 location-card-info">
+          <h3>${location['name']}</h3>
           ${location['vicinity']}
-          <br>
-          ${filtersString}
           <hr>
-          ${distance} metres away
+          ${filtersString} <br><br>
+          ${distance} metres away<br>
+          ${walktime} min away
           <hr>
           <p class="label label-default">${location['available_seats']} seats available</p>
           <p class="label label-default">${location['available_sockets']} sockets available</p>
           <hr>
+          <a href="/locations/${location['id']}"><button class="btn-default btn">View details</button></a>
           </div>
         </div>
         `
