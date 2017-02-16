@@ -8,7 +8,10 @@ function initMap () {
     mapTypeControl: false,
     scaleControl: true,
     streetViewControl: false,
-    fullscreenControl: true
+    fullscreenControl: true,
+    fullscreenControlOptions: {
+      position: google.maps.ControlPosition.BOTTOM_LEFT
+    }
   })
   var markerArray = []
   var stepDisplay = new google.maps.InfoWindow()
