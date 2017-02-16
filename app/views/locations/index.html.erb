@@ -1,22 +1,42 @@
 <p class="lead">These are the locations near you.</p>
 <button id="switch-views" class="btn btn-default">List View</button>
+<button id="filter-toggle" class="btn btn-default">Show Filters</button>
 
-<hr>
-
-<a class="btn btn-sm btn-default button-wifi">wifi</a>
-<a class="btn btn-sm btn-default button-aircon">aircon</a>
-<a class="btn btn-sm btn-default button-availsockets">sockets</a>
-<a class="btn btn-sm btn-default button-morefilters" data-toggle="collapse" data-target="#collapseOne">more filters</a>
-<div id="collapseOne" class="collapse">
+<div id="filter-div">
+  <hr>
+  <p class="lead" id="filter-toggle">Filters <span class="caret"></span></p>
+  <div class="filters">
+    <div>
+      <%= image_tag("wifi.svg", class: 'button-wifi filter-icon img-responsive') %>
+      <p class="text-center info-text">Wifi</p>
+    </div>
+    <div>
+      <%= image_tag("air-conditioner.svg", class: 'button-aircon filter-icon img-responsive') %>
+      <p class="text-center info-text">Air-Con</p>
+    </div>
+      <div>
+      <%= image_tag("plug.svg", class: 'button-availsockets filter-icon img-responsive') %>
+      <p class="text-center info-text">Sockets</p>
+    </div>
+      <div>
+      <%= image_tag("coffee-cup.svg", class: 'button-coffee filter-icon img-responsive') %>
+      <p class="text-center info-text">Coffee</p>
+    </div>
+      <div>
+      <%= image_tag("speaker-1.svg", class: 'button-quiet filter-icon img-responsive') %>
+      <p class="text-center info-text">Quiet</p>
+    </div>
+      <div>
+      <%= image_tag("employees.svg", class: 'button-uncrowded filter-icon img-responsive') %>
+      <p class="text-center info-text">Uncrowded</p>
+    </div>
+  </div>
   <br>
-  <a class="btn btn-sm btn-default button-coffee">coffee</a>
-  <a class="btn btn-sm btn-default button-quiet">quiet</a>
-  <a class="btn btn-sm btn-default button-uncrowded">uncrowded</a>
-  <a class="btn btn-sm btn-default button-clearfilters">clear filters</a>
+  <button class="button-clearfilters btn btn-default">Clear all filters</button>
 </div>
 <hr>
 
-<div id="listCards" class="hidden"></div>
+<div id="listCards"></div>
 
 <input id="pac-input" class="controls" type="text" size="40" placeholder="Search another location!">
 
