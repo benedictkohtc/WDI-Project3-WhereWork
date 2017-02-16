@@ -159,7 +159,7 @@ function initMap () {
 
   // FILTERING CODE
 
-  
+
   $(document).ready(function () {
     // adds listeners to each button
     $('#switch-views').click(function () {
@@ -205,15 +205,15 @@ function initMap () {
       geolocate()
   })
 
-  // changes view from map to list or vice versa
-  function flipView () {
-    if ($('#listCards').hasClass('hidden')) {
-      $('#listCards').removeClass('hidden')
-      $('#listMap').addClass('hidden')
+  $('#listCards').hide()
+  function flipView() {
+    if ($('#listCards').is(':hidden')) {
+      $('#listCards').fadeIn(300)
+      $('#listMap').fadeOut(300)
       $('#switch-views').text('Map View')
     } else {
-      $('#listCards').addClass('hidden')
-      $('#listMap').removeClass('hidden')
+      $('#listCards').fadeOut(300)
+      $('#listMap').fadeIn(300)
       $('#switch-views').text('List View')
     }
   }
@@ -284,15 +284,15 @@ function initMap () {
     types.forEach(type => {
       if (filterstates[ type ] === true) {
         $('.button-' + type)
-          .removeClass('btn-default')
-          .addClass('btn-primary')
+          .removeClass('filter-false')
+          .addClass('filter-true')
         shown_locations = shown_locations.filter((location) => {
           return location[ type ] == true
         })
       } else {
         $('.button-' + type)
-          .addClass('btn-default')
-          .removeClass('btn-primary')
+          .addClass('filter-false')
+          .removeClass('filter-true')
       }
     })
     renderShownLocations()
@@ -317,11 +317,19 @@ function initMap () {
   }
 
   // clears filters and update
-  function clearFilters() {    
+  function clearFilters() {
     filterstates = {}
     updateFiltersCookie()
     updateFiltering()
   }
+
+  // toggle filter view
+  $('#filter-div').hide()
+  $('#filter-toggle').click(() => {
+    $('#filter-div').toggle(300)
+    let filterToggleText = $('#filter-toggle').text()
+    $('#filter-toggle').text(filterToggleText == 'Show Filters' ? filterToggleText = 'Hide Filters' : filterToggleText = 'Show Filters')
+  })
 
   // updates both the map markers and the cards
   function renderShownLocations () {

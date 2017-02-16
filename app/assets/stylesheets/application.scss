@@ -132,3 +132,31 @@ $navbar-default-link-color: #877a87;
 .label {
   font-size: 16px;
 }
+
+.filters {
+  display: flex;
+  flex-direction: row;
+  img {
+    margin: 5px;
+  }
+}
+
+.filter-icon {
+  height: 50px;
+  width: 50px;
+  background-color: #ccc;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  &:hover {
+    padding: 6px;
+  }
+}
+
+.filter-true {
+  background-color: #877a87;
+}
+.filter-false {
+  background-color: #ccc;
+}
