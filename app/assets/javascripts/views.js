@@ -130,6 +130,9 @@ function initMap () {
     $('#switch-views').click(function () {
       flipView()
     })
+    $('.button-clearfilters').click(function(){
+      clearFilters()
+    })
     types.forEach(type => {
       $('.button-' + type).click(function () {
         flipFilter(type)
@@ -169,6 +172,7 @@ function initMap () {
       if ( location[ 'quiet' ] ) filtersString += 'quiet '
       if ( location[ 'uncrowded' ] ) filtersString += 'uncrowded '
       let distance = Math.floor( location[ 'distance' ] )
+      let showLinkString = `<a href="/locations/${location['id']}/?lat=${search_position['lat']}&lng=${search_position['lng']}">${location['name']}</a>`
       card.html(
         `
         <div class="well location-card row">
@@ -186,7 +190,7 @@ function initMap () {
           <p class="label label-default">${location['available_seats']} seats available</p>
           <p class="label label-default">${location['available_sockets']} sockets available</p>
           <hr>
-          <a href="/locations/${location['id']}"><button class="btn-default btn">View details</button></a>
+          <a href="/locations/${location['id']}/?lat=${search_position['lat']}&lng=${search_position['lng']}"><button class="btn-default btn">View details</button></a>
           </div>
         </div>
         `
@@ -222,6 +226,12 @@ function initMap () {
       }
     })
     renderShownLocations()
+  }
+
+  // clears filters and update
+  function clearFilters() {    
+    filterstates = []
+    updateFiltering()
   }
 
   // updates both the map markers and the cards
