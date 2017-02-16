@@ -1,79 +1,138 @@
+<div class="container">
 <div class="panel panel-default">
-  <div class="panel-heading clearfix">
+    <div class="panel-heading clearfix">
       <h1 class="pull-left"><%= @location.name %></h1>
+      <%= link_to 'Back', :back, class: 'btn btn-default pull-right' %>
       <% if @saved_location %>
-        <%= link_to("Unsave Location", save_path(@location), class: 'btn btn-default pull-right') %>
-      <% else %>
-        <%= link_to("Save Location", save_path(@location), class: 'btn btn-primary pull-right') %>
-      <% end %>
-  </div>
-  <div class="panel-body">
-    <div class="col-md-4">
-      <% if @location.cloudinary_link %>
-      <img src='<%= @location.cloudinary_link %>' alt="" class='img-responsive img-rounded center-block'>
-      <% else %>
-      <img src="http://placehold.it/300x300" alt="" class='img-responsive img-rounded center-block'>
-      <% end %>
-      <hr>
-    </div>
-    <div class="col-md-8">
-      <p class="lead"><%= @location.vicinity %></p>
-      <p class="label label-default"><%= "#{@location.available_seats} seats available" %></p>
-      <p class="label label-default"><%= "#{@location.available_sockets} sockets available" %></p>
-      <% if (@location.available_seats.to_f / @location.total_seats.to_f <= 0.2) %>
-      <p class="label label-warning">Crowded</p>
-      <% end %>
-      <hr>
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Day</th>
-            <th>Opening</th>
-            <th>Closing</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @location.openingtimes.to_a.reverse_each do |opening| %>
-          <tr>
-            <td><%= opening.day %></td>
-            <td><%= opening.opening_time.to_s(:time) %></td>
-            <td><%= opening.closing_time.to_s(:time) %></td>
-          </tr>
+        <%= link_to("Unsave Location", save_path(@location) , class: 'btn btn-default pull-right') %>
+        <% if @saved_location.is_watched %>
+          <%= link_to("Unwatch Location", watch_path(@location) , class: 'btn btn-default pull-right') %>
+        <% else %>
+          <% if @location.available_seats<=0 %>
+            <%= link_to("Watch Location", watch_path(@location) , class: 'btn btn-default pull-right') %>
           <% end %>
-        </tbody>
-      </table>
-      <hr>
-      <p>Coffee: <span class="label label-default"><%= @location.coffee %></span></p>
-      <p>Quiet: <span class="label label-default"><%= @location.quiet %></span></p>
-      <p>Wifi: <span class="label label-default"><%= @location.wifi %></span></p>
-      <p>Air-Con: <span class="label label-default"><%= @location.aircon %></span></p>
-      <hr>
-      <% if @location.wifi_name %>
-      <div class="well">
-        <strong>Wifi network:</strong>
-        <p><%= @location.wifi_name %></p>
-        <label for="fe_text">Password:</label>
-        <div class="input-group">
-          <input type="text" class="form-control" value='<%= @location.wifi_password %>' aria-label="..." id='wifi-password'>
-          <div class="input-group-btn">
-            <button class='my_clip_button btn btn-primary' data-placement='top' data-trigger='focus' data-clipboard-target='#wifi-password' data-clipboard-action='copy' id='d_clip_button'>Copy Password</button>
-          </div>
-        </div>
-      </div>
+        <% end %>
+      <% else %>
+        <%= link_to("Save Location", save_path(@location) , class: 'btn btn-default pull-right') %>
+        <% if @location.available_seats<=0 %>
+          <%= link_to("Watch and Save Location", watch_path(@location) , class: 'btn btn-default pull-right') %>
+        <% end %>
       <% end %>
     </div>
-  </div>
-  <div class="panel-footer clearfix">
-    <% if @last_updated_user %>
-    <p class="pull-left"><%= "Last updated by #{@last_updated_user.first_name} #{@last_updated_user.last_name} #{time_ago_in_words(@location.updated_at)} ago" %></p>
-    <% end %>
-    <%= link_to("Update Seats/Sockets", edit_location_path(@location), class: 'btn btn-default pull-right') %>
-  </div>
+    <div class="panel-body">
+        <div class="col-md-4">
+            <% if @location.cloudinary_link %>
+                <img src='<%= @location.cloudinary_link %>' alt="" class='img-responsive img-rounded center-block'>
+            <% else %>
+                <img src="http://placehold.it/300x300" alt="" class='img-responsive img-rounded center-block'>
+            <% end %>
+            <hr>
+            <div class="row">
+                <% if @location.coffee %>
+                    <div class="col-xs-3">
+                        <%= image_tag("coffee-cup.svg", class: 'info-icon img-responsive center-block') %>
+                        <p class="text-center info-text">Coffee</p>
+                    </div>
+                    <% else %>
+                    <div class="col-xs-3">
+                        <%= image_tag("coffee-cup.svg", class: 'info-icon nil-icon img-responsive center-block') %>
+                        <p class="text-center info-text">No Coffee</p>
+                    </div>
+                <% end %>
+                <% if @location.quiet %>
+                    <div class="col-xs-3">
+                        <%= image_tag("speaker-1.svg", class: 'info-icon img-responsive center-block') %>
+                        <p class="text-center info-text">Quiet</p>
+                    </div>
+                    <% else %>
+                    <div class="col-xs-3">
+                        <%= image_tag("speaker.svg", class: 'info-icon nil-icon img-responsive center-block') %>
+                        <p class="text-center info-text">Not Quiet</p>
+                    </div>
+                <% end %>
+                <% if @location.wifi %>
+                    <div class="col-xs-3">
+                        <%= image_tag("wifi.svg", class: 'info-icon img-responsive center-block') %>
+                        <p class="text-center info-text">Wifi</p>
+                    </div>
+                    <% else %>
+                    <div class="col-xs-3">
+                        <%= image_tag("wifi.svg", class: 'info-icon nil-icon img-responsive center-block') %>
+                        <p class="text-center info-text">No Wifi</p>
+                    </div>
+                <% end %>
+                <% if @location.aircon %>
+                    <div class="col-xs-3">
+                        <%= image_tag("air-conditioner.svg", class: 'info-icon img-responsive center-block') %>
+                        <p class="text-center info-text">Air-Con</p>
+                    </div>
+                    <% else %>
+                    <div class="col-xs-3">
+                        <%= image_tag("air-conditioner.svg", class: 'info-icon nil-icon img-responsive center-block') %>
+                        <p class="text-center info-text">No Air-Con</p>
+                    </div>
+                <% end %>
+            </div>
+            <hr>
+        </div>
+        <div class="col-md-8">
+            <p class="lead"><%= @location.vicinity %></p>
+            <p class="label label-default"><%= pluralize( @location.available_seats, 'seat') %> available</p>
+            <p class="label label-default"><%= pluralize( @location.available_sockets, 'socket') %> available</p>
+            <% if (@location.available_seats.to_f / @location.total_seats.to_f <= 0.2) %>
+            <p class="label label-warning">Crowded</p>
+            <% end %>
+            <br>
+            <br>
+            <% if @last_updated_user %>
+                <p><%= "Last updated by #{@last_updated_user.first_name} #{@last_updated_user.last_name} #{time_ago_in_words(@location.updated_at)} ago" %></p>
+            <% end %>
+            <%= link_to("Update Seats/Sockets", edit_location_path(@location), class: 'btn btn-default') %>
+            <hr>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Day</th>
+                        <th>Opening</th>
+                        <th>Closing</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @location.openingtimes.to_a.reverse_each do |opening| %>
+                    <tr>
+                        <td><%= opening.day %></td>
+                        <td><%= opening.opening_time.to_s(:time) %></td>
+                        <td><%= opening.closing_time.to_s(:time) %></td>
+                    </tr>
+                    <% end %>
+                </tbody>
+            </table>
+            <% if @location.wifi_name %>
+            <div class="well">
+                <strong>Wifi network:</strong>
+                <p><%= @location.wifi_name %></p>
+                <label for="fe_text">Password:</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" value='<%= @location.wifi_password %>' aria-label="..." id='wifi-password'>
+                    <div class="input-group-btn">
+                        <button class='my_clip_button btn btn-info' data-placement='top' data-trigger='focus' data-clipboard-target='#wifi-password' data-clipboard-action='copy' id='d_clip_button'>Copy Password</button>
+                    </div>
+                </div>
+            </div>
+            <% end %>
+        </div>
+    </div>
+    <div id="showMap"></div>
 </div>
-<div id="showMap"></div>
+</div>
+
 
 <%= javascript_include_tag 'password-copy' %>
 <script>
+  search_position = {
+    lat: <%= @search_position_lat %>,
+    lng: <%= @search_position_lng %>
+  }
   destinationLatLng = {
     lat: <%= @location.lat %>,
     lng: <%= @location.lng %>
@@ -84,3 +143,4 @@
 <script async defer
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBAbRwB5MRYYe7V01n2_suO8lni8njzPYM&callback=initMap">
 </script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBAbRwB5MRYYe7V01n2_suO8lni8njzPYM&callback=initMap"></script>

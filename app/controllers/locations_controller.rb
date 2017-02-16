@@ -1,6 +1,6 @@
 class LocationsController < ApplicationController
-  before_action :find_location, only: [:show, :update, :edit, :save]
-  before_action :authenticate_user!, only: [:update, :edit, :secret, :twilio_test, :mylocations, :save]
+  before_action :find_location, only: [:show, :update, :edit, :save, :watch]
+  before_action :authenticate_user!, except: [:index, :map_view, :show]
 
   def index
   end
@@ -10,49 +10,91 @@ class LocationsController < ApplicationController
     render json: nearby_locations
   end
 
-  def list_view
-    @locations = return_nearby_locations(params['lat'], params['lng'])
-  end
-
-  def mylocations
-    @locations = []
-    saved_locations = SavedLocation.where(user_id: current_user.id)
-    saved_locations.each do |record|
-      @locations.push(Location.find(record.location_id))
-    end
-  end
-
   def show
     @saved_location = SavedLocation.find_by(user_id: current_user.id, location_id: @location.id) if current_user
     @last_updated_user = User.find(@location.last_updated_user) if @location.last_updated_user
     @API_key = Figaro.env.GOOGLE_PLACES_API_KEY
+    @search_position_lat = params['lat']
+    @search_position_lng = params['lng']
+  end
+
+  def mylocations
+    @locations = []
+    @saved_locations = SavedLocation.where(user_id: current_user.id)
+    @saved_locations.each do |record|
+      @locations.push(Location.find(record.location_id))
+    end
   end
 
   def save
     saved_location = SavedLocation.find_by(user_id: current_user.id, location_id: params[:id])
-    if saved_location == nil
-      SavedLocation.create({:user_id => current_user.id, :location_id => @location.id})
+    if saved_location.nil?
+      SavedLocation.create(user_id: current_user.id, location_id: @location.id)
     else
       SavedLocation.delete(saved_location.id)
     end
-    redirect_back(fallback_location: locations_list_view_path)
+    redirect_back(fallback_location: root_path)
+  end
+
+  def watch
+    saved_location = SavedLocation.find_by(user_id: current_user.id, location_id: params[:id])
+    if saved_location.nil?
+      SavedLocation.create(user_id: current_user.id, location_id: @location.id, is_watched: true)
+      redirect_back(fallback_location: root_path) && return
+    end
+    if saved_location.is_watched
+      SavedLocation.update(saved_location.id, is_watched: false)
+    else
+      SavedLocation.update(saved_location.id, is_watched: true)
+    end
+    redirect_back(fallback_location: root_path)
+  end
+
+  def unwatch_all
+    saved_locations = SavedLocation.where(user_id: current_user.id)
+    saved_locations.each do |location|
+      SavedLocation.update(location.id, is_watched: false)
+    end
+    redirect_back(fallback_location: locations_mylocations_path)
   end
 
   def edit
   end
 
   def update
-    @location.update(location_params)
+    if @location.update(location_params)
+      flash[:info] = 'Location info updated.'
+    else
+      @location.errors.each do |error,message|
+        flash[:error] = message
+      end
+      redirect_back(fallback_location: @location)
+      return
+    end
     @location.last_updated_user = current_user.id
     @location.save
+    notification_check(@location.id, @location.available_seats, @location.name)
     flash[:info] = 'Location info updated.'
     redirect_to @location
   end
 
-  def secret
+  private
+
+  def notification_check(id, seats, name)
+    if seats > 0
+      saved_locations = SavedLocation.where(location_id: id).where(is_watched: true)
+      saved_locations.each do |location|
+        user = User.find(location.user_id)
+        # commented to prevent SMS spam
+        # send_twilio(user, name)
+        puts name
+        puts 'twilio msg sent'
+        SavedLocation.update(location.id, is_watched: false)
+      end
+    end
   end
 
-  def twilio_test
+  def send_twilio(user, location)
     require 'twilio-ruby'
 
     account_sid = Figaro.env.TWILIO_SID
@@ -65,17 +107,15 @@ class LocationsController < ApplicationController
       # from assigned number from Twilio
       from: Figaro.env.TWILIO_NUMBER,
       # to receipient's phone number
-      to: Figaro.env.DEV_HP,
+      # to: '+65' + user['mobile_number'],
+      # using DEV_HP due to twilio trial limitations
+      to: '+65' + Figaro.env.DEV_HP,
       # input SMS msg here. NOTE: 1 SMS = 160 chars!
-      body: 'Localhost test, figaro test'
+      body: "Hi #{user['first_name']}! Seats are now available at #{location}!"
     )
-    flash[:success] = 'Test SMS sent!'
-    redirect_to action: 'secret'
   end
 
-  private
-
- def return_nearby_locations(user_lat, user_lng)
+  def return_nearby_locations(user_lat, user_lng)
     nearby_locations = []
 
     l = Location.all
@@ -83,7 +123,7 @@ class LocationsController < ApplicationController
     l.each do |location|
       location_hash = location.as_json
       distance = calc_distance(user_lat, user_lng, location['lat'], location['lng'])
-      location_hash.store('distance', distance )
+      location_hash.store('distance', distance)
       next unless location_hash['distance'].to_f < 400
       nearby_locations.push(location_hash)
     end

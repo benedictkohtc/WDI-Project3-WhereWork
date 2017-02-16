@@ -5,8 +5,13 @@ function initMap () {
       lat: 1.3072052,
       lng: 103.831843
     },
+    mapTypeControl: false,
     scaleControl: true,
-    fullscreenControl: true
+    streetViewControl: false,
+    fullscreenControl: true,
+    fullscreenControlOptions: {
+      position: google.maps.ControlPosition.BOTTOM_LEFT
+    }
   })
   var markerArray = []
   var stepDisplay = new google.maps.InfoWindow()
@@ -28,29 +33,20 @@ function initMap () {
       attachInstructionText(stepDisplay, marker, myRoute.steps[j].instructions, map)
     }
   }
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function (position) {
-      var pos = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      }
-      map.setCenter(pos)
-      var coords = new google.maps.LatLng(pos)
-      var directionsService = new google.maps.DirectionsService()
-      var directionsDisplay = new google.maps.DirectionsRenderer()
-      directionsDisplay.setMap(map)
-      var request = {
-        origin: coords,
-        destination: destinationLatLng,
-        travelMode: google.maps.DirectionsTravelMode.WALKING
-      }
-
-      directionsService.route(request, function (response, status) {
-        if (status == google.maps.DirectionsStatus.OK) {
-          directionsDisplay.setDirections(response)
-          showSteps(response, markerArray, stepDisplay, map)
-        }
-      })
-    })
+  map.setCenter(search_position)
+  var directionsService = new google.maps.DirectionsService()
+  var directionsDisplay = new google.maps.DirectionsRenderer()
+  directionsDisplay.setMap(map)
+  var request = {
+    origin: new google.maps.LatLng(search_position),
+    destination: destinationLatLng,
+    travelMode: google.maps.DirectionsTravelMode.WALKING
   }
+
+  directionsService.route(request, function (response, status) {
+    if (status == google.maps.DirectionsStatus.OK) {
+      directionsDisplay.setDirections(response)
+      showSteps(response, markerArray, stepDisplay, map)
+    }
+  })
 }
