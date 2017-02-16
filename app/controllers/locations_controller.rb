@@ -66,7 +66,15 @@ class LocationsController < ApplicationController
   end
 
   def update
-    @location.update(location_params)
+    if @location.update(location_params)
+      flash[:info] = 'Location info updated.'
+    else
+      @location.errors.each do |error,message|
+        flash[:error] = message
+      end
+      redirect_back(fallback_location: @location)
+      return
+    end
     @location.last_updated_user = current_user.id
     @location.save
     notification_check(@location.id, @location.available_seats, @location.name)

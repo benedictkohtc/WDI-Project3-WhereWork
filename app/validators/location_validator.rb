@@ -1,11 +1,3 @@
-class Location < ApplicationRecord
-
-  has_many :openingtimes
-  validates_with LocationValidator
-
-end
-
-
 class LocationValidator < ActiveModel::Validator
   def validate(record)
     unless record.available_sockets > -1
@@ -16,5 +8,3 @@ class LocationValidator < ActiveModel::Validator
     end
   end
 end
-
-
