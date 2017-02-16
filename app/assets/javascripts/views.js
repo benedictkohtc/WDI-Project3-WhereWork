@@ -23,6 +23,27 @@ function initMap () {
   let userLocationInfoWindow = new google.maps.InfoWindow({ map: map })
   let infoWindow = new google.maps.InfoWindow()
 
+  // create a div to hold the geolocate button
+  let centerControlDiv = document.createElement('div')
+  let centerControl = new CenterControl(centerControlDiv, map)
+  map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv)
+
+  function CenterControl(controlDiv, map) {
+    // set CSS for button border
+    let controlUI = document.createElement('div')
+      controlUI.setAttribute('id', 'geolocateButton')
+      controlUI.setAttribute('class', 'btn btn-info')
+      controlDiv.appendChild(controlUI)
+    // set CSS for button interior
+    let controlText = document.createElement('div')
+      controlText.innerHTML = 'Current location'
+      controlUI.appendChild(controlText)
+    // set up click event listener to geolocate
+    controlUI.addEventListener('click', function() {
+      geolocate()
+    })
+  }
+
   // bias search results for start location in favour of locations in Singapore
   let autocompleteDefaultBounds = new google.maps.LatLngBounds(
     new google.maps.LatLng(1.077484, 103.582585),
@@ -71,27 +92,6 @@ function initMap () {
       updateFiltering()
     })
   })
-
-  // create a div to hold the geolocate button
-  let centerControlDiv = document.createElement('div')
-  let centerControl = new CenterControl(centerControlDiv, map)
-  map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv)
-
-  function CenterControl(controlDiv, map) {
-    // set CSS for button border
-    let controlUI = document.createElement('div')
-      controlUI.setAttribute('id', 'geolocateButton')
-      controlUI.setAttribute('class', 'btn btn-default')
-      controlDiv.appendChild(controlUI)
-    // set CSS for button interior
-    let controlText = document.createElement('div')
-      controlText.innerHTML = 'Current location'
-      controlUI.appendChild(controlText)
-    // set up click event listener to geolocate
-    controlUI.addEventListener('click', function() {
-      geolocate()
-    })
-  }
 
   // place a marker at each location provided by the controller
   function placeMarker (location) {
@@ -274,7 +274,7 @@ function initMap () {
   }
 
   // clears filters and update
-  function clearFilters() {    
+  function clearFilters() {
     filterstates = []
     updateFiltering()
   }
