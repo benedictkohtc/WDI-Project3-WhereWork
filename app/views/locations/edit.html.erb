@@ -1,6 +1,12 @@
-<%= bootstrap_form_for(@location) do |f| %>
-  <%= f.text_field :available_seats %>
-  <%= f.text_field :available_sockets %>
-  <%= f.text_field :wifi_password %>
-  <%= f.submit "Update" %>
-<% end %>
+<div class="container">
+<div class="col-md-6 col-md-offset-3 well">
+  <%= bootstrap_form_for(@location) do |f| %>
+    <h2>Edit location information for <%= @location.name %></h2>
+    <hr>
+    <%= f.text_field :available_seats %>
+    <%= f.text_field :available_sockets %>
+    <%= f.text_field :wifi_password if @location.wifi %>
+    <%= f.submit "Update" %>
+  <% end %>
+</div>
+</div>

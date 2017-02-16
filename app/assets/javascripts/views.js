@@ -1,12 +1,11 @@
 function initMap () {
   let search_position
-  let search_position_lat
-  let search_position_lng
   let types = [ 'wifi', 'aircon', 'availsockets', 'coffee', 'quiet', 'uncrowded' ]
   let filterstates = {}
   let all_locations = []
   let shown_locations = []
   let markers = []
+  let cookieData = {}
 
   let map = new google.maps.Map(document.getElementById('listMap'), {
     zoom: 16,
@@ -74,6 +73,7 @@ function initMap () {
       lat: place.geometry.location.lat(),
       lng: place.geometry.location.lng()
     }
+    updateSearchPositionCookie()
     $.ajax({
       type: 'GET',
       url: '/locations/map_view',
@@ -88,8 +88,8 @@ function initMap () {
         location[ 'uncrowded' ] =
           location[ 'available_seats' ] /
           location[ 'total_seats' ] > 0.3 ? true : false
-      })
       updateFiltering()
+      })
     })
   })
 
@@ -108,8 +108,8 @@ function initMap () {
     // each time a marker is clicked, open an information window displaying the location name linked to its show view, and send the search position set by the user to the controller along with the request
     google.maps.event.addListener(marker, 'click', function () {
       infoWindow.close()
-      search_position_lat = search_position['lat']
-      search_position_lng = search_position['lng']
+      let search_position_lat = search_position['lat']
+      let search_position_lng = search_position['lng']
       infoWindow.setContent("<div id= 'infoWindow'>" + "<a href='/locations/" + location[ 'id' ] + '/?lat=' + search_position_lat + '&lng=' + search_position_lng + "'>" + location[ 'name' ] + '</a>' + '</div>')
       infoWindow.open(map, marker)
     })
@@ -128,6 +128,7 @@ function initMap () {
         userLocationInfoWindow.setPosition(search_position)
         userLocationInfoWindow.setContent('Your location')
         map.setCenter(search_position)
+        updateSearchPositionCookie()
         $.ajax({
           type: 'GET',
           url: '/locations/map_view',
@@ -143,7 +144,7 @@ function initMap () {
               location[ 'available_seats' ] /
               location[ 'total_seats' ] > 0.3 ? true : false
           })
-          updateFiltering()
+        updateFiltering()
         })
       }, function () {
         handleLocationError(true, userLocationInfoWindow, map.getCenter())
@@ -154,7 +155,7 @@ function initMap () {
     }
   }
 
-  geolocate()
+
 
   // if user clicks on 'Current location' button, call the geolocate function
   $('#geolocate').click(function () {
@@ -163,9 +164,9 @@ function initMap () {
 
   // FILTERING CODE
 
-  // adds listeners to each button
 
   $(document).ready(function () {
+    // adds listeners to each button
     $('#switch-views').click(function () {
       flipView()
     })
@@ -180,17 +181,44 @@ function initMap () {
         flipFilter(type)
       })
     })
+    // loads filters from cookie if cookie exists
+    if (document.cookie) cookieData = JSON.parse(document.cookie)
+    if (cookieData.filters) filterstates = cookieData.filters
+    if (cookieData.search_position) {
+      search_position = cookieData.search_position
+      $.ajax({
+        type: 'GET',
+        url: '/locations/map_view',
+        data: search_position,
+        contentType: 'application/json',
+        dataType: 'json'
+      }).done(function (response) {
+        all_locations = response
+        all_locations.forEach(location => {
+          location[ 'availsockets' ] =
+            location[ 'available_sockets' ] > 0 ? true : false
+          location[ 'uncrowded' ] =
+            location[ 'available_seats' ] /
+            location[ 'total_seats' ] > 0.3 ? true : false
+          })
+        map.setCenter(search_position)
+        userLocationInfoWindow.setPosition(search_position)
+        userLocationInfoWindow.setContent('Your location')
+        updateFiltering()
+        })
+    } else
+      geolocate()
   })
 
-  // changes view from map to list or vice versa
-  function flipView () {
-    if ($('#listCards').hasClass('hidden')) {
-      $('#listCards').removeClass('hidden')
-      $('#listMap').addClass('hidden')
+  $('#listCards').hide()
+  function flipView() {
+    if ($('#listCards').is(':hidden')) {
+      $('#listCards').fadeIn(300)
+      $('#listMap').fadeOut(300)
       $('#switch-views').text('Map View')
     } else {
-      $('#listCards').addClass('hidden')
-      $('#listMap').removeClass('hidden')
+      $('#listCards').fadeOut(300)
+      $('#listMap').fadeIn(300)
       $('#switch-views').text('List View')
     }
   }
@@ -207,30 +235,34 @@ function initMap () {
       }
       let walktime = Math.floor(location['distance'] / 40) + 1
       let filtersString = ''
-      if (location[ 'wifi' ]) filtersString += 'wifi '
-      if (location[ 'aircon' ]) filtersString += 'aircon '
-      if (location[ 'availsockets' ]) filtersString += 'sockets '
-      if (location[ 'coffee' ]) filtersString += 'coffee '
-      if (location[ 'quiet' ]) filtersString += 'quiet '
-      if (location[ 'uncrowded' ]) filtersString += 'uncrowded '
-      let distance = Math.floor(location[ 'distance' ])
+
+      if ( location[ 'wifi' ] ) filtersString += wifiIcon
+      if ( location[ 'aircon' ] ) filtersString += airconIcon
+      if ( location[ 'availsockets' ] ) filtersString += socketsIcon
+      if ( location[ 'coffee' ] ) filtersString += coffeeIcon
+      if ( location[ 'quiet' ] ) filtersString += quietIcon
+      if ( location[ 'uncrowded' ] ) filtersString += uncrowdedIcon
+      let distance = Math.floor( location[ 'distance' ] )
+
       let showLinkString = `<a href="/locations/${location['id']}/?lat=${search_position['lat']}&lng=${search_position['lng']}">${location['name']}</a>`
       card.html(
         `
         <div class="well location-card row">
-          <div class="col-xs-5 col-md-3 location-card-img hidden-xs">
+          <div class="col-xs-5 col-md-3 location-card-img hidden-sm hidden-xs">
             ${imagelink}
           </div>
-          <div class="col-xs-7 col-md-9 location-card-info">
+          <div class="col-xs-12 col-md-9 location-card-info">
           <h3>${location['name']}</h3>
-          ${location['vicinity']}
-          <hr>
-          ${filtersString} <br><br>
-          ${distance} metres away<br>
-          ${walktime} min away
-          <hr>
+          ${location['vicinity']} <br><br>
           <p class="label label-default">${location['available_seats']} seats available</p>
           <p class="label label-default">${location['available_sockets']} sockets available</p>
+          <hr>
+          <div class='row'>
+            ${filtersString}
+          </div>
+          <hr>
+          ${distance} metres away<br>
+          ${walktime} min away
           <hr>
           <a href="/locations/${location['id']}/?lat=${search_position['lat']}&lng=${search_position['lng']}"><button class="btn-default btn">View details</button></a>
           </div>
@@ -245,6 +277,7 @@ function initMap () {
   // changes filterstates type
   function flipFilter (type) {
     filterstates[ type ] = filterstates[ type ] === true ? false : true
+    updateFiltersCookie()
     updateFiltering()
   }
 
@@ -256,18 +289,28 @@ function initMap () {
     types.forEach(type => {
       if (filterstates[ type ] === true) {
         $('.button-' + type)
-          .removeClass('btn-default')
-          .addClass('btn-primary')
+          .removeClass('filter-false')
+          .addClass('filter-true')
         shown_locations = shown_locations.filter((location) => {
           return location[ type ] == true
         })
       } else {
         $('.button-' + type)
-          .addClass('btn-default')
-          .removeClass('btn-primary')
+          .addClass('filter-false')
+          .removeClass('filter-true')
       }
     })
     renderShownLocations()
+  }
+
+  function updateFiltersCookie() {
+    cookieData.filters = filterstates
+    document.cookie = JSON.stringify(cookieData)
+  }
+
+  function updateSearchPositionCookie() {
+    cookieData.search_position = search_position
+    document.cookie = JSON.stringify(cookieData)
   }
 
   // toggle morefilters button
@@ -280,9 +323,18 @@ function initMap () {
 
   // clears filters and update
   function clearFilters() {
-    filterstates = []
+    filterstates = {}
+    updateFiltersCookie()
     updateFiltering()
   }
+
+  // toggle filter view
+  $('#filter-div').hide()
+  $('#filter-toggle').click(() => {
+    $('#filter-div').toggle(300)
+    let filterToggleText = $('#filter-toggle').text()
+    $('#filter-toggle').text(filterToggleText == 'Show Filters' ? filterToggleText = 'Hide Filters' : filterToggleText = 'Show Filters')
+  })
 
   // updates both the map markers and the cards
   function renderShownLocations () {
