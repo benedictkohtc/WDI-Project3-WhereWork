@@ -16,7 +16,7 @@
  */
 
 $body-bg: #c5d5d5;
-$font-family-sans-serif:  "Montserrat", Helvetica, Arial, sans-serif !default;
+$font-family-sans-serif: "Montserrat", Helvetica, Arial, sans-serif !default;
 $navbar-default-bg: #c5d5d5;
 $navbar-default-brand-color: #fff;
 $text-color: #68665c;
@@ -64,12 +64,23 @@ $navbar-default-link-color: #877a87;
 }
 
 #pac-input {
-  font-family: 'Arial', sans-serif;
+  font-family: "Montserrat", Helvetica, Arial, sans-serif;
   font-size: 13px;
   text-align: center;
   margin-top: 10px;
-  padding: 12px;
+  padding: 8px;
+}
 
+#geolocateButton {
+  margin-top: 12px;
+  margin-right: 10px;
+  font-family: "Montserrat", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+
+}
+
+#geolocateButton:hover {
+  background-color: #d9d9d9;
 }
 
 .location-card {
