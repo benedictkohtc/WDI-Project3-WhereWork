@@ -243,7 +243,7 @@ function initMap () {
       card.html(
         `
         <div class="well location-card row">
-          <div class="col-xs-5 col-md-3 location-card-img hidden-xs">
+          <div class="col-xs-5 col-md-3 location-card-img hidden-sm hidden-xs">
             ${imagelink}
           </div>
           <div class="col-xs-12 col-md-9 location-card-info">
