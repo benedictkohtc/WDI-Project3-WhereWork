@@ -54,10 +54,12 @@ $navbar-default-link-color: #877a87;
   transition: all 0.5s ease;
 }
 
-.btn-default:hover {
-  background-color: #ddd2ce;
+.btn-default {
+  margin: 0 5px;
+  &:hover {
+    background-color: #ddd2ce;
+  }
 }
-
 .container {
   margin: 20px auto;
 }
