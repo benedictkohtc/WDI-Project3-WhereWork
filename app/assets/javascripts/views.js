@@ -98,7 +98,12 @@ function initMap () {
     let latLng = new google.maps.LatLng(location[ 'lat' ], location[ 'lng' ])
     let marker = new google.maps.Marker({
       position: latLng,
-      map: map
+      map: map,
+      icon: {
+        url: "marker.png",
+        scaledSize: new google.maps.Size(32, 32)
+      },
+      animation: google.maps.Animation.DROP
     })
     // each time a marker is clicked, open an information window displaying the location name linked to its show view, and send the search position set by the user to the controller along with the request
     google.maps.event.addListener(marker, 'click', function () {
