@@ -1,6 +1,6 @@
 class LocationsController < ApplicationController
   before_action :find_location, only: [:show, :update, :edit, :save, :watch]
-  before_action :authenticate_user!, except: [:index, :map_view, :list_view, :show]
+  before_action :authenticate_user!, except: [:index, :map_view, :show]
 
   def index
   end
@@ -8,10 +8,6 @@ class LocationsController < ApplicationController
   def map_view
     nearby_locations = return_nearby_locations(params['lat'], params['lng'])
     render json: nearby_locations
-  end
-
-  def list_view
-    @locations = return_nearby_locations(params['lat'], params['lng'])
   end
 
   def show
@@ -37,21 +33,21 @@ class LocationsController < ApplicationController
     else
       SavedLocation.delete(saved_location.id)
     end
-    redirect_back(fallback_location: locations_list_view_path)
+    redirect_back(fallback_location: root_path)
   end
 
   def watch
     saved_location = SavedLocation.find_by(user_id: current_user.id, location_id: params[:id])
     if saved_location.nil?
       SavedLocation.create(user_id: current_user.id, location_id: @location.id, is_watched: true)
-      redirect_back(fallback_location: locations_list_view_path) && return
+      redirect_back(fallback_location: root_path) && return
     end
     if saved_location.is_watched
       SavedLocation.update(saved_location.id, is_watched: false)
     else
       SavedLocation.update(saved_location.id, is_watched: true)
     end
-    redirect_back(fallback_location: locations_list_view_path)
+    redirect_back(fallback_location: root_path)
   end
 
   def unwatch_all
