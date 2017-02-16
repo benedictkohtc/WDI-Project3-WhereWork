@@ -130,6 +130,9 @@ function initMap () {
     $('#switch-views').click(function () {
       flipView()
     })
+    $('.button-clearfilters').click(function(){
+      clearFilters()
+    })
     types.forEach(type => {
       $('.button-' + type).click(function () {
         flipFilter(type)
@@ -223,6 +226,12 @@ function initMap () {
       }
     })
     renderShownLocations()
+  }
+
+  // clears filters and update
+  function clearFilters() {    
+    filterstates = []
+    updateFiltering()
   }
 
   // updates both the map markers and the cards
