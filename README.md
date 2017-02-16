@@ -14,8 +14,8 @@ Setup DB username (and password)
 ##### Location Seeding from Google Places
 Uses HTTParty gem for making requests. Task file is in `lib\tasks\seed_from_google_places.rake`
 
-To seed, type `rails seed_from_google_places`.
-
+To seed, type `rails seed_from_google_places`. and then 'rails add_opening_times'. You will need a Cloudinary account with your cloudinary.yml in /config. To clear all Cloudinary images from your account (warning will delete ALL your images), run 'rails delete_all_cloudinary_images'.
+ 
 Rails DB seed file has been populated using the seed-dump gem.  
 Type `rails db:seed` to use it.
 
