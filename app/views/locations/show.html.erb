@@ -20,11 +20,23 @@
     <div class="panel-body">
         <div class="col-md-4">
             <% if @location.cloudinary_link %>
-            <img src='<%= @location.cloudinary_link %>' alt="" class='img-responsive img-rounded center-block'>
-        <% else %>
-            <img src="http://placehold.it/300x300" alt="" class='img-responsive img-rounded center-block'>
+                <img src='<%= @location.cloudinary_link %>' alt="" class='img-responsive img-rounded center-block'>
+            <% else %>
+                <img src="http://placehold.it/300x300" alt="" class='img-responsive img-rounded center-block'>
             <% end %>
             <hr>
+            <p>Coffee:
+                <span class="label label-default"><%= @location.coffee %></span>
+            </p>
+            <p>Quiet:
+                <span class="label label-default"><%= @location.quiet %></span>
+            </p>
+            <p>Wifi:
+                <span class="label label-default"><%= @location.wifi %></span>
+            </p>
+            <p>Air-Con:
+                <span class="label label-default"><%= @location.aircon %></span>
+            </p>
         </div>
         <div class="col-md-8">
             <p class="lead"><%= @location.vicinity %></p>
@@ -58,8 +70,8 @@
                     <% end %>
                 </tbody>
             </table>
-            <hr>
-            <p>Coffee:
+            <!-- <hr> -->
+<!--             <p>Coffee:
                 <span class="label label-default"><%= @location.coffee %></span>
             </p>
             <p>Quiet:
@@ -70,7 +82,7 @@
             </p>
             <p>Air-Con:
                 <span class="label label-default"><%= @location.aircon %></span>
-            </p>
+            </p> -->
             <% if @location.wifi_name %>
             <div class="well">
                 <strong>Wifi network:</strong>
@@ -86,8 +98,10 @@
             <% end %>
         </div>
     </div>
+    <div id="showMap"></div>
 </div>
-<div id="showMap"></div>
+
+
 
 <%= javascript_include_tag 'password-copy' %>
 <script>

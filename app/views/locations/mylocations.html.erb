@@ -4,7 +4,7 @@
 <% @locations.zip(@saved_locations).each do |location, saved_location| %>
   <div class="panel panel-default">
     <div class="panel-body">
-      <h3><%= link_to(location.name, location) %></h3>
+      <h3><%= location.name %></h3>
       <p><%= location.vicinity %></p>
       <p class="label label-default"><%= "#{location.available_seats} seats available" %></p>
       <p class="label label-default"><%= "#{location.available_sockets} sockets available" %></p>
@@ -13,7 +13,7 @@
       <% end %>
       <br>
       <br>
-      <%= link_to("View Details", location_path(location), class: 'btn btn-default') %>
+      <%= link_to("View Details", location, class: 'btn btn-default') %>
     </div>
     <div class="panel-footer">
       <% if saved_location.is_watched %>
