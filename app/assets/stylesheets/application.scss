@@ -63,12 +63,29 @@ $navbar-default-link-color: #877a87;
   }
 }
 
+#mapInputs {
+  display: block;
+}
+
 #pac-input {
   font-family: "Montserrat", Helvetica, Arial, sans-serif;
   font-size: 13px;
   text-align: center;
   margin-top: 10px;
   padding: 8px;
+  display: block;
+}
+
+.pac-item {
+  font-family: "Montserrat", Helvetica, Arial, sans-serif;
+}
+
+.pac-item:hover {
+  background-color: #f0f3fc;
+}
+
+.pac-item:selected {
+  background-color: #ddd2ce;
 }
 
 #geolocateButton {
@@ -76,7 +93,7 @@ $navbar-default-link-color: #877a87;
   margin-right: 10px;
   font-family: "Montserrat", Helvetica, Arial, sans-serif;
   font-size: 12px;
-
+  display: block;
 }
 
 #geolocateButton:hover {
