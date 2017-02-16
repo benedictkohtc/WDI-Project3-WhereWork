@@ -1,6 +1,6 @@
 <%= bootstrap_form_for(@location) do |f| %>
   <%= f.text_field :available_seats %>
   <%= f.text_field :available_sockets %>
-  <%= f.text_field :wifi_password %>
+  <%= f.text_field :wifi_password if @location.wifi %>
   <%= f.submit "Update" %>
 <% end %>
