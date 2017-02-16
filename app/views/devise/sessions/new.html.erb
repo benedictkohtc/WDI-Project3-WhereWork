@@ -19,8 +19,9 @@
 
     <div class="actions">
       <%= f.submit "Log in" %>
+      <span class="pull-right">
+        <%= render "devise/shared/links" %>
+      </span>
     </div>
   <% end %>
-
-  <%= render "devise/shared/links" %>
 </div>
