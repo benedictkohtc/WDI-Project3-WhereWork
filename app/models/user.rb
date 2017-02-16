@@ -6,5 +6,5 @@ class User < ApplicationRecord
          :timeoutable,
          :validatable,
          timeout_in: 2.hours,
-         password_length: 1..128
+         password_length: 8..128
 end
