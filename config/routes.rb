@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   root 'locations#index'
 
   get 'locations/return_nearby_locations'
-  get 'locations/list_view'
   get 'locations/map_view'
   get 'locations/mylocations'
   get 'locations/:id/save', to: 'locations#save', as: :save
