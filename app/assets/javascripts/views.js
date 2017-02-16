@@ -1,12 +1,11 @@
 function initMap () {
   let search_position
-  let search_position_lat
-  let search_position_lng
   let types = [ 'wifi', 'aircon', 'availsockets', 'coffee', 'quiet', 'uncrowded' ]
   let filterstates = {}
   let all_locations = []
   let shown_locations = []
   let markers = []
+  let cookieData = {}
 
   let map = new google.maps.Map(document.getElementById('listMap'), {
     zoom: 16,
@@ -48,6 +47,7 @@ function initMap () {
       lat: place.geometry.location.lat(),
       lng: place.geometry.location.lng()
     }
+    updateSearchPositionCookie()
     $.ajax( {
       type: 'GET',
       url: '/locations/map_view',
@@ -78,8 +78,8 @@ function initMap () {
     // each time a marker is clicked, open an information window displaying the location name linked to its show view, and send the search position set by the user to the controller along with the request
     google.maps.event.addListener(marker, 'click', function () {
       infoWindow.close()
-      search_position_lat = search_position['lat']
-      search_position_lng = search_position['lng']
+      let search_position_lat = search_position['lat']
+      let search_position_lng = search_position['lng']
       infoWindow.setContent("<div id= 'infoWindow'>" + "<a href='/locations/" + location[ 'id' ] + '/?lat=' + search_position_lat + '&lng=' + search_position_lng + "'>" + location[ 'name' ] + '</a>' + '</div>')
       infoWindow.open(map, marker)
     })
@@ -112,6 +112,7 @@ function initMap () {
             location[ 'available_seats' ] /
             location[ 'total_seats' ] > 0.3 ? true : false
         })
+        updateSearchPositionCookie()
         updateFiltering()
       })
     }, function () {
@@ -124,9 +125,9 @@ function initMap () {
 
   // FILTERING CODE
 
-  // adds listeners to each button
-
+  
   $(document).ready(function () {
+    // adds listeners to each button
     $('#switch-views').click(function () {
       flipView()
     })
@@ -141,6 +142,10 @@ function initMap () {
         flipFilter(type)
       })
     })
+    // loads filters from cookie if cookie exists
+    cookieData = JSON.parse(document.cookie)
+    if (cookieData.filters) filterstates = cookieData.filters
+    if (cookieData.search_position) search_position = cookieData.search_position
   })
 
   // changes view from map to list or vice versa
@@ -206,6 +211,7 @@ function initMap () {
   // changes filterstates type
   function flipFilter (type) {
     filterstates[ type ] = filterstates[ type ] === true ? false : true
+    updateFiltersCookie()
     updateFiltering()
   }
 
@@ -231,6 +237,17 @@ function initMap () {
     renderShownLocations()
   }
 
+  function updateFiltersCookie() {
+    cookieData.filters = filterstates
+    document.cookie = JSON.stringify(cookieData)
+  }
+
+  function updateSearchPositionCookie() {
+    cookieData.search_position = search_position
+    document.cookie = JSON.stringify(cookieData)
+    console.log("position cookie updated: ",document.cookie)
+  }
+
   // toggle morefilters button
   function toggleMorefiltersButton () {
     if ( $('.button-morefilters').text() === 'more filters' )
@@ -241,7 +258,8 @@ function initMap () {
 
   // clears filters and update
   function clearFilters() {    
-    filterstates = []
+    filterstates = {}
+    document.cookie = JSON.stringify(filterstates)
     updateFiltering()
   }
 
