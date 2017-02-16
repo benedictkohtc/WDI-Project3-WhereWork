@@ -28,6 +28,27 @@ $navbar-default-link-color: #877a87;
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.info-icon {
+  height: 50px;
+  width: 50px;
+  background-color: $body-bg;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.nil-icon {
+  height: 50px;
+  width: 50px;
+  background-color: $body-bg;
+  opacity: 0.2;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.info-text {
+  margin-top: 8px;
+  font-size: 0.8em;
+}
 
 .btn {
   transition: all 0.5s ease;
