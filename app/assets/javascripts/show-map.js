@@ -5,7 +5,9 @@ function initMap () {
       lat: 1.3072052,
       lng: 103.831843
     },
+    mapTypeControl: false,
     scaleControl: true,
+    streetViewControl: false,
     fullscreenControl: true
   })
   var markerArray = []

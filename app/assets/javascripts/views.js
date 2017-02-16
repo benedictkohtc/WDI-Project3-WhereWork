@@ -10,12 +10,17 @@ function initMap () {
 
   let map = new google.maps.Map(document.getElementById('listMap'), {
     zoom: 16,
-    center: { lat: 1.3072052, lng: 103.831843 },
+    center: {
+      lat: 1.3072052,
+      lng: 103.831843
+    },
+    mapTypeControl: false,
     scaleControl: true,
+    streetViewControl: false,
     fullscreenControl: true
-  } )
+  })
 
-  let userLocationInfoWindow = new google.maps.InfoWindow( { map: map } )
+  let userLocationInfoWindow = new google.maps.InfoWindow({ map: map })
   let infoWindow = new google.maps.InfoWindow()
 
   // bias search results for start location in favour of locations in Singapore
@@ -28,10 +33,10 @@ function initMap () {
   }
 
   // set up autocomplete search field and position it at the top edge, horizontally centered
-  let input = document.getElementById('pac-input')
-  map.controls[google.maps.ControlPosition.TOP_CENTER].push(input)
+  let pacInput = document.getElementById('pac-input')
+  map.controls[google.maps.ControlPosition.TOP_CENTER].push(pacInput)
 
-  let autocomplete = new google.maps.places.Autocomplete(input, autocompleteOptions)
+  let autocomplete = new google.maps.places.Autocomplete(pacInput, autocompleteOptions)
   autocomplete.addListener('place_changed', function () {
     let place = autocomplete.getPlace()
     if (!place.geometry) {
@@ -48,24 +53,45 @@ function initMap () {
       lat: place.geometry.location.lat(),
       lng: place.geometry.location.lng()
     }
-    $.ajax( {
+    $.ajax({
       type: 'GET',
       url: '/locations/map_view',
       data: search_position,
       contentType: 'application/json',
       dataType: 'json'
-    } ).done( function( response ) {
+    }).done(function (response) {
       all_locations = response
-      all_locations.forEach( location => {
+      all_locations.forEach(location => {
         location[ 'availsockets' ] =
           location[ 'available_sockets' ] > 0 ? true : false
         location[ 'uncrowded' ] =
           location[ 'available_seats' ] /
           location[ 'total_seats' ] > 0.3 ? true : false
-      } )
+      })
       updateFiltering()
-    } )
-  } )
+    })
+  })
+
+  // create a div to hold the geolocate button
+  let centerControlDiv = document.createElement('div')
+  let centerControl = new CenterControl(centerControlDiv, map)
+  map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv)
+
+  function CenterControl(controlDiv, map) {
+    // set CSS for button border
+    let controlUI = document.createElement('div')
+      controlUI.setAttribute('id', 'geolocateButton')
+      controlUI.setAttribute('class', 'btn btn-default')
+      controlDiv.appendChild(controlUI)
+    // set CSS for button interior
+    let controlText = document.createElement('div')
+      controlText.innerHTML = 'Current location'
+      controlUI.appendChild(controlText)
+    // set up click event listener to geolocate
+    controlUI.addEventListener('click', function() {
+      geolocate()
+    })
+  }
 
   // place a marker at each location provided by the controller
   function placeMarker (location) {
@@ -125,6 +151,11 @@ function initMap () {
 
   geolocate()
 
+  // if user clicks on 'Current location' button, call the geolocate function
+  $('#geolocate').click(function () {
+    geolocate()
+  })
+
   // FILTERING CODE
 
   // adds listeners to each button
@@ -165,13 +196,13 @@ function initMap () {
       }
       let walktime = Math.floor(location['distance'] / 40) + 1
       let filtersString = ''
-      if ( location[ 'wifi' ] ) filtersString += 'wifi '
-      if ( location[ 'aircon' ] ) filtersString += 'aircon '
-      if ( location[ 'availsockets' ] ) filtersString += 'sockets '
-      if ( location[ 'coffee' ] ) filtersString += 'coffee '
-      if ( location[ 'quiet' ] ) filtersString += 'quiet '
-      if ( location[ 'uncrowded' ] ) filtersString += 'uncrowded '
-      let distance = Math.floor( location[ 'distance' ] )
+      if (location[ 'wifi' ]) filtersString += 'wifi '
+      if (location[ 'aircon' ]) filtersString += 'aircon '
+      if (location[ 'availsockets' ]) filtersString += 'sockets '
+      if (location[ 'coffee' ]) filtersString += 'coffee '
+      if (location[ 'quiet' ]) filtersString += 'quiet '
+      if (location[ 'uncrowded' ]) filtersString += 'uncrowded '
+      let distance = Math.floor(location[ 'distance' ])
       let showLinkString = `<a href="/locations/${location['id']}/?lat=${search_position['lat']}&lng=${search_position['lng']}">${location['name']}</a>`
       card.html(
         `
@@ -195,9 +226,9 @@ function initMap () {
         </div>
         `
       )
-      cardslist.append( card )
-    } )
-    $( '#listCards' ).append( cardslist )
+      cardslist.append(card)
+    })
+    $('#listCards').append(cardslist)
   }
 
   // changes filterstates type
@@ -211,14 +242,14 @@ function initMap () {
     markers.forEach(marker => marker.setMap(null))
     markers = []
     shown_locations = all_locations.slice()
-    types.forEach( type => {
-      if ( filterstates[ type ] === true ) {
-        $( '.button-' + type )
-          .removeClass( 'btn-default' )
-          .addClass( 'btn-primary' )
-        shown_locations = shown_locations.filter( ( location ) => {
+    types.forEach(type => {
+      if (filterstates[ type ] === true) {
+        $('.button-' + type)
+          .removeClass('btn-default')
+          .addClass('btn-primary')
+        shown_locations = shown_locations.filter((location) => {
           return location[ type ] == true
-        } )
+        })
       } else {
         $('.button-' + type)
           .addClass('btn-default')
@@ -229,9 +260,9 @@ function initMap () {
   }
 
   // updates both the map markers and the cards
-  function renderShownLocations() {
+  function renderShownLocations () {
     // add markers to map
-    shown_locations.forEach( location => placeMarker( location ) )
+    shown_locations.forEach(location => placeMarker(location))
       // update cards
     updateCards()
   }

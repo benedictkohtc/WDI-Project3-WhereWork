@@ -45,6 +45,16 @@
 
 }
 
+#geolocateButton {
+  margin-top: 16px;
+  margin-left: 12px;
+  font-size: 12px;
+}
+
+#geolocateButton:hover {
+  background-color: #d9d9d9;
+}
+
 .location-card {
   border-radius: 0;
   .location-card-img {
