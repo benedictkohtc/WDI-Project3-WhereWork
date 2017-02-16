@@ -25,18 +25,53 @@
                 <img src="http://placehold.it/300x300" alt="" class='img-responsive img-rounded center-block'>
             <% end %>
             <hr>
-            <p>Coffee:
-                <span class="label label-default"><%= @location.coffee %></span>
-            </p>
-            <p>Quiet:
-                <span class="label label-default"><%= @location.quiet %></span>
-            </p>
-            <p>Wifi:
-                <span class="label label-default"><%= @location.wifi %></span>
-            </p>
-            <p>Air-Con:
-                <span class="label label-default"><%= @location.aircon %></span>
-            </p>
+            <div class="row">
+                <% if @location.coffee %>
+                    <div class="col-xs-3">
+                        <%= image_tag("coffee-cup.svg", class: 'info-icon img-responsive center-block') %>
+                        <p class="text-center info-text">Coffee</p>
+                    </div>
+                    <% else %>
+                    <div class="col-xs-3">
+                        <%= image_tag("coffee-cup.svg", class: 'info-icon nil-icon img-responsive center-block') %>
+                        <p class="text-center info-text">No Coffee</p>
+                    </div>
+                <% end %>
+                <% if @location.quiet %>
+                    <div class="col-xs-3">
+                        <%= image_tag("speaker-1.svg", class: 'info-icon img-responsive center-block') %>
+                        <p class="text-center info-text">Quiet</p>
+                    </div>
+                    <% else %>
+                    <div class="col-xs-3">
+                        <%= image_tag("speaker.svg", class: 'info-icon nil-icon img-responsive center-block') %>
+                        <p class="text-center info-text">Not Quiet</p>
+                    </div>
+                <% end %>
+                <% if @location.wifi %>
+                    <div class="col-xs-3">
+                        <%= image_tag("wifi.svg", class: 'info-icon img-responsive center-block') %>
+                        <p class="text-center info-text">Wifi</p>
+                    </div>
+                    <% else %>
+                    <div class="col-xs-3">
+                        <%= image_tag("wifi.svg", class: 'info-icon nil-icon img-responsive center-block') %>
+                        <p class="text-center info-text">No Wifi</p>
+                    </div>
+                <% end %>
+                <% if @location.aircon %>
+                    <div class="col-xs-3">
+                        <%= image_tag("air-conditioner.svg", class: 'info-icon img-responsive center-block') %>
+                        <p class="text-center info-text">Air-Con</p>
+                    </div>
+                    <% else %>
+                    <div class="col-xs-3">
+                        <%= image_tag("air-conditioner.svg", class: 'info-icon nil-icon img-responsive center-block') %>
+                        <p class="text-center info-text">No Air-Con</p>
+                    </div>
+                <% end %>
+            </div>
+            <hr>
         </div>
         <div class="col-md-8">
             <p class="lead"><%= @location.vicinity %></p>

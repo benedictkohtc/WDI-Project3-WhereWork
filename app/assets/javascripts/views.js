@@ -202,13 +202,15 @@ function initMap () {
       }
       let walktime = Math.floor(location['distance'] / 40) + 1
       let filtersString = ''
-      if (location[ 'wifi' ]) filtersString += 'wifi '
-      if (location[ 'aircon' ]) filtersString += 'aircon '
-      if (location[ 'availsockets' ]) filtersString += 'sockets '
-      if (location[ 'coffee' ]) filtersString += 'coffee '
-      if (location[ 'quiet' ]) filtersString += 'quiet '
-      if (location[ 'uncrowded' ]) filtersString += 'uncrowded '
-      let distance = Math.floor(location[ 'distance' ])
+
+      if ( location[ 'wifi' ] ) filtersString += wifiIcon
+      if ( location[ 'aircon' ] ) filtersString += airconIcon
+      if ( location[ 'availsockets' ] ) filtersString += socketsIcon
+      if ( location[ 'coffee' ] ) filtersString += coffeeIcon
+      if ( location[ 'quiet' ] ) filtersString += quietIcon
+      if ( location[ 'uncrowded' ] ) filtersString += uncrowdedIcon
+      let distance = Math.floor( location[ 'distance' ] )
+
       let showLinkString = `<a href="/locations/${location['id']}/?lat=${search_position['lat']}&lng=${search_position['lng']}">${location['name']}</a>`
       card.html(
         `
@@ -216,16 +218,18 @@ function initMap () {
           <div class="col-xs-5 col-md-3 location-card-img hidden-xs">
             ${imagelink}
           </div>
-          <div class="col-xs-7 col-md-9 location-card-info">
+          <div class="col-xs-12 col-md-9 location-card-info">
           <h3>${location['name']}</h3>
-          ${location['vicinity']}
-          <hr>
-          ${filtersString} <br><br>
-          ${distance} metres away<br>
-          ${walktime} min away
-          <hr>
+          ${location['vicinity']} <br><br>
           <p class="label label-default">${location['available_seats']} seats available</p>
           <p class="label label-default">${location['available_sockets']} sockets available</p>
+          <hr>
+          <div class='row'>
+            ${filtersString}
+          </div>
+          <hr>
+          ${distance} metres away<br>
+          ${walktime} min away
           <hr>
           <a href="/locations/${location['id']}/?lat=${search_position['lat']}&lng=${search_position['lng']}"><button class="btn-default btn">View details</button></a>
           </div>
