@@ -4,6 +4,10 @@
 
 This version of our app shows you the nearest places to work within 400 metres of your current location. Users can toggle filters such as the availability of seats, wi-fi, coffee, power sockets, etc. Users can also search for places around another location.
 
+![](http://gph.is/2kYU2kS)
+
+![](http://gph.is/2kYXBrc)
+
 # Getting Started
 
 ## Database Setup
@@ -88,6 +92,10 @@ The app is available [here](https://wherework.herokuapp.com/).
 * [Kanban board](https://github.com/benedictkohtc/WDI-Project3-WhereWork/projects/1)
 * [Google doc](https://docs.google.com/document/d/1PbUmWwnSvtdPrSZiPnzXaiuSnuTLBZ--ZdHJ2lwt2iU/edit?ts=589d76f8)
 * [Entity-relation diagram](https://docs.google.com/spreadsheets/d/1KIO_9dBhnx9fjz8PFWqbmE0VqoEK7HaTetWNnj2VTyg/edit#gid=0)
+
+## Post Mortem
+
+* [Link](https://github.com/melvinthemok/WDI-Project3-WhereWork/blob/master/POSTMORTEM.md)
 
 ## Authors
 
