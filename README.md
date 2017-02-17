@@ -4,9 +4,9 @@
 
 This version of our app shows you the nearest places to work within 400 metres of your current location. Users can toggle filters such as the availability of seats, wi-fi, coffee, power sockets, etc. Users can also search for places around another location.
 
-![](http://gph.is/2kYU2kS)
+![alt tag](http://gph.is/2kYU2kS)
 
-![](http://gph.is/2kYXBrc)
+![alt tag](http://gph.is/2kYXBrc)
 
 # Getting Started
 
