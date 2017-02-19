@@ -95,19 +95,19 @@ The app is available [here](https://wherework.herokuapp.com/).
 * [Google doc](https://docs.google.com/document/d/1PbUmWwnSvtdPrSZiPnzXaiuSnuTLBZ--ZdHJ2lwt2iU/edit?ts=589d76f8)
 * [Entity-relation diagram](https://docs.google.com/spreadsheets/d/1KIO_9dBhnx9fjz8PFWqbmE0VqoEK7HaTetWNnj2VTyg/edit#gid=0)
 
-## Post Mortem
-
-* [Adrian](https://medium.com/@adriankechongyang/how-i-learned-to-stop-worrying-and-love-resolving-merge-conflicts-44b7836f2d6a#.ne14gbq4p)
-* [Ben]()
-* [Keith]()
-* [Melvin](https://medium.com/@melvinmok/postmortem-ab95e5e96c26#.m9iasuplg)
-
 ## Authors
 
 * [Adrian](https://github.com/adrianke77)
 * [Ben](https://github.com/benedictkohtc)
 * [Keith](https://github.com/wekkit)
 * [Melvin](https://github.com/melvinthemok)
+
+## Post Mortem
+
+* [Adrian](https://medium.com/@adriankechongyang/how-i-learned-to-stop-worrying-and-love-resolving-merge-conflicts-44b7836f2d6a#.ne14gbq4p)
+* [Ben]()
+* [Keith]()
+* [Melvin](https://medium.com/@melvinmok/postmortem-ab95e5e96c26#.m9iasuplg)
 
 ## Acknowledgements
 
