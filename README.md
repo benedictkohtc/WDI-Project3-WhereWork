@@ -97,7 +97,10 @@ The app is available [here](https://wherework.herokuapp.com/).
 
 ## Post Mortem
 
-* [Link](https://github.com/melvinthemok/WDI-Project3-WhereWork/blob/master/POSTMORTEM.md)
+* [Adrian](https://medium.com/@adriankechongyang/how-i-learned-to-stop-worrying-and-love-resolving-merge-conflicts-44b7836f2d6a#.ne14gbq4p)
+* [Ben]()
+* [Keith]()
+* [Melvin](https://medium.com/@melvinmok/postmortem-ab95e5e96c26#.m9iasuplg)
 
 ## Authors
 
