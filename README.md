@@ -6,10 +6,6 @@ This version of our app shows you the nearest places to work within 400 metres o
 
 ![Imgur](http://i.imgur.com/LNu8GWD.png)
 
-![alt tag](http://i.giphy.com/Qdtg9bHZzC9dm.gif)
-
-![alt tag](http://i.giphy.com/QgMiSknizH1f2.gif)
-
 # Getting Started
 
 ## Database Setup
@@ -64,7 +60,17 @@ Note: All phone numbers need to have country codes!
 
 ## How to Use
 
-See the places to work around your current location displayed on the Google Map, or those around another location you can search for in the search bar. Toggle the various filters to refine your search.
+See the places to work around your current location displayed on the Google Map, or those around another location you can search for in the search bar.
+
+Toggle the various filters to refine your search.
+
+![alt tag](http://i.giphy.com/lFEEjXC25m8uY.gif)
+
+![alt tag](http://i.giphy.com/xYtS7VnpMuEpy.gif)
+
+![alt tag](http://i.giphy.com/kVfyJBg7pD1VS.gif)
+
+![alt tag](http://i.giphy.com/9dEByT5L0E2uk.gif)
 
 ## Tests?
 
