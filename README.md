@@ -6,10 +6,6 @@ This version of our app shows you the nearest places to work within 400 metres o
 
 ![Imgur](http://i.imgur.com/LNu8GWD.png)
 
-![alt tag](http://i.giphy.com/Qdtg9bHZzC9dm.gif)
-
-![alt tag](http://i.giphy.com/QgMiSknizH1f2.gif)
-
 # Getting Started
 
 ## Database Setup
@@ -64,7 +60,17 @@ Note: All phone numbers need to have country codes!
 
 ## How to Use
 
-See the places to work around your current location displayed on the Google Map, or those around another location you can search for in the search bar. Toggle the various filters to refine your search.
+See the places to work around your current location displayed on the Google Map, or those around another location you can search for in the search bar.
+
+Toggle the various filters to refine your search.
+
+![alt tag](http://i.giphy.com/lFEEjXC25m8uY.gif)
+
+![alt tag](http://i.giphy.com/xYtS7VnpMuEpy.gif)
+
+![alt tag](http://i.giphy.com/kVfyJBg7pD1VS.gif)
+
+![alt tag](http://i.giphy.com/9dEByT5L0E2uk.gif)
 
 ## Tests?
 
@@ -95,16 +101,18 @@ The app is available [here](https://wherework.herokuapp.com/).
 * [Google doc](https://docs.google.com/document/d/1PbUmWwnSvtdPrSZiPnzXaiuSnuTLBZ--ZdHJ2lwt2iU/edit?ts=589d76f8)
 * [Entity-relation diagram](https://docs.google.com/spreadsheets/d/1KIO_9dBhnx9fjz8PFWqbmE0VqoEK7HaTetWNnj2VTyg/edit#gid=0)
 
-## Post Mortem
-
-* [Link](https://github.com/melvinthemok/WDI-Project3-WhereWork/blob/master/POSTMORTEM.md)
-
 ## Authors
 
 * [Adrian](https://github.com/adrianke77)
 * [Ben](https://github.com/benedictkohtc)
 * [Keith](https://github.com/wekkit)
 * [Melvin](https://github.com/melvinthemok)
+
+## Post Mortem
+
+* [Adrian](https://medium.com/@adriankechongyang/how-i-learned-to-stop-worrying-and-love-resolving-merge-conflicts-44b7836f2d6a#.ne14gbq4p)
+* [Keith](https://medium.com/@keithchia/how-the-tables-have-turned-2bfc7a616bba#.wshlrvcle)
+* [Melvin](https://medium.com/@melvinmok/postmortem-ab95e5e96c26#.oyz9z17cz)
 
 ## Acknowledgements
 
