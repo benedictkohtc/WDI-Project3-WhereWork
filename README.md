@@ -111,7 +111,6 @@ The app is available [here](https://wherework.herokuapp.com/).
 ## Post Mortem
 
 * [Adrian](https://medium.com/@adriankechongyang/how-i-learned-to-stop-worrying-and-love-resolving-merge-conflicts-44b7836f2d6a#.ne14gbq4p)
-* [Ben]()
 * [Keith](https://medium.com/@keithchia/how-the-tables-have-turned-2bfc7a616bba#.wshlrvcle)
 * [Melvin](https://medium.com/@melvinmok/postmortem-ab95e5e96c26#.oyz9z17cz)
 
